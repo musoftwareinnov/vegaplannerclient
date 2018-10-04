@@ -1,0 +1,17 @@
+/* Structure */
+table {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 90%;
+  }
+
+  .mat-column-select {
+    overflow: initial;
+  }
+  .grid-container {
+    margin: 20px;
+  }
+  
