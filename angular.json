@@ -22,7 +22,6 @@
               "src/favicon.ico",
               "src/assets",
               "src/app/web.config",
-              "web.config"
             ],
             "styles": [
               {
