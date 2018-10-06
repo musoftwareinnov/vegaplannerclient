@@ -7,30 +7,31 @@ import { Observable, of as observableOf, merge } from 'rxjs';
 export interface VpcAppsinprogressItem {
   name: string;
   id: number;
+  description: string;
 }
 
 // TODO: replace this with real data from your application
 const EXAMPLE_DATA: VpcAppsinprogressItem[] = [
-  {id: 1, name: 'Hydrogen'},
-  {id: 2, name: 'Helium'},
-  {id: 3, name: 'Lithium'},
-  {id: 4, name: 'Beryllium'},
-  {id: 5, name: 'Boron'},
-  {id: 6, name: 'Carbon'},
-  {id: 7, name: 'Nitrogen'},
-  {id: 8, name: 'Oxygen'},
-  {id: 9, name: 'Fluorine'},
-  {id: 10, name: 'Neon'},
-  {id: 11, name: 'Sodium'},
-  {id: 12, name: 'Magnesium'},
-  {id: 13, name: 'Aluminum'},
-  {id: 14, name: 'Silicon'},
-  {id: 15, name: 'Phosphorus'},
-  {id: 16, name: 'Sulfur'},
-  {id: 17, name: 'Chlorine'},
-  {id: 18, name: 'Argon'},
-  {id: 19, name: 'Potassium'},
-  {id: 20, name: 'Calcium'},
+  {id: 1, name: 'Hydrogen', description: 'desc1'},
+  {id: 2, name: 'Helium', description: 'desc2'},
+  {id: 3, name: 'Lithium', description: 'desc3'},
+  // {id: 4, name: 'Beryllium'},
+  // {id: 5, name: 'Boron'},
+  // {id: 6, name: 'Carbon'},
+  // {id: 7, name: 'Nitrogen'},
+  // {id: 8, name: 'Oxygen'},
+  // {id: 9, name: 'Fluorine'},
+  // {id: 10, name: 'Neon'},
+  // {id: 11, name: 'Sodium'},
+  // {id: 12, name: 'Magnesium'},
+  // {id: 13, name: 'Aluminum'},
+  // {id: 14, name: 'Silicon'},
+  // {id: 15, name: 'Phosphorus'},
+  // {id: 16, name: 'Sulfur'},
+  // {id: 17, name: 'Chlorine'},
+  // {id: 18, name: 'Argon'},
+  // {id: 19, name: 'Potassium'},
+  // {id: 20, name: 'Calcium'},
 ];
 
 /**
@@ -78,6 +79,8 @@ export class VpcAppsinprogressDataSource extends DataSource<VpcAppsinprogressIte
    * this would be replaced by requesting the appropriate data from the server.
    */
   private getPagedData(data: VpcAppsinprogressItem[]) {
+
+    
     const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
     return data.splice(startIndex, this.paginator.pageSize);
   }

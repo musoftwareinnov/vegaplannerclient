@@ -19,7 +19,7 @@ export class VpcAppsinprogressComponent implements OnInit {
   // serializedDate = new FormControl((new Date()).toISOString());
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name'];
+  displayedColumns = ['id', 'name', 'description', 'status', 'state', 'dueBy'];
 
   applyFilter(filterValue: string) {
     //this.dataSource.filter = filterValue.trim().toLowerCase();
