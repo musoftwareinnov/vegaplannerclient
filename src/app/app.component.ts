@@ -12,7 +12,6 @@ export class AppComponent {
 
   constructor(private toastrService: ToastrService) {
     this.showSuccess() 
-
   }
   
   showSuccess() {
