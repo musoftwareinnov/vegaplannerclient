@@ -13,10 +13,12 @@ import { VpcNavComponent } from './vpc-nav/vpc-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, 
          MatListModule, MatGridListModule, MatCardModule, MatMenuModule, MatTableModule,
-         MatPaginatorModule, MatSortModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+         MatPaginatorModule, MatSortModule, MatFormFieldModule, MatInputModule, MatNativeDateModule } from '@angular/material';
 import { MatBadgeModule} from '@angular/material/badge';
+import { MatDatepickerModule} from '@angular/material/datepicker';
 import { VpcDashboardComponent } from './vpc-dashboard/vpc-dashboard.component';
 import { VpcAppsinprogressComponent } from './vpc-appsinprogress/vpc-appsinprogress.component';
+
 
 const appRoutes:Routes = [
   { path: 'dashboard' , component: VpcDashboardComponent},
@@ -49,7 +51,9 @@ const appRoutes:Routes = [
     MatSortModule, 
     MatFormFieldModule,
     MatInputModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]
