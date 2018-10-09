@@ -1,0 +1,8 @@
+{
+    "/api/*": {
+      "target": "https://vegaplannerserver.azurewebsites.net",
+      "secure": false,
+      "logLevel": "debug",
+      "changeOrigin": true
+    }
+  }

@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Subscription, BehaviorSubject } from 'rxjs';
 import { Credentials } from 'src/app/models/credentials';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from '../../shared/services/user.service';
@@ -53,21 +53,16 @@ export class LoginComponent implements OnInit, OnDestroy {
         .subscribe(
         result => {         
           if (result) {
-
-                    console.log("IN");
-                    if (typeof window !== 'undefined') {
-                        localStorage.setItem('authToken', result.authToken);
-                        if(result.authToken )
-                            console.log("UserService Login succeeded: webtoken obtained for " + result.userName);
-                    }
-                    // this.loggedIn = true;
-                    // this._authNavStatusSource.next(true);
-                    // this._authNavUserNameSource.next(res.userName);
-                    //return true;
-                    
+            console.log("IN");
+            if (typeof window !== 'undefined') {
+                localStorage.setItem('authToken', result.authToken);
+                if(result.authToken )
+                    console.log("UserService Login succeeded: webtoken obtained for " + result.userName);
+            }
                     
              console.log(result['userName'])   
-             this.router.navigate(['/appsinprogress']);          
+             this.router.navigate(['/appsinprogress']); 
+             return true;         
           }
         },
         error => this.errors = error);

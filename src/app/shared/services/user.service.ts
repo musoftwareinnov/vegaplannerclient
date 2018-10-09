@@ -65,10 +65,11 @@ export class UserService extends BaseService {
 
     return this.http
       .post(
-      this.baseUrl + '/auth/login',
+      // this.baseUrl + '/auth/login',
+      '/api/auth/login',
       JSON.stringify({ userName, password }),{ headers })
       
-            .pipe( map(  res => res.json() ));
+            //.pipe( map(  res => res.json() ));
                 // res => { 
                 //   console.log("IN");
                 //     if (typeof window !== 'undefined') {
@@ -87,6 +88,22 @@ export class UserService extends BaseService {
                     
                 //     ,
                 // catchError(this.handleError);
+            .pipe( map(  res => res.json(), 
+                            res => { 
+                  console.log("IN");
+                    if (typeof window !== 'undefined') {
+                        localStorage.setItem('authToken', res.authToken);
+                        if(res.authToken )
+                            console.log("UserService Login succeeded: webtoken obtained for " + userName);
+                    }
+                    this.loggedIn = true;
+                    this._authNavStatusSource.next(true);
+                    this._authNavUserNameSource.next(res.userName);
+                    return true;
+                    } 
+                    )
+                    
+                    )
     }
 
     logout() {
@@ -97,7 +114,7 @@ export class UserService extends BaseService {
         this.loggedIn = false;
         this._authNavStatusSource.next(false);
         this._authNavUserNameSource.next("");
-  }
+    }
 
   isLoggedIn() {
     return this.loggedIn;
