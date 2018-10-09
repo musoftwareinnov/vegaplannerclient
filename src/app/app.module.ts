@@ -16,12 +16,16 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule,
          MatPaginatorModule, MatSortModule, MatFormFieldModule, MatInputModule, MatNativeDateModule 
         }from '@angular/material';
 
+
 import { MatBadgeModule} from '@angular/material/badge';
 import { MatDatepickerModule} from '@angular/material/datepicker';
 import { VpcDashboardComponent } from './components/vpc-dashboard/vpc-dashboard.component';
 import { VpcAppsinprogressComponent } from './components/vpc-appsinprogress/vpc-appsinprogress.component';
 import { LoginComponent } from './components/login/login.component';
-
+import { UserService } from './shared/services/user.service';
+//Security
+import { HttpModule, XHRBackend } from '@angular/http';
+import { ConfigService } from './shared/utils/config.service';
 
 const appRoutes:Routes = [
   { path: 'login' , component: LoginComponent},
@@ -45,6 +49,8 @@ const appRoutes:Routes = [
     LayoutModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpModule,
+
 
     //Material design modules
     MatToolbarModule,
@@ -66,7 +72,12 @@ const appRoutes:Routes = [
 
 
   ],
-  providers: [],
+  providers: [
+    // { provide: ErrorHandler, useClass: AppErrorHandler},
+    // { provide: BrowserXhr, useClass: BrowserXhrWithProgress},
+    UserService,
+    ConfigService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

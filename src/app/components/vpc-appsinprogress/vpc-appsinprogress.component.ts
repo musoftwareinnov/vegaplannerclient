@@ -14,6 +14,7 @@ export class VpcAppsinprogressComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   dataSource: VpcAppsinprogressDataSource;
 
+  loginStatus = false
   startDate = new Date();
   // date = new FormControl(new Date());
   // serializedDate = new FormControl((new Date()).toISOString());

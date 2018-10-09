@@ -20,5 +20,15 @@
   }
   
   .example-full-width {
-    width: 100%;
+    width: 60%;
   }
+
+  .grid-container {
+    margin: 180px;
+  }
+
+  .grid-container-inner {
+    padding: 40px
+  }
+
+  

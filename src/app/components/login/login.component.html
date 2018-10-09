@@ -1,16 +1,26 @@
 
+<div class="grid-container">
+    <div class="mat-elevation-z8">
+    <form #f="ngForm" class="example-form" novalidate (ngSubmit)="login(f)">
+        <div class="grid-container-inner">
+            <h1 class="mat-h1">Login </h1>
 
-<form class="example-form">
-    <h1 class="mat-h1">Login </h1>
-    <mat-form-field>
-        <input matInput placeholder="Enter your email" [formControl]="email" required>
-        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-      </mat-form-field>
+            <mat-form-field>
+                <input matInput id="email" placeholder="Enter your email" ngModel name="email" required>
+                <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
 
-      <mat-form-field class="example-full-width" >
-          <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
-          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-      </mat-form-field>
+            <mat-form-field class="example-full-width" >
+                <input matInput id="password" name="password" placeholder="Enter your password" ngModel [type]="hide ? 'password' : 'text'">
+                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+            </mat-form-field>
 
-  </form>
+            <div class="form-group">
+                    <button type="submit" mat-raised-button color="primary" >Login</button>
+                    <!-- <app-spinner [isRunning]="isRequesting"></app-spinner>  -->
+            </div>
+        </div>
+    </form>
+</div>
+</div>
   

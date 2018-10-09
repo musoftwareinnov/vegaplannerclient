@@ -9,16 +9,17 @@
     <mat-toolbar color="primary">Menu</mat-toolbar>
     <mat-nav-list>
       <a mat-list-item [routerLink]="['/login']">Login</a>
-      <a mat-list-item [routerLink]="['/dashboard']">
-        <span matBadge="4" matBadgeOverlap="false">Dashboard</span>
-      </a>
-      <a mat-list-item [routerLink]="['/appsinprogress']">
-        <span matBadge="15" matBadgeOverlap="false" matBadgeColor="warn">Apps In Progress</span>
-      </a>
-      <a mat-list-item [routerLink]="['/dashboard']">
-        <span matBadge="4" matBadgeOverlap="false">Apps Completed</span>
-      </a>
-
+      <a *ngIf="loginStatus" id="loggedInComponents"> 
+        <a mat-list-item [routerLink]="['/dashboard']">
+          <span matBadge="4" matBadgeOverlap="false">Dashboard</span>
+        </a>
+        <a mat-list-item [routerLink]="['/appsinprogress']">
+          <span matBadge="15" matBadgeOverlap="false" matBadgeColor="warn">Apps In Progress</span>
+        </a>
+        <a mat-list-item [routerLink]="['/dashboard']">
+          <span matBadge="4" matBadgeOverlap="false">Apps Completed</span>
+        </a>
+      </a> 
     </mat-nav-list>
   </mat-sidenav>   
   <mat-sidenav-content> 
