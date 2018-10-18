@@ -13,6 +13,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "^6.1.0",
+    "@angular/cdk": "^6.2.0",
     "@angular/common": "^6.1.0",
     "@angular/compiler": "^6.1.0",
     "@angular/core": "^6.1.0",
@@ -28,8 +29,8 @@
     "ngx-toastr": "^9.1.0",
     "popper.js": "^1.14.4",
     "rxjs": "~6.2.0",
-    "zone.js": "~0.8.26",
-    "@angular/cdk": "^6.2.0"
+    "rxjs-compat": "^6.3.3",
+    "zone.js": "~0.8.26"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.8.0",

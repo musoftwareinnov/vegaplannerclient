@@ -23,9 +23,29 @@ import { VpcDashboardComponent } from './components/vpc-dashboard/vpc-dashboard.
 import { VpcAppsinprogressComponent } from './components/vpc-appsinprogress/vpc-appsinprogress.component';
 import { LoginComponent } from './components/login/login.component';
 import { UserService } from './shared/services/user.service';
+
+//Security
+import { PlanningAppService } from './services/planningapp.service';
+import { PlanningAppStateService } from './services/planninappstate.service';
+import { ProgressService } from './services/progress.service';
+import { DrawingService } from './services/drawing.service';
+import { StateStatusService } from './services/statestatus.service';
+import { StateInitialiserService } from './services/stateinitialiser.service';
+import { CustomerService } from './services/customer.service';
+import { StateInitialiserStateService } from './services/stateinitialiserstate.service';
+import { StatisticsService } from './services/statistics.service';
+
 //Security
 import { HttpModule, XHRBackend } from '@angular/http';
+import { AuthenticateXHRBackend } from './authenticate-xhr.backend';
+//import { AccountModule }  from './components/account/account.module';
 import { ConfigService } from './shared/utils/config.service';
+import { AuthGuard } from './auth.guard';
+//import { StorageServiceModule} from 'angular-webstorage-service';
+import { HttpJwtService } from './shared/services/httpJwt.service';
+//import { SpinnerComponent } from './components/spinner/spinner.component';
+
+
 
 const appRoutes:Routes = [
   { path: 'login' , component: LoginComponent},
@@ -50,7 +70,9 @@ const appRoutes:Routes = [
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-
+    HttpClientModule,
+    CommonModule,
+    HttpModule,
 
     //Material design modules
     MatToolbarModule,
@@ -75,8 +97,23 @@ const appRoutes:Routes = [
   providers: [
     // { provide: ErrorHandler, useClass: AppErrorHandler},
     // { provide: BrowserXhr, useClass: BrowserXhrWithProgress},
+    HttpJwtService,
     UserService,
-    ConfigService
+    PlanningAppService,
+    // PlanningAppStateService,
+    // DrawingService,
+    // ProgressService,
+    // CustomerService,
+    StateStatusService,
+    // StateInitialiserService,
+    // StateInitialiserStateService,
+    // StatisticsService,
+    UserService,
+    AuthGuard,
+    [ConfigService, { 
+      provide: XHRBackend, 
+      useClass: AuthenticateXHRBackend
+    }],
   ],
   bootstrap: [AppComponent]
 })

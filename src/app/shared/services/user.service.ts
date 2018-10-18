@@ -4,7 +4,7 @@ import { UserRegistration } from '../models/user.registration.interface';
 import { ConfigService } from '../utils/config.service';
 import {BaseService} from "./base.service";
 import { Observable } from 'rxjs';
-import { BehaviorSubject } from 'rxjs'; 
+import { BehaviorSubject } from 'rxjs-compat'; 
 import { map, catchError } from 'rxjs/operators';
 
 
@@ -58,53 +58,52 @@ export class UserService extends BaseService {
    login(userName:string, password:string) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-
     console.log(userName);
-
-
-
     return this.http
       .post(
       this.baseUrl + '/auth/login',
-      //'/api/auth/login',
-      JSON.stringify({ userName, password }),{ headers })
-      
-            //.pipe( map(  res => res.json() ));
-                // res => { 
-                //   console.log("IN");
-                //     if (typeof window !== 'undefined') {
-                //         localStorage.setItem('authToken', res.authToken);
-                //         if(res.authToken )
-                //             console.log("UserService Login succeeded: webtoken obtained for " + userName);
-                //     }
-                //     this.loggedIn = true;
-                //     this._authNavStatusSource.next(true);
-                //     this._authNavUserNameSource.next(res.userName);
-                //     return true;
-                //     } 
-                //     )
-                    
-                    //)
-                    
-                //     ,
-                // catchError(this.handleError);
-            .pipe( map(  res => res.json(), 
-                            res => { 
-                  console.log("IN");
-                    if (typeof window !== 'undefined') {
-                        localStorage.setItem('authToken', res.authToken);
-                        if(res.authToken )
-                            console.log("UserService Login succeeded: webtoken obtained for " + userName);
-                    }
-                    this.loggedIn = true;
-                    this._authNavStatusSource.next(true);
-                    this._authNavUserNameSource.next(res.userName);
-                    return true;
-                    } 
-                    )
-                    
-                    )
+      JSON.stringify({ userName, password }),{ headers }
+      )
+      .map(res => res.json())
+      .map(res => {
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('authToken', res.authToken);
+          if(res.authToken )
+            console.log("UserService Login succeeded: webtoken obtained for " + userName);
+       }
+        this.loggedIn = true;
+        this._authNavStatusSource.next(true);
+        this._authNavUserNameSource.next(res.userName);
+        return true;
+      })
+      .catch(this.handleError);
     }
+
+    // login(userName:string, password:string) {
+    //   let headers = new Headers();
+    //   headers.append('Content-Type', 'application/json');
+    //   console.log(userName);
+    //   return this.http
+    //     .post(
+    //     this.baseUrl + '/auth/login',
+    //     //'/api/auth/login', (used for testing based on config file)
+    //     JSON.stringify({ userName, password }),{ headers })
+    
+    //       .pipe( map(  res => res.json(), 
+    //         res => { 
+    //           if (typeof window !== 'undefined') {
+    //               localStorage.setItem('authToken', res.authToken);
+    //               if(res.authToken )
+    //                   console.log("UserService Login succeeded: webtoken obtained for " + userName);
+    //           }
+    //           this.loggedIn = true;
+    //           this._authNavStatusSource.next(true);
+    //           this._authNavUserNameSource.next(res.userName);
+    //           return true;
+    //         } 
+    //       )      
+    //     )
+    //   }
 
     logout() {
         if (typeof window !== 'undefined') {
@@ -121,10 +120,8 @@ export class UserService extends BaseService {
   }
 
   getUwt() {
-    console.log("UserService")
     var httpHeaders = new HttpHeaders;
     if(this.isLoggedIn()) {
-      console.log("UserService getUserWebTokenHeader:" + localStorage.getItem('authToken'));
       if (typeof window !== 'undefined') {
         console.log("UserService getting webtoken:" + localStorage.getItem('authToken'));
         var webToken = localStorage.getItem('authToken');
@@ -134,6 +131,9 @@ export class UserService extends BaseService {
             'Authorization':`Bearer ${webToken}`
           });
       }
+    }
+    else {
+      console.log("get Uwt UserService Not logged in");
     }
     return httpHeaders;
   }

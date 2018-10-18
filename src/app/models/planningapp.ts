@@ -1,7 +1,6 @@
 import { Customer } from './customer';
 import { Developer } from './developer';
 import { Address } from './address';
-
 export interface PlanningApp {
     id: number; 
     planningReferenceId: string;

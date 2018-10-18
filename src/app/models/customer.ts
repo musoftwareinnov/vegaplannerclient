@@ -1,3 +1,5 @@
+import { PlanningApp } from "./planningapp";
+
 export interface Customer {
     id: number; 
     firstName: string;
@@ -10,6 +12,7 @@ export interface Customer {
     telephoneMobile: string; 
     telephoneWork: string; 
     notes: string;
+    //planningApplications: PlanningApp[];
 }
 
 export interface CustomerSelect {

@@ -44,32 +44,50 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.submitted = true;
     this.isRequesting = true;
     this.errors='';
-    console.log(value.email)
     if (valid) {
-
       this.userService.login(value.email, value.password)
-        
-        //.finally(() => this.isRequesting = false)
+        .finally(() => this.isRequesting = false)
         .subscribe(
         result => {         
           if (result) {
-            console.log("IN");
-            if (typeof window !== 'undefined') {
-                localStorage.setItem('authToken', result.authToken);
-                if(result.authToken )
-                    console.log("UserService Login succeeded: webtoken obtained for " + result.userName);
-            }
-                    
-             console.log(result['userName'])   
-             this.router.navigate(['/appsinprogress']); 
-             return true;         
+             this.router.navigate(['/appsinprogress']);             
           }
         },
         error => this.errors = error);
     }
-
     this.userService.getUwt();
   }
+
+  // Angular 6 RxJs version
+  // login({ value, valid }: { value: Credentials, valid: boolean }) {
+  //   this.submitted = true;
+  //   this.isRequesting = true;
+  //   this.errors='';
+  //   console.log(value.email)
+  //   if (valid) {
+
+  //     this.userService.login(value.email, value.password)
+        
+  //       //.finally(() => this.isRequesting = false)
+  //       .subscribe(
+  //       result => {         
+  //         if (result) {
+  //           if (typeof window !== 'undefined') {
+  //               localStorage.setItem('authToken', result.authToken);
+  //               if(result.authToken )
+  //                   console.log("LoginService Login succeeded: webtoken obtained for " + result.userName);
+  //           }
+                    
+  //           console.log(result['userName'])   
+  //           this.router.navigate(['/appsinprogress']); 
+  //           return true;         
+  //         }
+  //       },
+  //       error => this.errors = error);
+  //   }
+
+  //   this.userService.getUwt();
+  // }
 
   ngOnDestroy() {
     // prevent memory leak by unsubscribing

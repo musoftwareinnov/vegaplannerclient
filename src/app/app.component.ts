@@ -15,7 +15,7 @@ export class AppComponent {
   }
   
   showSuccess() {
-    this.toastrService.success('Planning App Saved', 'Success');
+    // this.toastrService.success('Planning App Saved', 'Success');
     // this.toastrService.info('Hello world!', 'Toastr fun!');
     // this.toastrService.error('Hello world!', 'Toastr fun!');
     // this.toastrService.warning('Hello world!', 'Toastr fun!');
