@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatSort } from '@angular/material';
-import { VpcAppsinprogressDataSource } from './vpc-appsinprogress-datasource';
+import { MatPaginator, MatSort, PageEvent } from '@angular/material';
+
 import {FormControl} from '@angular/forms';
 import {MatTableDataSource} from '@angular/material';
 import { UserService } from 'src/app/shared/services/user.service';
@@ -17,7 +17,6 @@ import { AuthGuard } from 'src/app/auth.guard';
 export class VpcAppsinprogressComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  dataSource: VpcAppsinprogressDataSource;
 
   private readonly PAGE_SIZE = 10; 
   queryResult: any = {};
@@ -30,13 +29,15 @@ export class VpcAppsinprogressComponent implements OnInit {
 
   stateStatuses: StateStatus[] = [];
 
+  selectedValue: string;
   loginStatus = false
   startDate = new Date();
   // date = new FormControl(new Date());
   // serializedDate = new FormControl((new Date()).toISOString());
 
-  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name', 'description', 'status', 'state', 'dueBy'];
+  //For table
+  displayedColumns = ['id', 'name', 'description', 'status', 'state', 'dueBy', 'planningAppId', 'completionDate'];
+
 
   applyFilter(filterValue: string) {
     //this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -50,10 +51,11 @@ export class VpcAppsinprogressComponent implements OnInit {
      }
 
   ngOnInit() {
-    this.dataSource = new VpcAppsinprogressDataSource(this.paginator, this.sort);
     this.loadStatuses();
     this.refreshData();
-
+    // this.interval = setInterval(() => { 
+    //     this.refreshData(); 
+    // }, 5000);
 
     console.log(this.userService.getUwt());
   }
@@ -90,5 +92,15 @@ export class VpcAppsinprogressComponent implements OnInit {
     if (this.interval) {
       clearInterval(this.interval);
     }
+  }
+
+  public getServerData(event?:PageEvent){
+
+    this.query.page=event.pageIndex+1;
+    this.query.pageSize=event.pageSize;
+
+    this.populatePlanningAppSummary() ;
+
+    return event;
   }
 }

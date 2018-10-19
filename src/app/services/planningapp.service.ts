@@ -1,5 +1,5 @@
 import { Headers } from '@angular/http';
-import { PlanningApp, ChangePlanningAppState, PlanningAppGenerator, SavePlanningNotes } from '../models/planningapp';
+import { PlanningApp, ChangePlanningAppState, PlanningAppGenerator, SavePlanningNotes, PlanningAppGet } from '../models/planningapp';
 import { PlanningAppSummary } from '../models/planningappsummary';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
@@ -15,7 +15,7 @@ export class PlanningAppService {
   constructor( private httpJwtService:HttpJwtService) { }
 
   getPlanningAppSummary(filter:any) {
-    return this.httpJwtService.get<PlanningApp>(this.planningappsEndpoint + '?' + this.toQueryString(filter));
+    return this.httpJwtService.get<PlanningAppGet[]>(this.planningappsEndpoint + '?' + this.toQueryString(filter));
   }
 
   getPlanningApp(id:any) {

@@ -16,7 +16,7 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule,
          MatPaginatorModule, MatSortModule, MatFormFieldModule, MatInputModule, MatNativeDateModule 
         }from '@angular/material';
 
-
+import {MatSelectModule} from '@angular/material/select';
 import { MatBadgeModule} from '@angular/material/badge';
 import { MatDatepickerModule} from '@angular/material/datepicker';
 import { VpcDashboardComponent } from './components/vpc-dashboard/vpc-dashboard.component';
@@ -91,7 +91,7 @@ const appRoutes:Routes = [
     MatBadgeModule,
     MatDatepickerModule,
     MatNativeDateModule,
-
+    MatSelectModule
 
   ],
   providers: [

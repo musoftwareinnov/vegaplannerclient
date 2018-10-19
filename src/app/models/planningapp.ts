@@ -1,6 +1,13 @@
 import { Customer } from './customer';
 import { Developer } from './developer';
 import { Address } from './address';
+//import { VpcAppsinprogressItem } from '../components/vpc-appsinprogress/vpc-appsinprogress-datasource';
+
+export interface PlanningAppGet {
+  totalItems: number;
+  items: PlanningApp[];
+}
+
 export interface PlanningApp {
     id: number; 
     planningReferenceId: string;

@@ -14,4 +14,12 @@ table {
   .grid-container {
     margin: 20px;
   }
-  
+
+  .grid-select-container {
+    margin: 50px;
+  }
+
+  .mat-row:nth-child(even){
+    background-color:rgb(242, 234, 250);
+    }
+
