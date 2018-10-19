@@ -107,7 +107,7 @@ const appRoutes:Routes = [
     StateStatusService,
     // StateInitialiserService,
     // StateInitialiserStateService,
-    // StatisticsService,
+    StatisticsService,
     UserService,
     AuthGuard,
     [ConfigService, { 
