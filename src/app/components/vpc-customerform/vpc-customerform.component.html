@@ -1,0 +1,100 @@
+<div class="grid-container">
+    <div class="mat-elevation-z8">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="grid-container-inner">
+            <h1 class="mat-h1">Create a new customer</h1>
+          <div class="form-group">
+              <table class="example-full-width" cellspacing="0"><tr>
+                  <td>                  
+                    <mat-form-field class="example-full-width">
+                      <input type="text" matInput placeholder="First name" formControlName="firstName"  [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"> 
+                      <div *ngIf="submitted && f.firstName.errors" >
+                          <!-- <mat-error *ngIf="f.firstName.errors.required">First Name is required</mat-error> -->
+                      </div>
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <mat-form-field class="example-full-width">
+                        <input type="text" matInput placeholder="Last name" formControlName="lastName"  [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }"> 
+                        <div *ngIf="submitted && f.lastName.errors" >
+                            <!-- <mat-error *ngIf="f.lastName.errors.required">Last Name is required</mat-error> -->
+                        </div>
+                    </mat-form-field>
+                </td>
+                </tr>
+              </table> 
+          </div>
+          <div class="form-group">
+            <p>
+              <mat-form-field class="example-full-width">
+                <textarea matInput placeholder="Address 1" formControlName="addressLine1"  [ngClass]="{ 'is-invalid': submitted && f.addressLine1.errors }"></textarea>
+                <div *ngIf="submitted && f.addressLine1.errors" >
+                    <!-- <mat-error *ngIf="f.addressLine1.errors.required">Address is required</mat-error> -->
+                </div>
+              </mat-form-field>
+            </p> 
+          </div>
+
+          <table class="example-full-width" cellspacing="0"><tr>
+              <td><mat-form-field class="example-full-width">
+                <input matInput placeholder="City" formControlName="city" [ngClass]="{ 'is-invalid': submitted && f.city.errors }"> 
+                <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
+                    <!-- <div *ngIf="f.city.errors.required">City is required</div> -->
+                </div>
+              </mat-form-field></td>
+
+              <td><mat-form-field class="example-full-width">
+                <input matInput placeholder="County" formControlName="county" [ngClass]="{ 'is-invalid': submitted && f.county.errors }"> 
+              </mat-form-field></td>
+
+              <td><mat-form-field class="example-full-width">
+                <input matInput #postalCode maxlength="8" placeholder="Postal Code" value="" formControlName="postcode" [ngClass]="{ 'is-invalid': submitted && f.postcode.errors }"> 
+                <mat-hint align="end">{{postalCode.value.length}} / 8</mat-hint>
+              </mat-form-field></td>
+            </tr>
+          </table>
+
+          <table class="example-full-width" cellspacing="0"><tr>
+              <td>
+                  <mat-form-field class="example-full-width">
+                      <span matPrefix></span>
+                      <input type="tel" matInput placeholder="Home No" formControlName="telephoneHome" [ngClass]="{ 'is-invalid': submitted && f.telephoneHome.errors }"> 
+                    </mat-form-field>    
+              </td>
+              <td>
+                  <mat-form-field class="example-full-width">
+                      <span matPrefix></span>
+                      <input type="tel" matInput placeholder="Work No" formControlName="telephoneWork" [ngClass]="{ 'is-invalid': submitted && f.telephoneWork.errors }"> 
+                    </mat-form-field>                 
+              </td>
+              <td>
+                  <mat-form-field class="example-full-width">
+                      <span matPrefix></span>
+                      <input type="tel" matInput placeholder="Mobile No" formControlName="telephoneMobile" [ngClass]="{ 'is-invalid': submitted && f.telephoneMobile.errors }"> 
+                    </mat-form-field>                 
+              </td>
+          </table>
+
+          <mat-form-field class="example-full-width">
+              <input matInput placeholder="Email" formControlName="emailAddress" [ngClass]="{ 'is-invalid': submitted && f.emailAddress.errors }"> 
+              <div *ngIf="submitted && f.emailAddress.errors" >
+                  <!-- <mat-error *ngIf="f.emailAddress.errors.required">Valid Email is required</mat-error> -->
+              </div>
+              <mat-icon matSuffix>email</mat-icon>
+          </mat-form-field>
+
+          <div class="form-group">
+            <p>
+                <mat-form-field class="example-full-width">
+                  <textarea matInput placeholder="Notes" formControlName="notes"></textarea>
+                </mat-form-field>
+            </p> 
+          </div>          
+
+          <div class="form-group">
+              <button [disabled]="loading" mat-raised-button color="primary">Register</button>
+          </div>
+        </div>
+    </form>
+  </div>  
+</div>

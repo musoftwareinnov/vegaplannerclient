@@ -6,6 +6,8 @@ export interface Customer {
     lastName: string;
     addressLine1: string;
     addressLine2: string;
+    city: string;
+    county: string;
     postcode: string;
     emailAddress: string; 
     telephoneHome: string; 

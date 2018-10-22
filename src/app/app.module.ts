@@ -9,19 +9,25 @@ import { BrowserXhr } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 
-import { VpcNavComponent } from './components/vpc-nav/vpc-nav.component';
+
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, 
          MatListModule, MatGridListModule, MatCardModule, MatMenuModule, MatTableModule,
          MatPaginatorModule, MatSortModule, MatFormFieldModule, MatInputModule, MatNativeDateModule 
         }from '@angular/material';
 
-import {MatSelectModule} from '@angular/material/select';
+//User defines components
+import { MatSelectModule} from '@angular/material/select';
 import { MatBadgeModule} from '@angular/material/badge';
 import { MatDatepickerModule} from '@angular/material/datepicker';
+import { VpcNavComponent } from './components/vpc-nav/vpc-nav.component';
 import { VpcDashboardComponent } from './components/vpc-dashboard/vpc-dashboard.component';
 import { VpcAppsinprogressComponent } from './components/vpc-appsinprogress/vpc-appsinprogress.component';
 import { LoginComponent } from './components/login/login.component';
+import { VpcCustomerformComponent } from './components/vpc-customerform/vpc-customerform.component';
+
+
+
 import { UserService } from './shared/services/user.service';
 
 //Security
@@ -43,6 +49,7 @@ import { ConfigService } from './shared/utils/config.service';
 import { AuthGuard } from './auth.guard';
 //import { StorageServiceModule} from 'angular-webstorage-service';
 import { HttpJwtService } from './shared/services/httpJwt.service';
+
 //import { SpinnerComponent } from './components/spinner/spinner.component';
 
 
@@ -51,6 +58,7 @@ const appRoutes:Routes = [
   { path: 'login' , component: LoginComponent},
   { path: 'dashboard' , component: VpcDashboardComponent},
   { path: 'appsinprogress' , component: VpcAppsinprogressComponent},
+  { path: 'newcustomer' , component: VpcCustomerformComponent},
 ];
 
 @NgModule({
@@ -59,7 +67,8 @@ const appRoutes:Routes = [
     VpcNavComponent,
     VpcDashboardComponent,
     VpcAppsinprogressComponent,
-    LoginComponent
+    LoginComponent,
+    VpcCustomerformComponent
   ],
   imports: [
     BrowserModule,
@@ -103,7 +112,7 @@ const appRoutes:Routes = [
     // PlanningAppStateService,
     // DrawingService,
     // ProgressService,
-    // CustomerService,
+    CustomerService,
     StateStatusService,
     // StateInitialiserService,
     // StateInitialiserStateService,

@@ -8,16 +8,44 @@
     [opened]="!(isHandset$ | async)">
     <mat-toolbar color="primary">Menu</mat-toolbar>
     <mat-nav-list>
-      <a *ngIf="!loginStatus" mat-list-item [routerLink]="['/login']">Login</a>
+      <a *ngIf="!loginStatus">
+          <a mat-list-item [routerLink]="['/login']">
+            <mat-icon>exit_to_app</mat-icon>&nbsp;Login
+          </a> 
+      </a>     
+      <!-- </a> mat-list-item [routerLink]="['/login']" >Login</a> -->
+      <!-- <a *ngIf="loginStatus" mat-list-item [routerLink]="['/login']" (click)="logout()">logout</a> -->
       <a *ngIf="loginStatus" id="loggedInComponents"> 
+        <a mat-list-item [routerLink]="['/login']" (click)="logout()">
+          <mat-icon>reply</mat-icon>&nbsp;Logout
+        </a> 
         <a mat-list-item [routerLink]="['/dashboard']">
-          <span matBadge="4" matBadgeOverlap="false">Dashboard</span>
+          <mat-icon>home</mat-icon>
+          <span matBadge="4" matBadgeOverlap="false">&nbsp;Dashboard</span>
         </a>
         <a mat-list-item [routerLink]="['/appsinprogress']">
-          <span matBadge="15" matBadgeOverlap="false" matBadgeColor="warn">Apps In Progress</span>
+          <mat-icon>list</mat-icon>
+          <span [matBadge]="planningStatistics.inProgress" matBadgeOverlap="false" matBadgeColor="warn">&nbsp;Apps In Progress</span>
         </a>
-        <a mat-list-item [routerLink]="['/dashboard']">
-          <span matBadge="4" matBadgeOverlap="false">Apps Completed</span>
+        <a mat-list-item [routerLink]="['/appsinprogress']">
+          <mat-icon>playlist_add</mat-icon>&nbsp;New Application
+        </a> 
+        <a mat-list-item [routerLink]="['/appsinprogress']">
+          <mat-icon>person</mat-icon>&nbsp;Customers
+        </a> 
+        <a mat-list-item [routerLink]="['/newcustomer']">
+          <mat-icon>person_add</mat-icon>&nbsp;New Customer
+        </a>
+        <a mat-list-item [routerLink]="['/appsinprogress']">
+          <mat-icon>help_outine</mat-icon>
+          <span [matBadge]="planningStatistics.completed" matBadgeOverlap="false">&nbsp;Web Enquiries</span>
+        </a>     
+        <a mat-list-item [routerLink]="['/appsinprogress']">
+          <mat-icon>done_outline</mat-icon>
+          <span [matBadge]="planningStatistics.completed" matBadgeOverlap="false">&nbsp;Apps Completed</span>
+        </a>
+        <a mat-list-item [routerLink]="['/appsinprogress']">
+          <mat-icon>settings</mat-icon>&nbsp;State Generators
         </a>
       </a> 
     </mat-nav-list>
@@ -32,7 +60,7 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>Crofton Design Vega Planner</span>
+      <span>Crofton Design Vega Planner : {{userName}}</span>
     </mat-toolbar>
     <!-- Add Content Here -->
     <router-outlet></router-outlet>
