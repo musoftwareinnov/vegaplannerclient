@@ -15,6 +15,12 @@
     margin-right:280px;   
   }
 
+  .grid-email {
+    margin-top:0px;
+    margin-left:0px;
+    margin-right:80px;  
+  }
+
   .grid-container-inner {
     padding: 40px
   }

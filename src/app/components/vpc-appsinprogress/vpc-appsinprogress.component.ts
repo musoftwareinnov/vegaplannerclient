@@ -87,18 +87,10 @@ export class VpcAppsinprogressComponent implements OnInit {
     this.populatePlanningAppSummary();
   }
 
-  ngOnDestroy() {   //Stop the planning service being called when user logs off
-    console.warn("DESTROY CALLED")
-    if (this.interval) {
-      clearInterval(this.interval);
-    }
-  }
-
   public getServerData(event?:PageEvent){
 
     this.query.page=event.pageIndex+1;
     this.query.pageSize=event.pageSize;
-
     this.populatePlanningAppSummary() ;
 
     return event;

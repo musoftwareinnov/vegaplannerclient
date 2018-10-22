@@ -50,26 +50,36 @@ export class VpcCustomerformComponent implements OnInit {
 
       this.registerForm = this.createFormGroupWithBuilderAndModel(this.formBuilder);
 
-      //Examples : 
-      //this.registerForm.setValue({firstName:"harry"});
-      //this.registerForm.setValue(this.customer);
-
       if (this.customer.id)
+          console.log("CustomerId:" + this.customer.id );
           this.customerService.getCustomer(this.customer.id)
           .subscribe(
-            customer => this.customer = customer,
+            customer => this.customer = customer,       
             err => {
               if (err.status == 404) {
                 this.router.navigate(['/customers']);
                 return; 
-              }
-          });
+              }},
+
+              () => { console.log("onComplete"); this.populateForm(this.customer)}
+
+          );
+    }
+
+    populateForm(customer: Customer) {
+      console.log("CUstomerName:" + customer.id);
+      
+      customer.city = "Truro";
+      customer.county = "COrnwall";
+      
+      this.registerForm.setValue(customer);
+      //this.registerForm.setValue({firstName: customer.firstName});
     }
 
     createFormGroupWithBuilderAndModel(formBuilder: FormBuilder) {
 
       return formBuilder.group({
-        //id: 0, 
+        id: 0, 
         firstName:    ['', Validators.required],
         lastName:     ['', Validators.required],
         addressLine1: ['', Validators.required],
@@ -81,6 +91,7 @@ export class VpcCustomerformComponent implements OnInit {
         telephoneHome: "",
         telephoneMobile:['', Validators.required],
         telephoneWork:"",
+        geoLocation:"",
         notes: "",
       });
     }
@@ -90,28 +101,32 @@ export class VpcCustomerformComponent implements OnInit {
 
     onSubmit() {
       this.submitted = true;
-      const customer: Customer = Object.assign({}, this.registerForm.value);
+      this.customer = Object.assign({}, this.registerForm.value);
 
-      console.warn("Submit -> "  +   customer.firstName);
+      this.customer.addressLine2 = "reg";
+      console.warn("Submit -> "  +   this.customer.firstName);
       // stop here if form is invalid
       if (this.registerForm.invalid) {
-        console.warn("Submit Not valid-> "  +   customer.firstName);
+        console.warn("Submit Not valid-> "  +   this.customer.firstName);
           return;
       }
 
-      //this.toastrService.success('Customer was sucessfully saved', 'Success');
-
-
-
-      // var result$ = (this.customer.id) ? this.customerService.update(this.customer) : this.customerService.create(this.customer); 
+      var result$ = (this.customer.id) ? this.customerService.update(this.customer) : this.customerService.create(this.customer); 
   
+      result$.subscribe(
+        customer => {
+          this.toastrService.success('Customer was sucessfully saved', 'Success');
+          this.router.navigate(['/customers'])
+        },
+        error => { this.toastrService.error('Customer name already taken', 'Error') } );
+    }
+
+    revert() {
+      // Resets to blank object
+      this.registerForm.reset();
   
-      // result$.subscribe(
-  
-      //   customer => {
-      //     this.toastrService.success('Customer was sucessfully saved', 'Success');
-      //     this.router.navigate(['/customers'])
-      // });
+      // Resets to provided model
+      //this.contactForm.reset({ personalData: new PersonalData(), requestType: '', text: '' });
     }
 
 

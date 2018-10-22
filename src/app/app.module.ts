@@ -25,21 +25,24 @@ import { VpcDashboardComponent } from './components/vpc-dashboard/vpc-dashboard.
 import { VpcAppsinprogressComponent } from './components/vpc-appsinprogress/vpc-appsinprogress.component';
 import { LoginComponent } from './components/login/login.component';
 import { VpcCustomerformComponent } from './components/vpc-customerform/vpc-customerform.component';
+import { VpcCustomerlistComponent } from './components/vpc-customerlist/vpc-customerlist.component';
 
 
 
 import { UserService } from './shared/services/user.service';
 
-//Security
+//Services
 import { PlanningAppService } from './services/planningapp.service';
+import { StateStatusService } from './services/statestatus.service';
+import { CustomerService } from './services/customer.service';
+import { StatisticsService } from './services/statistics.service';
+
 import { PlanningAppStateService } from './services/planninappstate.service';
 import { ProgressService } from './services/progress.service';
 import { DrawingService } from './services/drawing.service';
-import { StateStatusService } from './services/statestatus.service';
 import { StateInitialiserService } from './services/stateinitialiser.service';
-import { CustomerService } from './services/customer.service';
 import { StateInitialiserStateService } from './services/stateinitialiserstate.service';
-import { StatisticsService } from './services/statistics.service';
+
 
 //Security
 import { HttpModule, XHRBackend } from '@angular/http';
@@ -52,13 +55,15 @@ import { HttpJwtService } from './shared/services/httpJwt.service';
 
 //import { SpinnerComponent } from './components/spinner/spinner.component';
 
-
+ 
 
 const appRoutes:Routes = [
   { path: 'login' , component: LoginComponent},
   { path: 'dashboard' , component: VpcDashboardComponent},
   { path: 'appsinprogress' , component: VpcAppsinprogressComponent},
-  { path: 'newcustomer' , component: VpcCustomerformComponent},
+  { path: 'customers/new' , component: VpcCustomerformComponent},
+  { path: 'customers/edit/:id' , component: VpcCustomerformComponent},
+  { path: 'customers' , component: VpcCustomerlistComponent},
 ];
 
 @NgModule({
@@ -68,7 +73,8 @@ const appRoutes:Routes = [
     VpcDashboardComponent,
     VpcAppsinprogressComponent,
     LoginComponent,
-    VpcCustomerformComponent
+    VpcCustomerformComponent,
+    VpcCustomerlistComponent
   ],
   imports: [
     BrowserModule,

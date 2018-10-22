@@ -1,0 +1,66 @@
+<div class="grid-container">
+    <h1 class="mat-h1">Customers</h1>
+    <div class="mat-elevation-z8">
+
+  <div class="grid-container">
+      <mat-form-field>
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+        </mat-form-field>
+      </div>
+
+
+  <table mat-table #table [dataSource]="queryResult.items" matSort aria-label="Elements">
+
+    <ng-container matColumnDef="fullName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Customer</th>
+        <td mat-cell *matCellDef="let row">{{row.fullName}}</td>
+      </ng-container>   
+    <!-- Address -->
+    <ng-container matColumnDef="customerAddressSummary">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Address</th>
+      <td mat-cell *matCellDef="let row">{{row.customerAddressSummary}}</td>
+    </ng-container>
+
+    <!-- Email Column -->
+    <ng-container matColumnDef="emailAddress">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+      <td mat-cell *matCellDef="let row">{{row.emailAddress}}</td>
+    </ng-container>
+  
+    <ng-container matColumnDef="telephoneHome">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Home Tel</th>
+        <td mat-cell *matCellDef="let row">{{row.telephoneHome}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="telephoneMobile">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Mobile</th>
+        <td mat-cell *matCellDef="let row">{{row.telephoneMobile}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="edit">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header></th>   
+          <td 
+              mat-cell *matCellDef="let row"  [routerLink]="['/customers/edit/', row.id]" ><span><mat-icon>edit</mat-icon></span>
+          </td>
+        </ng-container>
+
+    <ng-container matColumnDef="planningAppsCount">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Applications</th>   
+        <td 
+            mat-cell *matCellDef="let row" [routerLink]="['/customers/edit/', row.id]" ><span  [matBadge]="row.planningAppsCount" matBadgeOverlap="false" matBadgeColor="info">&nbsp;</span>
+        </td>
+      </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator #paginator
+    [length]="queryResult.totalItems"
+    [pageIndex]="0"
+    [pageSize]="10"
+    [pageSizeOptions]="[10, 25, 50, 100, 250]"
+    (page)="pageEvent = getServerData($event)">
+  </mat-paginator>
+</div>
+</div>

@@ -6,7 +6,7 @@ import { HttpJwtService } from '../shared/services/httpJwt.service';
 @Injectable()
 export class CustomerService {
 
-  private readonly customersEndpoint = '/api/customers';
+  private readonly customersEndpoint = '/customers';
   private httpHeaders = new HttpHeaders;
   
   constructor(private http: HttpClient, private httpJwtService:HttpJwtService) {}
