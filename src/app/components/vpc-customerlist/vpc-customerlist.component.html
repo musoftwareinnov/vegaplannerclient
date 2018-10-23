@@ -52,7 +52,7 @@
     <ng-container matColumnDef="planningAppsCount">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Applications</th>   
         <td 
-            mat-cell *matCellDef="let row" [routerLink]="['/customers/edit/', row.id]" ><span  [matBadge]="row.planningAppsCount" matBadgeOverlap="false" matBadgeColor="info">&nbsp;</span>
+            mat-cell *matCellDef="let row" [routerLink]="['/customers/planningapps/', row.id]" ><span  [matBadge]="row.planningAppsCount" matBadgeOverlap="false" matBadgeColor="info">&nbsp;</span>
         </td>
       </ng-container>
 

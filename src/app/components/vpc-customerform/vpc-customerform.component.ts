@@ -20,7 +20,6 @@ export class VpcCustomerformComponent implements OnInit {
         firstName: "",
         lastName: "",
         addressLine1: "",
-        addressLine2: "",
         city:"",
         county:"",
         postcode: "",
@@ -69,9 +68,6 @@ export class VpcCustomerformComponent implements OnInit {
     populateForm(customer: Customer) {
       console.log("CUstomerName:" + customer.id);
       
-      customer.city = "Truro";
-      customer.county = "COrnwall";
-      
       this.registerForm.setValue(customer);
       //this.registerForm.setValue({firstName: customer.firstName});
     }
@@ -83,7 +79,6 @@ export class VpcCustomerformComponent implements OnInit {
         firstName:    ['', Validators.required],
         lastName:     ['', Validators.required],
         addressLine1: ['', Validators.required],
-        addressLine2: "",
         city:         ['', Validators.required],
         county:       ['', Validators.required],
         postcode:     ['', Validators.required],
@@ -95,7 +90,7 @@ export class VpcCustomerformComponent implements OnInit {
         nameSummary:"",
         fullName:"",
         customerAddressSummary:"",
-        planningAppsCount:"",
+        planningAppsCount:0,
         notes: "",
       });
     }
@@ -107,11 +102,9 @@ export class VpcCustomerformComponent implements OnInit {
       this.submitted = true;
       this.customer = Object.assign({}, this.registerForm.value);
 
-      this.customer.addressLine2 = "reg";
-      console.warn("Submit -> "  +   this.customer.firstName);
       // stop here if form is invalid
       if (this.registerForm.invalid) {
-        console.warn("Submit Not valid-> "  +   this.customer.firstName);
+          console.warn("Submit Not valid-> "  +   this.customer.firstName);
           return;
       }
 

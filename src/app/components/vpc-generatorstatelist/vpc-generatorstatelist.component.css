@@ -1,0 +1,31 @@
+/* Structure */
+table {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 90%;
+  }
+
+  .mat-column-select {
+    overflow: initial;
+  }
+  .grid-container {
+    margin-top:10px;
+    margin-left:80px;
+    margin-right:180px;   
+  }
+
+  .filter-width {
+    width: 30%;
+  }
+  
+
+  .grid-select-container {
+    margin: 50px;
+  }
+
+  .mat-row:nth-child(even){
+    background-color:rgb(242, 234, 250);
+    }

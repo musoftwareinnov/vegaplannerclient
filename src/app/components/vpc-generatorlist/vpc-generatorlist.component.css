@@ -1,0 +1,22 @@
+table {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 90%;
+  }
+
+  .grid-container {
+    margin-top:10px;
+    margin-left:80px;
+    margin-right:180px;   
+  }
+
+  .button-margin {
+    margin-top: 20px;
+  }
+
+  .mat-row:nth-child(even){
+    background-color:rgb(242, 234, 250);
+    }

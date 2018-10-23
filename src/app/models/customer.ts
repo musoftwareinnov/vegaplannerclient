@@ -5,7 +5,6 @@ export interface Customer {
     firstName: string;
     lastName: string;
     addressLine1: string;
-    addressLine2: string;
     city: string;
     county: string;
     postcode: string;
