@@ -23,3 +23,29 @@ table {
     background-color:rgb(242, 234, 250);
     }
 
+  .filter-width {
+    width: 20%;
+  }
+
+  .green-thumb-icon {
+      color: green;
+      margin: 10px;
+  }
+
+  .orange-warn-icon {
+    color: orange;
+    margin: 10px;
+  } 
+  .red-warn-icon {
+    color: red;
+    margin: 10px;
+  } 
+
+  .mat-column-status-icon-width {
+    flex: 0 0 0px;
+  }
+
+  .customWidthClass{
+    flex: 0 0 50px;
+  }
+

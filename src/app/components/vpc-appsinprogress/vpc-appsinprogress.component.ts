@@ -36,7 +36,7 @@ export class VpcAppsinprogressComponent implements OnInit {
   // serializedDate = new FormControl((new Date()).toISOString());
 
   //For table
-  displayedColumns = ['iconstatus', 'id', 'name', 'description', 'status', 'state', 'dueBy', 'planningAppId', 'completionDate'];
+  displayedColumns = ['iconStatus', 'id', 'name', 'description', 'status', 'state', 'dueBy', 'planningAppId', 'completionDate', 'edit'];
 
 
   applyFilter(filterValue: string) {

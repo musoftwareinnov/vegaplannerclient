@@ -92,6 +92,10 @@ export class VpcCustomerformComponent implements OnInit {
         telephoneMobile:['', Validators.required],
         telephoneWork:"",
         geoLocation:"",
+        nameSummary:"",
+        fullName:"",
+        customerAddressSummary:"",
+        planningAppsCount:"",
         notes: "",
       });
     }

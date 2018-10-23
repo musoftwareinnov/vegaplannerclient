@@ -15,6 +15,11 @@ table {
     margin: 20px;
   }
 
+  .filter-width {
+    width: 30%;
+  }
+  
+
   .grid-select-container {
     margin: 50px;
   }
