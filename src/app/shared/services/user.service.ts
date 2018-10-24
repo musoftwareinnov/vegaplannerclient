@@ -123,7 +123,6 @@ export class UserService extends BaseService {
     var httpHeaders = new HttpHeaders;
     if(this.isLoggedIn()) {
       if (typeof window !== 'undefined') {
-        console.log("UserService getting webtoken:" + localStorage.getItem('authToken'));
         var webToken = localStorage.getItem('authToken');
         var httpHeaders = new HttpHeaders(
           {

@@ -1,0 +1,47 @@
+.generic-form {
+    min-width: 100px;
+    max-width: 500px;
+    width: 100%;
+    margin: 120px;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+
+  .third-width {
+    width: 40%;
+  }
+
+  .button-row button,
+  .button-row a {
+    margin-right: 8px;
+  }
+
+  .grid-container {
+    margin-top:80px;
+    margin-left:280px;
+    margin-right:280px;   
+  }
+
+  .grid-container-custom {
+    padding: 40px
+  }
+
+  .grid-email {
+    margin-top:0px;
+    margin-left:0px;
+    margin-right:80px;  
+  }
+
+  .grid-container-inner {
+    padding: 40px
+  }
+
+  table {
+    width: 100%;
+  }
+
+  .mat-row:nth-child(even){
+    background-color:rgb(242, 234, 250);
+    }

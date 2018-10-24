@@ -35,8 +35,6 @@ constructor(
   }
 
 ngOnInit() {
-
-  console.warn(this.stateInitialiser);
   if (this.stateInitialiser.id)
       this.stateInitialiserService.getStateInitialiser(this.stateInitialiser.id)
       .subscribe(

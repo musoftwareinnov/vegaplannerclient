@@ -13,7 +13,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, 
          MatListModule, MatGridListModule, MatCardModule, MatMenuModule, MatTableModule,
-         MatPaginatorModule, MatSortModule, MatFormFieldModule, MatInputModule, MatNativeDateModule 
+         MatPaginatorModule, MatSortModule, MatFormFieldModule, MatInputModule, MatNativeDateModule ,
+         
         }from '@angular/material';
 
 
@@ -55,6 +56,7 @@ import { VpcCustomerlistComponent } from './components/vpc-customerlist/vpc-cust
 import { VpcGeneratorlistComponent } from './components/vpc-generatorlist/vpc-generatorlist.component';
 import { VpcGeneratorstatelistComponent } from './components/vpc-generatorstatelist/vpc-generatorstatelist.component';
 import { VpcCustomerappslistComponent } from './components/vpc-customerappslist/vpc-customerappslist.component';
+import { VpcGeneratorstateComponent } from './components/vpc-generatorstate/vpc-generatorstate.component';
 
 //import { SpinnerComponent } from './components/spinner/spinner.component';
 
@@ -67,9 +69,10 @@ const appRoutes:Routes = [
   { path: 'customers/new' , component: VpcCustomerformComponent},
   { path: 'customers/edit/:id' , component: VpcCustomerformComponent},
   { path: 'customers' , component: VpcCustomerlistComponent},
-  { path: 'generators' , component: VpcGeneratorlistComponent},
-  { path: 'generatorstates/:id' , component: VpcGeneratorstatelistComponent},
   { path: 'customers/planningapps/:id' , component: VpcCustomerappslistComponent},
+  { path: 'generators' , component: VpcGeneratorlistComponent},
+  { path: 'generatorstatelist/:id' , component: VpcGeneratorstatelistComponent},
+  { path: 'generatorstate/edit/:id' , component: VpcGeneratorstateComponent},
 ];
 
 @NgModule({
@@ -83,7 +86,8 @@ const appRoutes:Routes = [
     VpcCustomerlistComponent,
     VpcGeneratorlistComponent,
     VpcGeneratorstatelistComponent,
-    VpcCustomerappslistComponent
+    VpcCustomerappslistComponent,
+    VpcGeneratorstateComponent
   ],
   imports: [
     BrowserModule,

@@ -6,7 +6,7 @@ import { HttpJwtService } from '../shared/services/httpJwt.service';
 @Injectable()
 export class StateInitialiserStateService {
 
-  private readonly stateInitialiserstateEndpoint = '/api/stateinitialiserstates';
+  private readonly stateInitialiserstateEndpoint = '/stateinitialiserstates';
   private httpHeaders = new HttpHeaders;
   
   constructor(private http: HttpClient, private httpJwtService:HttpJwtService) { }

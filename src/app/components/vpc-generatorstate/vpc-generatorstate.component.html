@@ -1,0 +1,82 @@
+<div class="grid-container">
+    <div class="mat-elevation-z8">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="grid-container-inner">
+        <h1 class="mat-h1">Generator State Details</h1>
+          <div class="form-group">                        
+            <mat-form-field class="third-width">
+              <input type="text" matInput placeholder="State Name" formControlName="name"  [ngClass]="{ 'is-invalid': submitted && f.name.errors }"> 
+              <div *ngIf="submitted && f.name.errors" >
+              </div>
+            </mat-form-field>
+
+          </div>
+
+          <div class="form-group">  
+                <table class="example-full-width" cellspacing="0"><tr>
+                    <td>
+                        <mat-form-field>
+                            <input  type="number" matInput #completionTime maxlength="3" placeholder="Completion time (days)" value="2" min="1"
+                                    formControlName="completionTime"  [ngClass]="{ 'is-invalid': submitted && f.completionTime.errors }">
+                            <mat-hint align="end">{{completionTime.value.length}} / 3</mat-hint>
+                        </mat-form-field>                    
+                    </td>
+                    <td>
+                        <mat-form-field>
+                                <input  type="number" matInput #alertToCompletionTime maxlength="3" placeholder="Alert to completion time (days)" value="1" min="0"
+                                        formControlName="alertToCompletionTime"  [ngClass]="{ 'is-invalid': submitted && f.alertToCompletionTime.errors }">
+                                <mat-hint align="end">{{alertToCompletionTime.value.length}} / 3</mat-hint>
+                            </mat-form-field> 
+                    </td>
+                </table>
+            </div>
+
+    
+            <div class="button-row">
+                    <button *ngIf="stateInitialiserState.id>0" mat-raised-button color="primary">Update</button>
+                    <button *ngIf="stateInitialiserState.id==0" mat-raised-button color="primary">Create</button> 
+                    <button mat-raised-button color="primary" (click)="close=true">Close</button>                    
+                    <button *ngIf="stateInitialiserState.id && stateInitialiserState.canDelete==true"  mat-raised-button color="warn" (click)="delete()" >Delete</button>
+             
+            </div>
+        </div>
+    </form>
+
+    <!-- Table for custom fields -->
+    <div *ngIf="stateInitialiserState.stateInitialiserStateCustomFields.length>0">
+        <div class="grid-container-custom">
+            <h2 class="mat-h2">Custom Fields</h2>
+            <div class="mat-elevation-z8">
+                <table mat-table #table [dataSource]="stateInitialiserState.stateInitialiserStateCustomFields" matSort aria-label="Elements">
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+                        <td mat-cell *matCellDef="let row">{{row.name}}</td>
+                    </ng-container>   
+
+                    <ng-container matColumnDef="type">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Type</th>
+                        <td mat-cell *matCellDef="let row">{{row.type}}</td>
+                    </ng-container>
+                
+                    <ng-container matColumnDef="isPlanningAppField">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Planning App Field</th>
+                        <td mat-cell *matCellDef="let row">{{row.isPlanningAppField}}</td>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="isMandatory">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Mandatory</th>
+                            <td mat-cell *matCellDef="let row">{{row.isMandatory}}</td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    
+                </table>  
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
