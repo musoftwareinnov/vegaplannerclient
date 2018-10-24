@@ -23,10 +23,10 @@ table {
     background-color:rgb(242, 234, 250);
     }
 
-    .filter-width {
-      padding: 15px;
-      width: 20%;
-    }
+  .filter-width {
+    padding: 15px;
+    width: 20%;
+  }
 
   .green-thumb-icon {
       color: green;
@@ -49,4 +49,3 @@ table {
   .customWidthClass{
     flex: 0 0 50px;
   }
-

@@ -57,6 +57,7 @@ import { VpcGeneratorlistComponent } from './components/vpc-generatorlist/vpc-ge
 import { VpcGeneratorstatelistComponent } from './components/vpc-generatorstatelist/vpc-generatorstatelist.component';
 import { VpcCustomerappslistComponent } from './components/vpc-customerappslist/vpc-customerappslist.component';
 import { VpcGeneratorstateComponent } from './components/vpc-generatorstate/vpc-generatorstate.component';
+import { VpcAppscompletedComponent } from './components/vpc-appscompleted/vpc-appscompleted.component';
 
 //import { SpinnerComponent } from './components/spinner/spinner.component';
 
@@ -66,6 +67,7 @@ const appRoutes:Routes = [
   { path: 'login' , component: LoginComponent},
   { path: 'dashboard' , component: VpcDashboardComponent},
   { path: 'appsinprogress' , component: VpcAppsinprogressComponent},
+  { path: 'appscompleted' , component: VpcAppscompletedComponent},
   { path: 'customers/new' , component: VpcCustomerformComponent},
   { path: 'customers/edit/:id' , component: VpcCustomerformComponent},
   { path: 'customers' , component: VpcCustomerlistComponent},
@@ -73,6 +75,7 @@ const appRoutes:Routes = [
   { path: 'generators' , component: VpcGeneratorlistComponent},
   { path: 'generatorstatelist/:id' , component: VpcGeneratorstatelistComponent},
   { path: 'generatorstate/edit/:id' , component: VpcGeneratorstateComponent},
+
 ];
 
 @NgModule({
@@ -87,7 +90,8 @@ const appRoutes:Routes = [
     VpcGeneratorlistComponent,
     VpcGeneratorstatelistComponent,
     VpcCustomerappslistComponent,
-    VpcGeneratorstateComponent
+    VpcGeneratorstateComponent,
+    VpcAppscompletedComponent
   ],
   imports: [
     BrowserModule,

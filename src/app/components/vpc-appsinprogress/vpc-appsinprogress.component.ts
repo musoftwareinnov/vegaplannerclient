@@ -37,7 +37,8 @@ export class VpcAppsinprogressComponent implements OnInit {
 
   //For table
   displayedColumns = ['iconStatus', 
-                      'id', 'name', 
+                      'id',
+                      'name', 
                       'description', 
                       'status', 
                       'state', 
