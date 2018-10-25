@@ -21,8 +21,9 @@ export class VpcGeneratorstateComponent implements OnInit {
     alertToCompletionTime: 1,
     stateInitialiserId: 0,
     canDelete:true,
-    stateInitialiserStateCustomFields: []
+    stateInitialiserStateCustomFields: [] = []
   };
+
 
   //For table
   displayedColumns = [
@@ -64,6 +65,7 @@ ngOnInit() {
     });
 
   this.registerForm = this.createFormGroupWithBuilderAndModel(this.formBuilder);
+
 
   if (this.stateInitialiserState.id)
       this.stateInitialiserStateService.getStateInitialiserState(this.stateInitialiserState.id)

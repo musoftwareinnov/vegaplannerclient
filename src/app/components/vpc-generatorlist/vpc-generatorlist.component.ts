@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { StateInitialiserService } from 'src/app/services/stateinitialiser.service';
 import { AuthGuard } from 'src/app/auth.guard';
 import { PageEvent } from '@angular/material';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-vpc-generatorlist',
@@ -22,7 +23,8 @@ export class VpcGeneratorlistComponent implements OnInit {
     'generatorstatelink'
   ];
 
-  constructor(private stateInitialiserService: StateInitialiserService,
+  constructor(private formBuilder: FormBuilder,
+              private stateInitialiserService: StateInitialiserService,
               private authGuard:AuthGuard) { 
                 authGuard.canActivate();
     }

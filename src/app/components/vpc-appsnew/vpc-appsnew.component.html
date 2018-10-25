@@ -1,0 +1,41 @@
+
+<div class="grid-container">
+    <div class="mat-elevation-z8">
+        <form [formGroup]="newAppForm" (ngSubmit)="onSubmit()">
+        <div class="grid-container-inner">
+          <h1 class="mat-h1">New Planning Application</h1>
+          <div class="full-width-container">
+                <mat-form-field>
+                  <mat-select placeholder="Select Customer" formControlName="customer">
+                  <mat-option *ngFor="let customer of customerSelect.items" [value]="customer.id" >{{customer.nameSummary}}
+                  </mat-option>
+                </mat-select>
+                 </mat-form-field>
+            </div>
+         
+            <div class="full-width-container">
+                <mat-form-field>
+                  <mat-select id="generator" placeholder="Select Generator" formControlName="generator" name="generator">
+                  <mat-option *ngFor="let generator of stateGeneratorSelect.items" [value]="generator.id" >{{generator.name}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div> 
+    
+            <div class="full-width-container">
+                <p>
+                    <mat-form-field class="example-full-width">
+                      <textarea matInput placeholder="Notes" formControlName="notes" ></textarea>
+                    </mat-form-field>
+                </p> 
+            </div> 
+
+            <div class="form-group">
+                <button mat-raised-button color="primary">Create</button>
+            </div>
+        </div>
+      </form>
+  </div>
+  </div>  
+
+

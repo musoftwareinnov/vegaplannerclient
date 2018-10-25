@@ -1,0 +1,210 @@
+<div class="grid-container">
+    <h1 class="mat-h1">Project Details : (REF)</h1>
+    <div class="mat-elevation-z8">
+      <mat-tab-group>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon">trending_up</mat-icon>
+            Application Progress
+          </ng-template>
+          
+        </mat-tab>
+
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon">ballot</mat-icon>
+            Application Details
+          </ng-template>
+          <div class="grid-container">
+              <mat-accordion class="example-headers-align">
+                  <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>Application Summary</mat-panel-title>
+                      <mat-panel-description><mat-icon>event_note</mat-icon></mat-panel-description>
+                    </mat-expansion-panel-header>
+                
+                    <div class="form-group">
+                        <table ><tr>
+                            <td>                  
+                              <mat-form-field class="cust-name-width">
+                                <input type="text" matInput placeholder="Status" name="status"  [(ngModel)]="planningApp.planningStatus" > 
+                              </mat-form-field>
+                            </td>
+                            <td>
+                                <mat-form-field class="cust-name-width">
+                                    <input type="text" matInput placeholder="Current Status" name="currentStatus"  [(ngModel)]="planningApp.currentStateStatus"> 
+                                </mat-form-field>
+                            </td>                             
+
+                         
+                          </tr>
+                        </table> 
+                        <table ><tr>
+                            <td>                  
+                              <mat-form-field class="cust-name-width">
+                                <input type="text" matInput placeholder="Current State" name="currentState"  [(ngModel)]="planningApp.currentState" > 
+                              </mat-form-field>
+                            </td>
+                            <td>
+                                <mat-form-field class="cust-name-width">
+                                    <input type="text" matInput placeholder="Expected State Completion Date" name="expCompletionDate"  [(ngModel)]="planningApp.expectedStateCompletionDate"> 
+                                </mat-form-field>
+                            </td>                             
+                          </tr>
+                        </table>  
+
+                            <mat-form-field class="cust-name-width">
+                                <input type="text" matInput placeholder="App Completion Date" name="appCompletionDate"  [(ngModel)]="planningApp.completionDate"> 
+                            </mat-form-field>
+
+                        <mat-form-field class="full-width">
+                            <input type="text" matInput placeholder="Description" name="description"  [(ngModel)]="planningApp.name"> 
+                        </mat-form-field>                                  
+                    </div>
+                
+                    <mat-action-row>
+                      <button mat-button color="primary" (click)="nextStep()">Next</button>
+                    </mat-action-row>
+                  </mat-expansion-panel>
+                
+                  <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>Customer Details</mat-panel-title>
+                      <mat-panel-description><mat-icon>face</mat-icon></mat-panel-description>
+                    </mat-expansion-panel-header>
+                
+                    <div class="form-group">
+                        <table ><tr>
+                            <td>                  
+                              <mat-form-field class="cust-name-width">
+                                <input type="text" matInput placeholder="First name" name="firstName"  [(ngModel)]="planningApp.customer.firstName" > 
+                              </mat-form-field>
+                            </td>
+                            <td>
+                              <mat-form-field class="cust-name-width">
+                                  <input type="text" matInput placeholder="Last name" name="lastName"  [(ngModel)]="planningApp.customer.lastName"> 
+                              </mat-form-field>
+                          </td>
+                          <td>
+                              <mat-form-field class="cust-name-width">
+                                  <input type="text" matInput placeholder="Email" name="email"  [(ngModel)]="planningApp.customer.emailAddress"> 
+                              </mat-form-field>
+                          </td>                          
+                          </tr>
+                        </table> 
+                    </div>
+                    <div class="form-group">
+                        <table class="example-full-width" cellspacing="0"><tr>
+                            <td><mat-form-field class="cust-name-width">
+                              <input matInput placeholder="Address" name="address" [(ngModel)]="planningApp.customer.addressLine1"> 
+                            </mat-form-field></td>
+
+                            <td></td>
+              
+                            <td></td>
+                          </tr>
+                        </table>     
+                    </div>               
+                    <div class="form-group">
+                      <table class="example-full-width" cellspacing="0"><tr>
+                          <td><mat-form-field class="example-full-width">
+                            <input matInput placeholder="City" name="city" [(ngModel)]="planningApp.customer.city"> 
+                          </mat-form-field></td>
+            
+                          <td><mat-form-field class="example-full-width">
+                            <input matInput placeholder="County" name="county" [(ngModel)]="planningApp.customer.county"> 
+                          </mat-form-field></td>
+            
+                          <td><mat-form-field class="example-full-width">
+                            <input matInput #postalCode maxlength="8" placeholder="Postal Code" value="" name="postcode" [(ngModel)]="planningApp.customer.postcode"> 
+                          </mat-form-field></td>
+                        </tr>
+                      </table>
+                    </div>
+
+                    <div class="form-group">
+                        <table class="example-full-width" cellspacing="0"><tr>
+                            <td><mat-form-field class="example-full-width">
+                              <input matInput placeholder="Home" name="telephoneHome" [(ngModel)]="planningApp.customer.telephoneHome"> 
+                            </mat-form-field></td>
+              
+                            <td><mat-form-field class="example-full-width">
+                              <input matInput placeholder="Work" name="Work" [(ngModel)]="planningApp.customer.telephoneWork"> 
+                            </mat-form-field></td>
+              
+                            <td><mat-form-field class="example-full-width">
+                              <input matInput placeholder="Mobile" value="" name="telephoneMobile" [(ngModel)]="planningApp.customer.telephoneMobile"> 
+                            </mat-form-field></td>
+                          </tr>
+                        </table>
+                      </div>
+                
+                    <mat-action-row>
+                      <button mat-button color="warn" (click)="prevStep()">Previous</button>
+                      <button mat-button color="primary" (click)="nextStep()">Next</button>
+                    </mat-action-row>
+                  </mat-expansion-panel>
+                
+                  <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>Developer Contact Details</mat-panel-title>
+                      <mat-panel-description><mat-icon>date_range</mat-icon></mat-panel-description>
+                    </mat-expansion-panel-header>
+                
+                    <mat-form-field>
+                      <input matInput placeholder="Date" [matDatepicker]="picker" (focus)="picker.open()" readonly>
+                    </mat-form-field>
+                    <mat-datepicker #picker></mat-datepicker>
+                
+                    <mat-action-row>
+                      <button mat-button color="warn" (click)="prevStep()">Previous</button>
+                      <button mat-button color="primary" (click)="nextStep()">End</button>
+                    </mat-action-row>
+                  </mat-expansion-panel>
+                                
+                  <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" hideToggle>
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        Development Address Details
+                      </mat-panel-title>
+                      <mat-panel-description>
+                        <mat-icon>business</mat-icon>
+                      </mat-panel-description>
+                    </mat-expansion-panel-header>
+                
+                    <mat-form-field>
+                      <input matInput placeholder="Company name">
+                    </mat-form-field>
+                
+                    <mat-action-row>
+                      <button mat-button color="warn" (click)="prevStep()">Previous</button>
+                      <button mat-button color="primary" (click)="nextStep()">Next</button>
+                    </mat-action-row>
+                  </mat-expansion-panel>
+                </mat-accordion>
+          </div>
+        </mat-tab>
+
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon">collections</mat-icon>
+            Drawings
+          </ng-template>
+
+          Not Implemented
+        </mat-tab>
+        <mat-tab>
+            <ng-template mat-tab-label>
+              <mat-icon class="example-tab-icon">speaker_notes</mat-icon>
+              Notes
+            </ng-template>
+            <div class="grid-container">
+              <mat-form-field class="example-full-width">
+                  <textarea matInput placeholder="Application Notes"  [(ngModel)]="planningApp.notes"></textarea>
+                </mat-form-field>
+              </div>
+          </mat-tab>
+      </mat-tab-group>
+
+    </div>
+<div>

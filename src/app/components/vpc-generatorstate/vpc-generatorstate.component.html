@@ -42,37 +42,39 @@
         </div>
     </form>
 
-    <!-- Table for custom fields -->
-    <div *ngIf="stateInitialiserState.stateInitialiserStateCustomFields.length>0">
-        <div class="grid-container-custom">
-            <h2 class="mat-h2">Custom State Fields</h2>
-            <div class="mat-elevation-z8">
-                <table mat-table #table [dataSource]="stateInitialiserState.stateInitialiserStateCustomFields" matSort aria-label="Elements">
-                    <ng-container matColumnDef="name">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
-                        <td mat-cell *matCellDef="let row">{{row.name}}</td>
-                    </ng-container>   
+    <!-- Table for custom fields, only valid if state exists, not new states (need to add custom fields)-->
+    <div *ngIf="stateInitialiserState.id!=0">  
+        <div *ngIf="stateInitialiserState.stateInitialiserStateCustomFields.length>0">
+            <div class="grid-container-custom">
+                <h2 class="mat-h2">Custom State Fields</h2>
+                <div class="mat-elevation-z8">
+                    <table mat-table #table [dataSource]="stateInitialiserState.stateInitialiserStateCustomFields" matSort aria-label="Elements">
+                        <ng-container matColumnDef="name">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+                            <td mat-cell *matCellDef="let row">{{row.name}}</td>
+                        </ng-container>   
 
-                    <ng-container matColumnDef="type">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Type</th>
-                        <td mat-cell *matCellDef="let row">{{row.type}}</td>
-                    </ng-container>
-                
-                    <ng-container matColumnDef="isPlanningAppField">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Planning App Field</th>
-                        <td mat-cell *matCellDef="let row">{{row.isPlanningAppField}}</td>
-                    </ng-container>
-
-
-                    <ng-container matColumnDef="isMandatory">
-                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Mandatory</th>
-                            <td mat-cell *matCellDef="let row">{{row.isMandatory}}</td>
-                    </ng-container>
-
-                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        <ng-container matColumnDef="type">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Type</th>
+                            <td mat-cell *matCellDef="let row">{{row.type}}</td>
+                        </ng-container>
                     
-                </table>  
+                        <ng-container matColumnDef="isPlanningAppField">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Planning App Field</th>
+                            <td mat-cell *matCellDef="let row">{{row.isPlanningAppField}}</td>
+                        </ng-container>
+
+
+                        <ng-container matColumnDef="isMandatory">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header>Mandatory</th>
+                                <td mat-cell *matCellDef="let row">{{row.isMandatory}}</td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        
+                    </table>  
+                    </div>
                 </div>
             </div>
         </div>

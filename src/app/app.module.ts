@@ -14,10 +14,9 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, 
          MatListModule, MatGridListModule, MatCardModule, MatMenuModule, MatTableModule,
          MatPaginatorModule, MatSortModule, MatFormFieldModule, MatInputModule, MatNativeDateModule ,
-         
+         MatTabsModule
         }from '@angular/material';
-
-
+import {MatExpansionModule} from '@angular/material/expansion';
 
 import { UserService } from './shared/services/user.service';
 
@@ -28,7 +27,7 @@ import { CustomerService } from './services/customer.service';
 import { StatisticsService } from './services/statistics.service';
 
 import { PlanningAppStateService } from './services/planninappstate.service';
-import { ProgressService } from './services/progress.service';
+import { ProgressService, BrowserXhrWithProgress } from './services/progress.service';
 import { DrawingService } from './services/drawing.service';
 import { StateInitialiserService } from './services/stateinitialiser.service';
 import { StateInitialiserStateService } from './services/stateinitialiserstate.service';
@@ -58,6 +57,10 @@ import { VpcGeneratorstatelistComponent } from './components/vpc-generatorstatel
 import { VpcCustomerappslistComponent } from './components/vpc-customerappslist/vpc-customerappslist.component';
 import { VpcGeneratorstateComponent } from './components/vpc-generatorstate/vpc-generatorstate.component';
 import { VpcAppscompletedComponent } from './components/vpc-appscompleted/vpc-appscompleted.component';
+import { VpcGeneratornewComponent } from './components/vpc-generatornew/vpc-generatornew.component';
+import { VpcAppsnewComponent } from './components/vpc-appsnew/vpc-appsnew.component';
+import { VpcAppdetailsComponent } from './components/vpc-appdetails/vpc-appdetails.component';
+import { AppErrorHandler } from './app.error.handler';
 
 //import { SpinnerComponent } from './components/spinner/spinner.component';
 
@@ -68,14 +71,16 @@ const appRoutes:Routes = [
   { path: 'dashboard' , component: VpcDashboardComponent},
   { path: 'appsinprogress' , component: VpcAppsinprogressComponent},
   { path: 'appscompleted' , component: VpcAppscompletedComponent},
+  { path: 'appsnew' , component: VpcAppsnewComponent},
   { path: 'customers/new' , component: VpcCustomerformComponent},
   { path: 'customers/edit/:id' , component: VpcCustomerformComponent},
   { path: 'customers' , component: VpcCustomerlistComponent},
   { path: 'customers/planningapps/:id' , component: VpcCustomerappslistComponent},
   { path: 'generators' , component: VpcGeneratorlistComponent},
+  { path: 'generators/new' , component: VpcGeneratornewComponent},
   { path: 'generatorstatelist/:id' , component: VpcGeneratorstatelistComponent},
   { path: 'generatorstate/edit/:id' , component: VpcGeneratorstateComponent},
-
+  { path: 'planningapps/:id' , component: VpcAppdetailsComponent},
 ];
 
 @NgModule({
@@ -91,7 +96,10 @@ const appRoutes:Routes = [
     VpcGeneratorstatelistComponent,
     VpcCustomerappslistComponent,
     VpcGeneratorstateComponent,
-    VpcAppscompletedComponent
+    VpcAppscompletedComponent,
+    VpcGeneratornewComponent,
+    VpcAppsnewComponent,
+    VpcAppdetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -123,18 +131,19 @@ const appRoutes:Routes = [
     MatBadgeModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatSelectModule
-
+    MatSelectModule,
+    MatTabsModule,
+    MatExpansionModule
   ],
   providers: [
-    // { provide: ErrorHandler, useClass: AppErrorHandler},
-    // { provide: BrowserXhr, useClass: BrowserXhrWithProgress},
+    { provide: ErrorHandler, useClass: AppErrorHandler},
+    { provide: BrowserXhr, useClass: BrowserXhrWithProgress},
     HttpJwtService,
     UserService,
     PlanningAppService,
-    // PlanningAppStateService,
-    // DrawingService,
-    // ProgressService,
+    PlanningAppStateService,
+    DrawingService,
+    ProgressService,
     CustomerService,
     StateStatusService,
     StateInitialiserService,

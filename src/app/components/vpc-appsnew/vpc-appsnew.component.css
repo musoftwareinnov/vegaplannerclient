@@ -1,0 +1,35 @@
+.generic-form {
+    min-width: 100px;
+    max-width: 500px;
+    width: 100%;
+    margin: 120px;
+  }
+
+  .full-width-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+
+  .filter-width {
+    width: 50%;
+  }
+
+  .grid-container {
+    margin-top:80px;
+    margin-left:280px;
+    margin-right:280px;   
+  }
+
+  .grid-email {
+    margin-top:0px;
+    margin-left:0px;
+    margin-right:80px;  
+  }
+
+  .grid-container-inner {
+    padding: 40px
+  }
