@@ -1,5 +1,5 @@
 <div class="grid-container">
-    <h1 class="mat-h1">Project Details : (REF)</h1>
+    <h1 class="mat-h1">Project Details : {{planningApp.planningReferenceId}}</h1>
     <div class="mat-elevation-z8">
       <mat-tab-group>
         <mat-tab>
@@ -7,8 +7,75 @@
             <mat-icon class="example-tab-icon">trending_up</mat-icon>
             Application Progress
           </ng-template>
-          
-        </mat-tab>
+          <div class="grid-container">
+              <h1 class="mat-h1">Application State Transitions</h1>
+              <div class="mat-elevation-z8">
+            
+              <table mat-table #table [dataSource]="planningApp.planningAppStates" matSort aria-label="Elements">
+            
+               <!-- IconStatus --> 
+               <ng-container matColumnDef="iconStatus">
+                  <th mat-header-cell flex="50px" *matHeaderCellDef mat-sort-header ></th>
+                  <mat-cell *matCellDef="let row" flex="50px">
+                    <div *ngIf="row.stateStatus=='Complete'"><mat-icon class="green-thumb-icon">thumb_up</mat-icon></div>
+                    <div *ngIf="row.stateStatus=='OnTime'"><mat-icon class="blue-thumb-icon">thumb_up</mat-icon></div>
+                    <div *ngIf="row.stateStatus=='Due'"><mat-icon class="orange-warn-icon">report</mat-icon></div>
+                    <div *ngIf="row.stateStatus=='Overdue'"><mat-icon class="red-warn-icon">report</mat-icon></div>
+                    <div *ngIf="row.stateStatus=='Overran'"><mat-icon class="red-warn-icon">thumb_down</mat-icon></div>
+                  </mat-cell>
+                </ng-container>
+            
+                <!-- State Name -->
+                <ng-container matColumnDef="stateName" >
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>State Name</th>
+                  <td mat-cell *matCellDef="let row">{{row.stateName}}</td>
+                </ng-container>
+ 
+                <ng-container matColumnDef="dueByDate">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Due By Date</th>
+                  <td mat-cell *matCellDef="let row" 
+                      [ngClass]="{'isCustomDuration':row.isCustomDuraton==true}">{{ row.dueByDate }}
+                  </td>          
+                </ng-container>
+              
+                <ng-container matColumnDef="dateCompleted">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Date Completed</th>
+                    <td mat-cell *matCellDef="let row">{{row.dateCompleted}}</td>
+                </ng-container>
+            
+                <ng-container matColumnDef="stateStatus">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>State Status</th>
+                    <td mat-cell *matCellDef="let row">{{row.stateStatus}}</td>
+                  </ng-container>
+
+                <ng-container matColumnDef="edit">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header></th>   
+                    <td 
+                        mat-cell *matCellDef="let row"  [routerLink]="['/appstate/edit/', row.id]" [skipLocationChange]="true" [queryParams]="{ planningAppId: planningApp.id }"><span><mat-icon [ngClass]="{'red-warn-edit-icon':row.mandatoryFieldsSet==false}">edit</mat-icon></span>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="nextState">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+                    <mat-cell *matCellDef="let row">
+                      <div *ngIf="row.currentState==false">
+                          <td mat-cell ></td>
+                      </div>
+                      <div *ngIf="row.currentState==true">
+                          <td mat-cell >
+                              <button mat-mini-fab color="primary" (click)="nextState()"><span><mat-icon>archive</mat-icon></span></button>
+                          </td>                     
+                      </div>
+                    </mat-cell>            
+                  </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedStateColumns; sticky: true"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedStateColumns;" [ngClass] = "{'highlight' : row.currentState == true}"></tr>
+              </table>
+  
+            </div>
+            </div>
+        </mat-tab>  
 
         <mat-tab>
           <ng-template mat-tab-label>
@@ -76,17 +143,17 @@
                     <div class="form-group">
                         <table ><tr>
                             <td>                  
-                              <mat-form-field class="cust-name-width">
+                              <mat-form-field  class="example-full-width">
                                 <input type="text" matInput placeholder="First name" name="firstName"  [(ngModel)]="planningApp.customer.firstName" > 
                               </mat-form-field>
                             </td>
                             <td>
-                              <mat-form-field class="cust-name-width">
+                              <mat-form-field class="example-full-width">
                                   <input type="text" matInput placeholder="Last name" name="lastName"  [(ngModel)]="planningApp.customer.lastName"> 
                               </mat-form-field>
                           </td>
                           <td>
-                              <mat-form-field class="cust-name-width">
+                              <mat-form-field class="example-full-width">
                                   <input type="text" matInput placeholder="Email" name="email"  [(ngModel)]="planningApp.customer.emailAddress"> 
                               </mat-form-field>
                           </td>                          
@@ -137,7 +204,7 @@
                             </mat-form-field></td>
                           </tr>
                         </table>
-                      </div>
+                      </div> 
                 
                     <mat-action-row>
                       <button mat-button color="warn" (click)="prevStep()">Previous</button>
@@ -148,17 +215,45 @@
                   <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
                     <mat-expansion-panel-header>
                       <mat-panel-title>Developer Contact Details</mat-panel-title>
-                      <mat-panel-description><mat-icon>date_range</mat-icon></mat-panel-description>
+                      <mat-panel-description><mat-icon>person_outline</mat-icon></mat-panel-description>
                     </mat-expansion-panel-header>
-                
-                    <mat-form-field>
-                      <input matInput placeholder="Date" [matDatepicker]="picker" (focus)="picker.open()" readonly>
-                    </mat-form-field>
-                    <mat-datepicker #picker></mat-datepicker>
-                
+                    <div class="form-group">
+                        <table ><tr>
+                            <td>                  
+                              <mat-form-field class="cust-name-width">
+                                <input type="text" matInput placeholder="First name" name="firstName"  [(ngModel)]="planningApp.developer.firstName" > 
+                              </mat-form-field>
+                            </td>
+                            <td>
+                              <mat-form-field class="cust-name-width">
+                                  <input type="text" matInput placeholder="Last name" name="lastName"  [(ngModel)]="planningApp.developer.lastName"> 
+                              </mat-form-field>
+                          </td>                        
+                          </tr>
+                        </table> 
+                    </div>              
+                    <div class="form-group">
+                        <table class="example-full-width" cellspacing="0"><tr>
+              
+                            <td><mat-form-field class="cust-name-width">
+                              <input matInput placeholder="Work" name="Work" [(ngModel)]="planningApp.developer.telephoneWork"> 
+                            </mat-form-field></td>
+              
+                            <td><mat-form-field class="cust-name-width">
+                              <input matInput placeholder="Mobile" value="" name="telephoneMobile" [(ngModel)]="planningApp.developer.telephoneMobile"> 
+                            </mat-form-field></td>
+                          </tr>
+                        </table>
+                    </div>  
+                    <div class="form-group">
+                      <mat-form-field class="cust-name-width">
+                          <input type="text" matInput placeholder="Email" name="email"  [(ngModel)]="planningApp.developer.emailAddress"> 
+                      </mat-form-field>
+                    </div>                                  
                     <mat-action-row>
+                      <button mat-raised-button color="primary" (click)="submit()">Update</button>
                       <button mat-button color="warn" (click)="prevStep()">Previous</button>
-                      <button mat-button color="primary" (click)="nextStep()">End</button>
+                      <button mat-button color="primary" (click)="nextStep()">Next</button>
                     </mat-action-row>
                   </mat-expansion-panel>
                                 
@@ -171,14 +266,43 @@
                         <mat-icon>business</mat-icon>
                       </mat-panel-description>
                     </mat-expansion-panel-header>
-                
-                    <mat-form-field>
-                      <input matInput placeholder="Company name">
-                    </mat-form-field>
-                
+
+                    <div class="form-group">
+                        <table ><tr>
+                            <td>                  
+                              <mat-form-field class="cust-name-width">
+                                <input type="text" matInput placeholder="Company name" name="companyName"  [(ngModel)]="planningApp.developmentAddress.companyName" > 
+                              </mat-form-field>
+                            </td>
+                            <td>
+                              <mat-form-field class="cust-name-width">
+                                  <input type="text" matInput placeholder="Address" name="addressLine1"  [(ngModel)]="planningApp.developmentAddress.addressLine1"> 
+                              </mat-form-field>
+                          </td>                        
+                          </tr>
+                          <tr>
+                              <td>                  
+                                  <mat-form-field class="cust-name-width">
+                                    <input type="text" matInput placeholder="City" name="city"  [(ngModel)]="planningApp.developmentAddress.city" > 
+                                  </mat-form-field>
+                                </td>
+                                <td>
+                                  <mat-form-field class="cust-name-width">
+                                      <input type="text" matInput placeholder="County" name="county"  [(ngModel)]="planningApp.developmentAddress.county"> 
+                                  </mat-form-field>
+                              </td>    
+                              <td>
+                                  <mat-form-field class="cust-name-width">
+                                      <input type="text" matInput placeholder="Postcode" name="postcode"  [(ngModel)]="planningApp.developmentAddress.postcode"> 
+                                  </mat-form-field>
+                              </td>                                                     
+                          </tr>
+                        </table> 
+                    </div> 
+               
                     <mat-action-row>
+                      <button mat-raised-button color="primary" (click)="submit()">Update</button>
                       <button mat-button color="warn" (click)="prevStep()">Previous</button>
-                      <button mat-button color="primary" (click)="nextStep()">Next</button>
                     </mat-action-row>
                   </mat-expansion-panel>
                 </mat-accordion>
@@ -203,6 +327,10 @@
                   <textarea matInput placeholder="Application Notes"  [(ngModel)]="planningApp.notes"></textarea>
                 </mat-form-field>
               </div>
+
+              <mat-action-row>
+                  <button mat-raised-button color="primary" (click)="submit()">Update</button>
+                </mat-action-row>
           </mat-tab>
       </mat-tab-group>
 

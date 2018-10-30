@@ -9,7 +9,7 @@ export class PlanningAppStateService {
 
   private httpHeaders = new HttpHeaders;
   
-  private readonly planningappstateEndpoint = '/api/planningappstate';
+  private readonly planningappstateEndpoint = '/planningappstate';
   constructor(private http: HttpClient, private httpJwtService:HttpJwtService) { 
   }
   getPlanningAppState(id:any) {

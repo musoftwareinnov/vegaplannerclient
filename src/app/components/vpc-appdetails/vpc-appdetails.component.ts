@@ -97,6 +97,16 @@ export class VpcAppdetailsComponent implements OnInit {
       route.params.subscribe(p => { this.planningApp.id = +p['id'] || 0});  
 
     }
+  
+      //For state table
+      displayedStateColumns = 
+      ['iconStatus', 
+      'stateName',
+      'dueByDate', 
+      'dateCompleted', 
+      'stateStatus', 
+      'edit',
+      'nextState'];
     
   ngOnInit() {
     // this.drawingServices.getDrawings(this.planningApp.id)
@@ -149,16 +159,16 @@ export class VpcAppdetailsComponent implements OnInit {
         planningApp => {
           this.toastrService.success('New State:' + this.planningApp.nextState, 'Success');
           { this.refreshData() }   
-          this.router.navigate(['/appsinprogress/', this.planningApp.id])
+          this.router.navigate(['/planningapps/', this.planningApp.id])
         },
 
         error => {  
-          this.toastrService.success('Please enter mandatory fields in state requirements tab' + this.planningApp.nextState, 'Error');
+          this.toastrService.error('Please enter mandatory fields in state requirements tab', 'Error');
         },  
         );
   }
 
-  saveDevelopmentDetails() {
+  submit() {
     var result$ = this.planningAppService.saveDevelopmentDetails(this.planningApp )
     result$.subscribe(
       planningApp => {

@@ -32,6 +32,8 @@ import { DrawingService } from './services/drawing.service';
 import { StateInitialiserService } from './services/stateinitialiser.service';
 import { StateInitialiserStateService } from './services/stateinitialiserstate.service';
 
+// import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-moment-adapter';
+// import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 
 //Security
 import { HttpModule, XHRBackend } from '@angular/http';
@@ -60,7 +62,8 @@ import { VpcAppscompletedComponent } from './components/vpc-appscompleted/vpc-ap
 import { VpcGeneratornewComponent } from './components/vpc-generatornew/vpc-generatornew.component';
 import { VpcAppsnewComponent } from './components/vpc-appsnew/vpc-appsnew.component';
 import { VpcAppdetailsComponent } from './components/vpc-appdetails/vpc-appdetails.component';
-import { AppErrorHandler } from './app.error.handler';
+// import { AppErrorHandler } from './app.error.handler';
+import { VpcAppstateformComponent } from './components/vpc-appstateform/vpc-appstateform.component';
 
 //import { SpinnerComponent } from './components/spinner/spinner.component';
 
@@ -72,6 +75,7 @@ const appRoutes:Routes = [
   { path: 'appsinprogress' , component: VpcAppsinprogressComponent},
   { path: 'appscompleted' , component: VpcAppscompletedComponent},
   { path: 'appsnew' , component: VpcAppsnewComponent},
+  { path: 'appstate/edit/:id' , component: VpcAppstateformComponent},
   { path: 'customers/new' , component: VpcCustomerformComponent},
   { path: 'customers/edit/:id' , component: VpcCustomerformComponent},
   { path: 'customers' , component: VpcCustomerlistComponent},
@@ -80,6 +84,7 @@ const appRoutes:Routes = [
   { path: 'generators/new' , component: VpcGeneratornewComponent},
   { path: 'generatorstatelist/:id' , component: VpcGeneratorstatelistComponent},
   { path: 'generatorstate/edit/:id' , component: VpcGeneratorstateComponent},
+
   { path: 'planningapps/:id' , component: VpcAppdetailsComponent},
 ];
 
@@ -99,7 +104,8 @@ const appRoutes:Routes = [
     VpcAppscompletedComponent,
     VpcGeneratornewComponent,
     VpcAppsnewComponent,
-    VpcAppdetailsComponent
+    VpcAppdetailsComponent,
+    VpcAppstateformComponent
   ],
   imports: [
     BrowserModule,
@@ -136,8 +142,11 @@ const appRoutes:Routes = [
     MatExpansionModule
   ],
   providers: [
-    { provide: ErrorHandler, useClass: AppErrorHandler},
+    // { provide: ErrorHandler, useClass: AppErrorHandler},
     { provide: BrowserXhr, useClass: BrowserXhrWithProgress},
+    // { provide: MAT_DATE_LOCALE, useValue: 'en-GB'},
+    // {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
+    // {provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS},
     HttpJwtService,
     UserService,
     PlanningAppService,

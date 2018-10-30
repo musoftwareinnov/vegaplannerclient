@@ -19,6 +19,12 @@ table {
     margin: 20px;
   }
 
+  .grid-container-outer {
+    margin-top:20px;
+    margin-left:20px;
+    margin-right:20px;   
+  }
+
   .grid-select-container {
     margin: 50px;
   }
@@ -27,37 +33,15 @@ table {
     width: 30%;
   }
 
+  .state-name-width {
+    width: 60%;
+  }
+
   .green-thumb-icon {
       color: green;
       margin: 10px;
   }
 
-  .blue-thumb-icon {
-    color: lightblue;
-    margin: 10px;
-}
-
-  .orange-warn-icon {
-    color: orange;
-    margin: 10px;
-  } 
-  .red-warn-icon {
-    color: red;
-    margin: 10px;
-  } 
-
-  .red-warn-edit-icon {
-    color: red;
-  } 
-
-  .highlight{
-    background: rgb(143, 192, 192); /* green */
-    } 
-
-  .isCustomDuration{
-    color: rgba(162, 64, 201, 0.801); 
-    font-style: italic;
-} 
 
   .mat-column-status-icon-width {
     flex: 0 0 0px;
@@ -78,9 +62,10 @@ table {
 }
 
 .filter-width {
-  padding: 15px; 
+    margin-top:25px;
+    margin-bottom:15px; 
 }
-.fab_button-padding {
-  padding: 5px; 
+.button-row{
+  margin: 10px; 
 }
 
