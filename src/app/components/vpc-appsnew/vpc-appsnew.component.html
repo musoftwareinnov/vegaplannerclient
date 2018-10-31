@@ -7,7 +7,7 @@
           <div class="full-width-container">
                 <mat-form-field>
                   <mat-select placeholder="Select Customer" formControlName="customer">
-                  <mat-option *ngFor="let customer of customerSelect.items" [value]="customer.id" >{{customer.nameSummary}}
+                  <mat-option *ngFor="let customer of queryResult.items" [value]="customer.id" >{{customer.nameSummary}}
                   </mat-option>
                 </mat-select>
                  </mat-form-field>
@@ -16,7 +16,7 @@
             <div class="full-width-container">
                 <mat-form-field>
                   <mat-select id="generator" placeholder="Select Generator" formControlName="generator" name="generator">
-                  <mat-option *ngFor="let generator of stateGeneratorSelect.items" [value]="generator.id" >{{generator.name}}
+                  <mat-option *ngFor="let generator of queryGeneratorResult.items" [value]="generator.id" >{{generator.name}}
                   </mat-option>
                 </mat-select>
               </mat-form-field>

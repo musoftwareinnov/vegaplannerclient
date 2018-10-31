@@ -32,6 +32,9 @@ export class VpcAppsinprogressComponent implements OnInit {
   selectedValue: string;
   loginStatus = false
   startDate = new Date();
+
+  pageEvent: PageEvent;
+
   // date = new FormControl(new Date());
   // serializedDate = new FormControl((new Date()).toISOString());
 

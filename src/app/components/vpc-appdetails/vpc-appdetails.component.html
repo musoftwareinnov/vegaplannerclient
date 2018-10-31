@@ -17,7 +17,7 @@
                <ng-container matColumnDef="iconStatus">
                   <th mat-header-cell flex="50px" *matHeaderCellDef mat-sort-header ></th>
                   <mat-cell *matCellDef="let row" flex="50px">
-                    <div *ngIf="row.stateStatus=='Complete'"><mat-icon class="green-thumb-icon">thumb_up</mat-icon></div>
+                    <div *ngIf="row.stateStatus=='Complete'"><mat-icon class="green-thumb-icon">check_circle</mat-icon></div>
                     <div *ngIf="row.stateStatus=='OnTime'"><mat-icon class="blue-thumb-icon">thumb_up</mat-icon></div>
                     <div *ngIf="row.stateStatus=='Due'"><mat-icon class="orange-warn-icon">report</mat-icon></div>
                     <div *ngIf="row.stateStatus=='Overdue'"><mat-icon class="red-warn-icon">report</mat-icon></div>
@@ -51,7 +51,7 @@
                 <ng-container matColumnDef="edit">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header></th>   
                     <td 
-                        mat-cell *matCellDef="let row"  [routerLink]="['/appstate/edit/', row.id]" [skipLocationChange]="true" [queryParams]="{ planningAppId: planningApp.id }"><span><mat-icon [ngClass]="{'red-warn-edit-icon':row.mandatoryFieldsSet==false}">edit</mat-icon></span>
+                        mat-cell *matCellDef="let row" matTooltip="Edit State" [routerLink]="['/appstate/edit/', row.id]" [skipLocationChange]="true" [queryParams]="{ planningAppId: planningApp.id }"><span><mat-icon [ngClass]="{'red-warn-edit-icon':row.mandatoryFieldsSet==false}">edit</mat-icon></span>
                     </td>
                 </ng-container>
 
@@ -63,7 +63,7 @@
                       </div>
                       <div *ngIf="row.currentState==true">
                           <td mat-cell >
-                              <button mat-mini-fab color="primary" (click)="nextState()"><span><mat-icon>archive</mat-icon></span></button>
+                              <button mat-mini-fab color="primary"  matTooltip="Go to next state" (click)="nextState()"><span><mat-icon>archive</mat-icon></span></button>
                           </td>                     
                       </div>
                     </mat-cell>            
@@ -270,12 +270,12 @@
                     <div class="form-group">
                         <table ><tr>
                             <td>                  
-                              <mat-form-field class="cust-name-width">
+                              <mat-form-field class="dev-name-width">
                                 <input type="text" matInput placeholder="Company name" name="companyName"  [(ngModel)]="planningApp.developmentAddress.companyName" > 
                               </mat-form-field>
                             </td>
                             <td>
-                              <mat-form-field class="cust-name-width">
+                              <mat-form-field class="dev-name-width">
                                   <input type="text" matInput placeholder="Address" name="addressLine1"  [(ngModel)]="planningApp.developmentAddress.addressLine1"> 
                               </mat-form-field>
                           </td>                        

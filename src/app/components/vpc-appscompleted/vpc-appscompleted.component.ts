@@ -23,6 +23,7 @@ export class VpcAppscompletedComponent implements OnInit {
 
   stateStatuses: StateStatus[] = [];
   //For table
+  pageEvent: PageEvent;
   displayedColumns = ['iconStatus', 
                       'id', 
                       'name', 

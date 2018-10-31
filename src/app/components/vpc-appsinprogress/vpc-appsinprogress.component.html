@@ -6,7 +6,7 @@
   <div class="grid-container">
       <div class="filter-width">  
         <mat-form-field>
-          <mat-select placeholder="Planning Status" [(ngModel)]="query.planningAppType" name="planningStatus"  (selectionChange)="onStateFilterChange($event.value)">
+          <mat-select placeholder="Planning Status" [(ngModel)]="query.planningAppType" name="planningStatus"  (selectionChange)="onStateFilterChange()">
           <mat-option *ngFor="let status of stateStatuses" [value]="status.name" >{{status.name}}
           </mat-option>
         </mat-select>

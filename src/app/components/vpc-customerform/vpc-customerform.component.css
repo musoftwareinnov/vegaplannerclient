@@ -26,3 +26,12 @@
   .grid-container-inner {
     padding: 40px
   }
+
+  .revert-button-postion {
+    margin-top:5px;
+    margin-left:40px;
+  }
+
+  .button-row{
+    margin: 5px; 
+  }

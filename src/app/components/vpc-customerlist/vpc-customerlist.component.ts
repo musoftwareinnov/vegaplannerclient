@@ -21,7 +21,8 @@ export class VpcCustomerlistComponent implements OnInit {
     planningAppType: ""
   };
   interval: any = {};
-
+  pageEvent: PageEvent;
+  
   //For table
   displayedColumns = ['fullName', 
                       'customerAddressSummary', 

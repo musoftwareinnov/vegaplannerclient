@@ -102,6 +102,9 @@ events: any[];
   
   submit() {
     var result$ = this.planningAppStateService.updatePlanningAppState(this.planningAppState); 
+    console.log("Update form date = " +  this.planningAppState.dueByDate);  
+    console.log("planningid = " + this.planningAppId)
+    console.log("planning state id = " + this.planningAppState.id)
     result$.subscribe(
       planningAppState => {
         this.toastrService.success('State Details Update ', 'Success');

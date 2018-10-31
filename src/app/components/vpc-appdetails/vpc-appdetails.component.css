@@ -23,6 +23,10 @@ table {
     margin: 50px;
   }
 
+  .dev-name-width {
+    width: 50%;
+  }
+
   .cust-name-width {
     width: 30%;
   }
@@ -33,7 +37,7 @@ table {
   }
 
   .blue-thumb-icon {
-    color: lightblue;
+    color: rgb(84, 2, 192);
     margin: 10px;
 }
 

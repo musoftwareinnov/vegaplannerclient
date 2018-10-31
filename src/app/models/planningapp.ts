@@ -1,6 +1,7 @@
 import { Customer } from './customer';
 import { Developer } from './developer';
 import { Address } from './address';
+import { DevelopmentAddress } from './developmentAddress';
 //import { VpcAppsinprogressItem } from '../components/vpc-appsinprogress/vpc-appsinprogress-datasource';
 
 export interface PlanningAppGet {
@@ -13,7 +14,7 @@ export interface PlanningApp {
     planningReferenceId: string;
     customer: Customer;
     developer: Developer;
-    developmentAddress: Address;
+    developmentAddress: DevelopmentAddress;
     name: string;
     businessDate: string;
     planningStatus: string;
@@ -51,7 +52,7 @@ export interface PlanningAppStates {
   export interface PlanningAppGenerator {
     customerId: number; 
     stateInitialiserId: number;
-    name: string;
+    name: string; 
     developer: Developer;
     developmentAddress: Address;
   }

@@ -6,7 +6,7 @@
     <div class="grid-container">
         <div class="filter-width">  
           <mat-form-field>
-            <mat-select placeholder="Planning Status" [(ngModel)]="query.planningAppType" name="planningStatus"  (selectionChange)="onStateFilterChange($event.value)">
+            <mat-select placeholder="Planning Status" [(ngModel)]="query.planningAppType" name="planningStatus"  (selectionChange)="onStateFilterChange()">
             <mat-option *ngFor="let status of stateStatuses" [value]="status.name" >{{status.name}}
             </mat-option>
           </mat-select>
@@ -20,7 +20,7 @@
      <ng-container matColumnDef="iconStatus">
         <th mat-header-cell flex="50px" *matHeaderCellDef mat-sort-header ></th>
         <mat-cell *matCellDef="let row" flex="50px">
-          <div *ngIf="row.planningStatus=='Complete'"><mat-icon class="green-thumb-icon">thumb_up</mat-icon></div>
+          <div *ngIf="row.planningStatus=='Complete'"><mat-icon class="green-thumb-icon">check_circle</mat-icon></div>
           <div *ngIf="row.planningStatus=='Archived'"><mat-icon class="orange-warn-icon">camera</mat-icon></div>
         </mat-cell>
       </ng-container>

@@ -5,6 +5,7 @@ import { StateStatus } from 'src/app/models/statestatus';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PlanningAppService } from 'src/app/services/planningapp.service';
 import { StateStatusService } from 'src/app/services/statestatus.service';
+import { PageEvent } from '@angular/material';
 
 @Component({
   selector: 'app-vpc-customerappslist',
@@ -28,6 +29,7 @@ export class VpcCustomerappslistComponent implements OnInit {
   stateStatuses: StateStatus[] = [];
 
   //For table
+  pageEvent: PageEvent;
   displayedColumns = ['iconStatus', 
                       'id', 'name', 
                       'description', 
@@ -62,8 +64,6 @@ export class VpcCustomerappslistComponent implements OnInit {
     this.interval = setInterval(() => { 
         this.refreshData(); 
     }, 5000);
-
-    console.log("CustId:" + this.query.customerId)
   }
 
   refreshData() {
@@ -93,5 +93,14 @@ export class VpcCustomerappslistComponent implements OnInit {
   onStateFilterChange() {
     console.warn("state = " + this.query.planningAppType);
     this.populatePlanningAppSummary();
+  }
+
+  public getServerData(event?:PageEvent){
+
+    this.query.page=event.pageIndex+1;
+    this.query.pageSize=event.pageSize;
+    this.populatePlanningAppSummary() ;
+
+    return event;
   }
 }

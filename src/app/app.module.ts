@@ -17,7 +17,7 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule,
          MatTabsModule
         }from '@angular/material';
 import {MatExpansionModule} from '@angular/material/expansion';
-
+import {MatTooltipModule} from '@angular/material/tooltip';
 import { UserService } from './shared/services/user.service';
 
 //Services
@@ -139,7 +139,8 @@ const appRoutes:Routes = [
     MatNativeDateModule,
     MatSelectModule,
     MatTabsModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatTooltipModule
   ],
   providers: [
     // { provide: ErrorHandler, useClass: AppErrorHandler},

@@ -16,7 +16,9 @@ export class VpcGeneratorlistComponent implements OnInit {
     pageSize: this.PAGE_SIZE
   };
 
-    //For table
+  pageEvent: PageEvent;
+  
+  //For table
   displayedColumns = [
     'name', 
     'description', 

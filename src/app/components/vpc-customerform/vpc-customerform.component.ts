@@ -120,10 +120,14 @@ export class VpcCustomerformComponent implements OnInit {
 
     revert() {
       // Resets to blank object
-      this.registerForm.reset();
+      //this.registerForm.reset();
   
       // Resets to provided model
-      //this.contactForm.reset({ personalData: new PersonalData(), requestType: '', text: '' });
+      this.registerForm.reset(this.customer);
+    }
+
+    close() {
+      this.router.navigate(['/customers'])
     }
 
 
