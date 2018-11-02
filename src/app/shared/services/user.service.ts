@@ -20,10 +20,12 @@ export class UserService extends BaseService {
   res: any = {};
   // Observable navItem source
   private _authNavStatusSource = new BehaviorSubject<boolean>(false);
-  private _authNavUserNameSource = new BehaviorSubject<string>("No User");
+  private _authNavUserNameSource = new BehaviorSubject<string>("User not logged in");
+  private _authNavBusinessDateSource = new BehaviorSubject<string>("");
   // Observable navItem stream
   authNavStatus$ = this._authNavStatusSource.asObservable();
   authNavUser$ = this._authNavUserNameSource.asObservable();  //used to display user name in Nav Menu
+  authNavBusinessDate$ = this._authNavBusinessDateSource.asObservable();  //used to display business date in Nav Menu
 
   private loggedIn = false;
   
@@ -74,6 +76,7 @@ export class UserService extends BaseService {
         this.loggedIn = true;
         this._authNavStatusSource.next(true);
         this._authNavUserNameSource.next(res.userName);
+        this._authNavBusinessDateSource.next(res.businessDate);
         return true;
       })
       .catch(this.handleError);

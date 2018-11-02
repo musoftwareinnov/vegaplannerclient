@@ -64,6 +64,7 @@ import { VpcAppsnewComponent } from './components/vpc-appsnew/vpc-appsnew.compon
 import { VpcAppdetailsComponent } from './components/vpc-appdetails/vpc-appdetails.component';
 // import { AppErrorHandler } from './app.error.handler';
 import { VpcAppstateformComponent } from './components/vpc-appstateform/vpc-appstateform.component';
+import { BusinessDatesService } from './services/businessdates.service';
 
 //import { SpinnerComponent } from './components/spinner/spinner.component';
 
@@ -160,6 +161,7 @@ const appRoutes:Routes = [
     StateInitialiserStateService,
     StatisticsService,
     UserService,
+    BusinessDatesService,
     AuthGuard,
     [ConfigService, {  
       provide: XHRBackend, 

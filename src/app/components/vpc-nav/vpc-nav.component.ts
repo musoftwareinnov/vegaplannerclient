@@ -1,3 +1,5 @@
+import { BusinessDates } from './../../models/businessdates';
+import { BusinessDatesService } from './../../services/businessdates.service';
 import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 import { Observable, Subscription } from 'rxjs';
@@ -15,8 +17,12 @@ export class VpcNavComponent {
 
   loginStatus: boolean = false;
   userName: string = "";
+  businessDate: string = "";
+
   subscription:Subscription = new Subscription;
   userName$:Subscription = new Subscription;
+  businessDate$:Subscription = new Subscription;
+
 
   planningStatistics: Statistics = {
     inProgress:0,
@@ -38,12 +44,12 @@ interval: any = {};
     
   constructor(private breakpointObserver: BreakpointObserver, 
               private statisticsService: StatisticsService, 
+              private businessDatesService: BusinessDatesService,
               private userService:UserService) {}
   
   ngOnInit() {
 
     this.populateStatistics();
-
     this.interval = setInterval(() => { 
         this.populateStatistics(); 
     }, 10000);
@@ -51,6 +57,7 @@ interval: any = {};
     //User logging
     this.subscription = this.userService.authNavStatus$.subscribe(status => this.loginStatus = status);
     this.userName$ = this.userService.authNavUser$.subscribe(userName => this.userName = userName);
+    this.businessDate$ = this.userService.authNavBusinessDate$.subscribe(businessDate => this.businessDate = businessDate);
   }
 
   logout() {
