@@ -6,7 +6,7 @@ import {BaseService} from "./base.service";
 import { Observable } from 'rxjs';
 import { BehaviorSubject } from 'rxjs-compat'; 
 import { map, catchError } from 'rxjs/operators';
-
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 // Add the RxJS Observable operators we need in this app.
 //import '../../rxjs-operators';
@@ -30,6 +30,7 @@ export class UserService extends BaseService {
   private loggedIn = false;
   
 
+
   constructor(private http: Http, 
               private configService: ConfigService 
                                   )  {
@@ -39,6 +40,8 @@ export class UserService extends BaseService {
     // header component resulting in authed user nav links disappearing despite the fact user is still logged in
     this._authNavStatusSource.next(this.loggedIn);
     this.baseUrl = configService.getApiURI();
+
+
   }
 
 //   register(email: string, password: string, firstName: string, lastName: string,location: string): Observable<UserRegistration> {
@@ -70,13 +73,23 @@ export class UserService extends BaseService {
       .map(res => {
         if (typeof window !== 'undefined') {
           localStorage.setItem('authToken', res.authToken);
-          if(res.authToken )
+          if(res.authToken ) { 
+            const helper = new JwtHelperService();
             console.log("UserService Login succeeded: webtoken obtained for " + userName);
+            const decodedToken = helper.decodeToken(res.authToken);
+            var expd = helper.getTokenExpirationDate(res.authToken);
+                
+            var rol = decodedToken["rol"];
+            console.log(rol);
+
+          }
        }
         this.loggedIn = true;
         this._authNavStatusSource.next(true);
         this._authNavUserNameSource.next(res.userName);
         this._authNavBusinessDateSource.next(res.businessDate);
+
+
         return true;
       })
       .catch(this.handleError);

@@ -5,6 +5,7 @@ import { Credentials } from 'src/app/models/credentials';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from '../../shared/services/user.service';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -20,6 +21,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   private subscription: Subscription = new Subscription;
   email = new FormControl('', [Validators.required, Validators.email ]);
   hide = true;
+  resourcesLoading = false;
   
   getErrorMessage() {
     return this.email.hasError('required') ? 'You must enter a value' :
@@ -44,9 +46,10 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.submitted = true;
     this.isRequesting = true;
     this.errors='';
+    this.resourcesLoading = true;
     if (valid) {
       this.userService.login(value.email, value.password)
-        .finally(() => this.isRequesting = false)
+        .finally(() => { this.isRequesting = false} )
         .subscribe(
         result => {         
           if (result) {
@@ -55,9 +58,15 @@ export class LoginComponent implements OnInit, OnDestroy {
         },
         error => this.errors = error);
     }
-    this.userService.getUwt();
+    var token = this.userService.getUwt();
+
+    //let tokenInfo = this.getDecodedAccessToken(token); // decode token
+    //let expireDate = tokenInfo.exp; // get token expiration dateTime
+    //let role = tokenInfo.rol
+    //console.log(tokenInfo);
   }
 
+ 
   // Angular 6 RxJs version
   // login({ value, valid }: { value: Credentials, valid: boolean }) {
   //   this.submitted = true;

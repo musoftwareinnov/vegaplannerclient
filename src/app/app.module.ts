@@ -14,7 +14,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, 
          MatListModule, MatGridListModule, MatCardModule, MatMenuModule, MatTableModule,
          MatPaginatorModule, MatSortModule, MatFormFieldModule, MatInputModule, MatNativeDateModule ,
-         MatTabsModule
+         MatTabsModule, MatProgressSpinnerModule 
         }from '@angular/material';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatTooltipModule} from '@angular/material/tooltip';
@@ -141,7 +141,8 @@ const appRoutes:Routes = [
     MatSelectModule,
     MatTabsModule,
     MatExpansionModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     // { provide: ErrorHandler, useClass: AppErrorHandler},
