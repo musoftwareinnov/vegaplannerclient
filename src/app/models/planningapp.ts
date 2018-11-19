@@ -53,6 +53,7 @@ export interface PlanningAppStates {
     customerId: number; 
     stateInitialiserId: number;
     name: string; 
+    descriptionOfWork: string;
     developer: Developer;
     developmentAddress: Address;
   }

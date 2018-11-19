@@ -21,7 +21,17 @@
                 </mat-select>
               </mat-form-field>
             </div> 
-    
+ 
+            <div class="full-width-container">
+                <mat-form-field>
+                  <mat-select placeholder="Select Description Of Work" formControlName="descriptionOfWork">
+                  <mat-option *ngFor="let descriptionOfWork of descriptionOfWorkResult.items" [value]="descriptionOfWork.name" >{{descriptionOfWork.name}}
+                  </mat-option>
+                </mat-select>
+                 </mat-form-field>
+            </div>            
+
+
             <div class="full-width-container">
                 <p>
                     <mat-form-field class="example-full-width">

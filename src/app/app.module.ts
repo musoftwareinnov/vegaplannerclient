@@ -9,31 +9,31 @@ import { BrowserXhr } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 
-
+//Material Design Modules
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, 
          MatListModule, MatGridListModule, MatCardModule, MatMenuModule, MatTableModule,
          MatPaginatorModule, MatSortModule, MatFormFieldModule, MatInputModule, MatNativeDateModule ,
          MatTabsModule, MatProgressSpinnerModule 
         }from '@angular/material';
+
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatTooltipModule} from '@angular/material/tooltip';
-import { UserService } from './shared/services/user.service';
+// import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-moment-adapter';
+// import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 
 //Services
+import { UserService } from './shared/services/user.service';
 import { PlanningAppService } from './services/planningapp.service';
 import { StateStatusService } from './services/statestatus.service';
 import { CustomerService } from './services/customer.service';
 import { StatisticsService } from './services/statistics.service';
-
 import { PlanningAppStateService } from './services/planninappstate.service';
 import { ProgressService, BrowserXhrWithProgress } from './services/progress.service';
 import { DrawingService } from './services/drawing.service';
 import { StateInitialiserService } from './services/stateinitialiser.service';
 import { StateInitialiserStateService } from './services/stateinitialiserstate.service';
-
-// import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-moment-adapter';
-// import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
+import { DescriptionOfWorkService } from './services/descriptionofwork.service';
 
 //Security
 import { HttpModule, XHRBackend } from '@angular/http';
@@ -161,6 +161,7 @@ const appRoutes:Routes = [
     StateStatusService,
     StateInitialiserService,
     StateInitialiserStateService,
+    DescriptionOfWorkService,
     StatisticsService,
     UserService,
     BusinessDatesService,
