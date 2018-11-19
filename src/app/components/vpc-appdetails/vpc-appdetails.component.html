@@ -260,7 +260,7 @@
                   <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" hideToggle>
                     <mat-expansion-panel-header>
                       <mat-panel-title>
-                        Development Address Details
+                        Site Address (if different)
                       </mat-panel-title>
                       <mat-panel-description>
                         <mat-icon>business</mat-icon>
@@ -269,33 +269,28 @@
 
                     <div class="form-group">
                         <table ><tr>
-                            <td>                  
-                              <mat-form-field class="dev-name-width">
-                                <input type="text" matInput placeholder="Company name" name="companyName"  [(ngModel)]="planningApp.developmentAddress.companyName" > 
-                              </mat-form-field>
-                            </td>
                             <td>
                               <mat-form-field class="dev-name-width">
                                   <input type="text" matInput placeholder="Address" name="addressLine1"  [(ngModel)]="planningApp.developmentAddress.addressLine1"> 
                               </mat-form-field>
-                          </td>                        
+                          </td>   
+                          <td>                  
+                            <mat-form-field class="cust-name-width">
+                              <input type="text" matInput placeholder="City" name="city"  [(ngModel)]="planningApp.developmentAddress.city" > 
+                            </mat-form-field>
+                          </td>                     
                           </tr>
                           <tr>
-                              <td>                  
-                                  <mat-form-field class="cust-name-width">
-                                    <input type="text" matInput placeholder="City" name="city"  [(ngModel)]="planningApp.developmentAddress.city" > 
-                                  </mat-form-field>
-                                </td>
-                                <td>
-                                  <mat-form-field class="cust-name-width">
-                                      <input type="text" matInput placeholder="County" name="county"  [(ngModel)]="planningApp.developmentAddress.county"> 
-                                  </mat-form-field>
-                              </td>    
                               <td>
-                                  <mat-form-field class="cust-name-width">
-                                      <input type="text" matInput placeholder="Postcode" name="postcode"  [(ngModel)]="planningApp.developmentAddress.postcode"> 
-                                  </mat-form-field>
-                              </td>                                                     
+                                <mat-form-field class="cust-name-width">
+                                    <input type="text" matInput placeholder="County" name="county"  [(ngModel)]="planningApp.developmentAddress.county"> 
+                                </mat-form-field>
+                            </td>    
+                            <td>
+                                <mat-form-field class="cust-name-width">
+                                    <input type="text" matInput placeholder="Postcode" name="postcode"  [(ngModel)]="planningApp.developmentAddress.postcode"> 
+                                </mat-form-field>
+                            </td>                                                     
                           </tr>
                         </table> 
                     </div> 
