@@ -29,8 +29,6 @@ export class UserService extends BaseService {
 
   private loggedIn = false;
   
-
-
   constructor(private http: Http, 
               private configService: ConfigService 
                                   )  {
@@ -124,6 +122,8 @@ export class UserService extends BaseService {
     logout() {
         if (typeof window !== 'undefined') {
           localStorage.removeItem('authToken')
+
+          //Call logout service????
           console.log("UserService Logout succeeded");
         }
         this.loggedIn = false;

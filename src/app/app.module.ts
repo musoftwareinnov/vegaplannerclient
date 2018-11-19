@@ -65,6 +65,7 @@ import { VpcAppdetailsComponent } from './components/vpc-appdetails/vpc-appdetai
 // import { AppErrorHandler } from './app.error.handler';
 import { VpcAppstateformComponent } from './components/vpc-appstateform/vpc-appstateform.component';
 import { BusinessDatesService } from './services/businessdates.service';
+import { AppErrorHandler } from './app.error.handler';
 
 //import { SpinnerComponent } from './components/spinner/spinner.component';
 
@@ -145,7 +146,7 @@ const appRoutes:Routes = [
     MatProgressSpinnerModule
   ],
   providers: [
-    // { provide: ErrorHandler, useClass: AppErrorHandler},
+    { provide: ErrorHandler, useClass: AppErrorHandler},
     { provide: BrowserXhr, useClass: BrowserXhrWithProgress},
     // { provide: MAT_DATE_LOCALE, useValue: 'en-GB'},
     // {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
@@ -164,6 +165,7 @@ const appRoutes:Routes = [
     UserService,
     BusinessDatesService,
     AuthGuard,
+    
     [ConfigService, {  
       provide: XHRBackend, 
       useClass: AuthenticateXHRBackend
