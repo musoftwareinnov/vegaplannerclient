@@ -27,6 +27,10 @@
           <mat-icon>list</mat-icon>
           <span [matBadge]="planningStatistics.inProgress" matBadgeOverlap="false" matBadgeColor="warn">&nbsp;Apps In Progress</span>
         </a>
+        <a mat-list-item [routerLink]="['/searchapps']">
+          <mat-icon>search</mat-icon>
+          <span>&nbsp;Application Search</span>
+        </a>
         <a mat-list-item [routerLink]="['/appsnew']">
           <mat-icon>playlist_add</mat-icon>&nbsp;New Application
         </a> 

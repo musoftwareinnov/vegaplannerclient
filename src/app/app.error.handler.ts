@@ -45,6 +45,7 @@ export class AppErrorHandler implements ErrorHandler {
                 break;
             default:
                //Cannot Connect to Server
+               this.ngZone.run(() => this.showError(error.message));
                this.ngZone.run(() => router.navigate(['/login']),
                this.showError(AppErrorHandler.SERVICE_NOT_CONTACTABLE) )   
           }

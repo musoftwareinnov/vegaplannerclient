@@ -13,10 +13,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, 
          MatListModule, MatGridListModule, MatCardModule, MatMenuModule, MatTableModule,
-         MatPaginatorModule, MatSortModule, MatFormFieldModule, MatInputModule, MatNativeDateModule ,
+         MatPaginatorModule, MatFormFieldModule, MatInputModule, MatNativeDateModule ,
          MatTabsModule, MatProgressSpinnerModule 
         }from '@angular/material';
-
+        
+import {MatSortModule} from '@angular/material/sort';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatTooltipModule} from '@angular/material/tooltip';
 // import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-moment-adapter';
@@ -66,6 +67,7 @@ import { VpcAppdetailsComponent } from './components/vpc-appdetails/vpc-appdetai
 import { VpcAppstateformComponent } from './components/vpc-appstateform/vpc-appstateform.component';
 import { BusinessDatesService } from './services/businessdates.service';
 import { AppErrorHandler } from './app.error.handler';
+import { VpcAppssearchComponent } from './components/vpc-appssearch/vpc-appssearch.component';
 
 //import { SpinnerComponent } from './components/spinner/spinner.component';
 
@@ -75,6 +77,7 @@ const appRoutes:Routes = [
   { path: 'login' , component: LoginComponent},
   { path: 'dashboard' , component: VpcDashboardComponent},
   { path: 'appsinprogress' , component: VpcAppsinprogressComponent},
+  { path: 'searchapps' , component: VpcAppssearchComponent},
   { path: 'appscompleted' , component: VpcAppscompletedComponent},
   { path: 'appsnew' , component: VpcAppsnewComponent},
   { path: 'appstate/edit/:id' , component: VpcAppstateformComponent},
@@ -107,7 +110,8 @@ const appRoutes:Routes = [
     VpcGeneratornewComponent,
     VpcAppsnewComponent,
     VpcAppdetailsComponent,
-    VpcAppstateformComponent
+    VpcAppstateformComponent,
+    VpcAppssearchComponent
   ],
   imports: [
     BrowserModule,

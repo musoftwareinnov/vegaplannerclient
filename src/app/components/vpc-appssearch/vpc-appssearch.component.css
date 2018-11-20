@@ -1,0 +1,52 @@
+/* Structure */
+table {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 90%;
+  }
+
+  .mat-column-select {
+    overflow: initial;
+  }
+  .grid-container {
+    margin: 20px;
+  }
+
+  .grid-select-container {
+    margin: 50px;
+  }
+
+  .mat-row:nth-child(even){
+    background-color:rgb(242, 234, 250);
+    }
+
+    .filter-width {
+      padding: 15px;
+      width: 20%;
+    }
+
+  .green-thumb-icon {
+      color: green;
+      margin: 10px;
+  }
+
+  .orange-warn-icon {
+    color: orange;
+    margin: 10px;
+  } 
+  .red-warn-icon {
+    color: red;
+    margin: 10px;
+  } 
+
+  .mat-column-status-icon-width {
+    flex: 0 0 0px;
+  }
+
+  .customWidthClass{
+    flex: 0 0 50px;
+  }
+
