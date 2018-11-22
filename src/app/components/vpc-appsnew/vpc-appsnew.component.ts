@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { AuthGuard } from 'src/app/auth.guard';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-vpc-appsnew',
@@ -20,12 +21,14 @@ export class VpcAppsnewComponent implements OnInit {
     pageSize: 0
   };
   customerSelect:any[] = [];
+  userSurveyorSelect:any[] = [];
   stateGeneratorSelect:any[] = [];
   queryResult: any = {};
   queryGeneratorResult: any = {};
   descriptionOfWorkResult: any = {};
   newAppForm: FormGroup;
   submitted = false;
+
 
   generator: PlanningAppGenerator = {
     customerId: 0,
@@ -47,8 +50,8 @@ export class VpcAppsnewComponent implements OnInit {
       addressLine2: "",
       postcode: "",
       geoLocation: "",
-    }
-
+    },
+    surveyors: []
   }
 
   constructor(
@@ -56,6 +59,7 @@ export class VpcAppsnewComponent implements OnInit {
               private PlanningAppService: PlanningAppService,
               private toastrService: ToastrService,
               private customerService: CustomerService,
+              private userService: UserService,
               private stateInitialiserService: StateInitialiserService,
               private descriptionOfWorkService: DescriptionOfWorkService,
               private router: Router,
@@ -75,6 +79,9 @@ export class VpcAppsnewComponent implements OnInit {
     this.stateInitialiserService.getStateInitialiserList(this.query)
       .subscribe(result => this.queryGeneratorResult = result);
 
+    this.userService.getUserNames()
+      .subscribe(result => this.userSurveyorSelect = result);     
+
     this.newAppForm = this.createFormGroupWithBuilderAndModel(this.formBuilder);
   }
 
@@ -84,10 +91,10 @@ export class VpcAppsnewComponent implements OnInit {
   createFormGroupWithBuilderAndModel(formBuilder: FormBuilder) {
 
     var form = formBuilder.group({
-      // id: 0, 
-      customer:      new FormControl(null).setValidators([Validators.min(1)]),
-      generator:     new FormControl(null),
+      customer:              new FormControl(null).setValidators([Validators.min(1)]),
+      generator:             new FormControl(null),
       descriptionOfWork:     new FormControl(null),
+      userSurveyorsMultiple: new FormControl(null),
       notes:  ""
     });  
 
@@ -105,7 +112,12 @@ export class VpcAppsnewComponent implements OnInit {
     this.generator.customerId = this.newAppForm.controls['customer'].value;
     this.generator.name = this.newAppForm.controls['notes'].value;
     this.generator.descriptionOfWork = this.newAppForm.controls['descriptionOfWork'].value;
+    this.generator.surveyors = this.newAppForm.controls['userSurveyorsMultiple'].value;
+
     console.log("Desc of work: " + this.generator.descriptionOfWork);
+    console.log("Surveyors: " +  this.generator.surveyors);   
+
+
     if(this.generator.customerId > 0) {
       this.PlanningAppService.generatePlanningApp(this.generator).subscribe(
       planningApp => {

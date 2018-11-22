@@ -61,7 +61,10 @@ interval: any = {};
   }
 
   logout() {
-    this.userService.logout();       
+    this.userService.logout();  
+    if (this.interval) {
+      clearInterval(this.interval);
+    }     
    }
 
    private populateStatistics() {
@@ -71,9 +74,12 @@ interval: any = {};
     );
   }
 
-  ngOnDestroy() {
-    // prevent memory leak when component is destroyed
+  ngOnDestroy() { 
+    console.warn("On Destroy, clearing statistics interval")
+    if (this.interval) {
+      clearInterval(this.interval);
+    }
     this.subscription.unsubscribe();
   }
 
-  }
+}

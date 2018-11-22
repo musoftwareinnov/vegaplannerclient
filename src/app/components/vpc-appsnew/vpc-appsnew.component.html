@@ -31,6 +31,14 @@
                  </mat-form-field>
             </div>            
 
+            <div class="full-width-container">
+              <mat-form-field>
+                <mat-select placeholder="Select Surveyors" formControlName="userSurveyorsMultiple" multiple>
+                <mat-option *ngFor="let userSurveyor of userSurveyorSelect" [value]="userSurveyor.id" >{{userSurveyor.fullName}}
+                </mat-option>
+              </mat-select>
+               </mat-form-field>
+            </div>   
 
             <div class="full-width-container">
                 <p>

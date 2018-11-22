@@ -3,18 +3,17 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { UserRegistration } from '../models/user.registration.interface';
 import { ConfigService } from '../utils/config.service';
 import {BaseService} from "./base.service";
-import { Observable } from 'rxjs';
 import { BehaviorSubject } from 'rxjs-compat'; 
-import { map, catchError } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
-
-// Add the RxJS Observable operators we need in this app.
-//import '../../rxjs-operators';
 import { HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { UserNameSelect } from '../models/user.nameselect';
 
 @Injectable()
 
 export class UserService extends BaseService {
+
+  private readonly userEndpoint = '/accounts';
 
   baseUrl: string = '';
   res: any = {};
@@ -30,8 +29,8 @@ export class UserService extends BaseService {
   private loggedIn = false;
   
   constructor(private http: Http, 
-              private configService: ConfigService 
-                                  )  {
+              private httpClient: HttpClient,
+              private configService: ConfigService)  {
     super();
 
     // ?? not sure if this the best way to broadcast the status but seems to resolve issue on page refresh where auth status is lost in
@@ -151,6 +150,15 @@ export class UserService extends BaseService {
       console.log("get Uwt UserService Not logged in");
     }
     return httpHeaders;
+  }
+
+  getUserNames() {
+    console.log(this.baseUrl + this.userEndpoint + '/userSelect');
+    return this.httpClient.get<UserNameSelect[]>(this.baseUrl + this.userEndpoint + '/userSelect', { headers: this.getUwt() });
+  }
+
+  getUsersDetail() {
+
   }
 }
 

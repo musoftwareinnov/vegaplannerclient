@@ -69,6 +69,7 @@ export class VpcAppsinprogressComponent implements OnInit {
     //     this.refreshData(); 
     // }, 5000);
 
+    console.log("Apps Inprogress geUWt");
     console.log(this.userService.getUwt());
   }
 
@@ -106,5 +107,12 @@ export class VpcAppsinprogressComponent implements OnInit {
     this.populatePlanningAppSummary() ;
 
     return event;
+  }
+
+  ngOnDestroy() {   //Stop the planning service being called when user logs off
+    console.warn("On Destroy, clearing apps in progress interval")
+    if (this.interval) {
+      clearInterval(this.interval);
+    }
   }
 }
