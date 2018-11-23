@@ -18,6 +18,10 @@
     width: 50%;
   }
 
+  .username-width {
+    width: 95%;
+  }
+
   .grid-container {
     margin-top:80px;
     margin-left:280px;

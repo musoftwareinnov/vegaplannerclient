@@ -21,7 +21,7 @@ export class VpcAppsnewComponent implements OnInit {
     pageSize: 0
   };
   customerSelect:any[] = [];
-  userSurveyorSelect:any[] = [];
+  userSelect:any[] = [];
   stateGeneratorSelect:any[] = [];
   queryResult: any = {};
   queryGeneratorResult: any = {};
@@ -51,7 +51,8 @@ export class VpcAppsnewComponent implements OnInit {
       postcode: "",
       geoLocation: "",
     },
-    surveyors: []
+    surveyors: [],
+    drawers: [],
   }
 
   constructor(
@@ -80,7 +81,7 @@ export class VpcAppsnewComponent implements OnInit {
       .subscribe(result => this.queryGeneratorResult = result);
 
     this.userService.getUserNames()
-      .subscribe(result => this.userSurveyorSelect = result);     
+      .subscribe(result => this.userSelect = result);     
 
     this.newAppForm = this.createFormGroupWithBuilderAndModel(this.formBuilder);
   }
@@ -95,6 +96,7 @@ export class VpcAppsnewComponent implements OnInit {
       generator:             new FormControl(null),
       descriptionOfWork:     new FormControl(null),
       userSurveyorsMultiple: new FormControl(null),
+      userDrawersMultiple:   new FormControl(null),
       notes:  ""
     });  
 
@@ -113,9 +115,11 @@ export class VpcAppsnewComponent implements OnInit {
     this.generator.name = this.newAppForm.controls['notes'].value;
     this.generator.descriptionOfWork = this.newAppForm.controls['descriptionOfWork'].value;
     this.generator.surveyors = this.newAppForm.controls['userSurveyorsMultiple'].value;
+    this.generator.drawers = this.newAppForm.controls['userDrawersMultiple'].value;
 
     console.log("Desc of work: " + this.generator.descriptionOfWork);
     console.log("Surveyors: " +  this.generator.surveyors);   
+    console.log("Drawers: " +  this.generator.drawers);   
 
 
     if(this.generator.customerId > 0) {

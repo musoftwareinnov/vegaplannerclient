@@ -31,6 +31,10 @@ table {
     width: 30%;
   }
 
+  .desc-width {
+    width: 60%;
+  }
+
   .green-thumb-icon {
       color: green;
       margin: 10px;

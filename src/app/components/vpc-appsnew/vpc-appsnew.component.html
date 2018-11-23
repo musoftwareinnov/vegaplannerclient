@@ -32,13 +32,27 @@
             </div>            
 
             <div class="full-width-container">
-              <mat-form-field>
-                <mat-select placeholder="Select Surveyors" formControlName="userSurveyorsMultiple" multiple>
-                <mat-option *ngFor="let userSurveyor of userSurveyorSelect" [value]="userSurveyor.id" >{{userSurveyor.fullName}}
-                </mat-option>
-              </mat-select>
-               </mat-form-field>
-            </div>   
+            <table>
+                <tr>
+                  <td>                           
+                      <mat-form-field class="username-width ">
+                          <mat-select placeholder="Designer Surveyors" formControlName="userSurveyorsMultiple" multiple>
+                          <mat-option *ngFor="let userSurveyor of userSelect" [value]="userSurveyor.id" >{{userSurveyor.fullName}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>  
+                  </td>
+                  <td> 
+                      <mat-form-field class="username-width ">
+                          <mat-select placeholder="Designer Drawings" formControlName="userDrawersMultiple" multiple>
+                          <mat-option *ngFor="let userDesigner of userSelect" [value]="userDesigner.id" >{{userDesigner.fullName}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                  </td> 
+                </tr>                       
+              </table> 
+            </div> 
 
             <div class="full-width-container">
                 <p>

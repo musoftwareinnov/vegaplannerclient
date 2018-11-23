@@ -119,14 +119,43 @@
                             </td>                             
                           </tr>
                         </table>  
-
-                            <mat-form-field class="cust-name-width">
+                        <table >
+                          <tr>
+                            <td>                           
+                                <mat-form-field class="desc-width">
+                                  <input type="text" matInput placeholder="Description Of Work" name="description"  [(ngModel)]="planningApp.descriptionOfWork"> 
+                                </mat-form-field>   
+                            </td>
+                            <td> 
+                              <mat-form-field class="cust-name-width">
                                 <input type="text" matInput placeholder="App Completion Date" name="appCompletionDate"  [(ngModel)]="planningApp.completionDate"> 
-                            </mat-form-field>
-
-                        <mat-form-field class="full-width">
-                            <input type="text" matInput placeholder="Description" name="description"  [(ngModel)]="planningApp.name"> 
-                        </mat-form-field>                                  
+                              </mat-form-field>
+                            </td> 
+                          </tr>                       
+                        </table>   
+                                                    
+                        <table >
+                          <tr>
+                            <td>  
+                                <mat-list>
+                                    <h3 mat-subheader>Designer Surveyors</h3>
+                                    <mat-list-item *ngFor="let surveyor of planningApp.surveyors">
+                                      <mat-icon mat-list-icon>face</mat-icon>
+                                      <h4 mat-line>{{surveyor}}</h4>
+                                    </mat-list-item>
+                                  </mat-list>                          
+                            </td>                          
+                            <td> 
+                                <mat-list>
+                                    <h3 mat-subheader>Designer Drawings</h3>
+                                    <mat-list-item *ngFor="let drawer of planningApp.drawers">
+                                      <mat-icon mat-list-icon>face</mat-icon>
+                                      <h4 mat-line>{{drawer}}</h4>
+                                    </mat-list-item>
+                                  </mat-list>                               
+                            </td> 
+                          </tr>                       
+                        </table>                                
                     </div>
                 
                     <mat-action-row>
