@@ -37,7 +37,7 @@
                   <td>                           
                       <mat-form-field class="username-width ">
                           <mat-select placeholder="Designer Surveyors" formControlName="userSurveyorsMultiple" multiple>
-                          <mat-option *ngFor="let userSurveyor of userSelect" [value]="userSurveyor.id" >{{userSurveyor.fullName}}
+                          <mat-option *ngFor="let user of surveyors" [value]="user.id" >{{user.fullName}}
                           </mat-option>
                         </mat-select>
                       </mat-form-field>  
@@ -45,7 +45,7 @@
                   <td> 
                       <mat-form-field class="username-width ">
                           <mat-select placeholder="Designer Drawings" formControlName="userDrawersMultiple" multiple>
-                          <mat-option *ngFor="let userDesigner of userSelect" [value]="userDesigner.id" >{{userDesigner.fullName}}
+                          <mat-option *ngFor="let user of drawers" [value]="user.id" >{{user.fullName}}
                           </mat-option>
                         </mat-select>
                       </mat-form-field>

@@ -21,7 +21,8 @@ export class VpcAppsnewComponent implements OnInit {
     pageSize: 0
   };
   customerSelect:any[] = [];
-  userSelect:any[] = [];
+  surveyors:any[] = [];
+  drawers:any[] = [];
   stateGeneratorSelect:any[] = [];
   queryResult: any = {};
   queryGeneratorResult: any = {};
@@ -80,8 +81,11 @@ export class VpcAppsnewComponent implements OnInit {
     this.stateInitialiserService.getStateInitialiserList(this.query)
       .subscribe(result => this.queryGeneratorResult = result);
 
-    this.userService.getUserNames()
-      .subscribe(result => this.userSelect = result);     
+    this.userService.getSurveyors()
+      .subscribe(result => this.surveyors = result);  
+
+    this.userService.getDrawers()
+      .subscribe(result => this.drawers = result);     
 
     this.newAppForm = this.createFormGroupWithBuilderAndModel(this.formBuilder);
   }

@@ -152,9 +152,13 @@ export class UserService extends BaseService {
     return httpHeaders;
   }
 
-  getUserNames() {
-    console.log(this.baseUrl + this.userEndpoint + '/userSelect');
-    return this.httpClient.get<UserNameSelect[]>(this.baseUrl + this.userEndpoint + '/userSelect', { headers: this.getUwt() });
+  getSurveyors() {
+    console.log(this.baseUrl + this.userEndpoint + '/roleUsers/designerSurveyUser');
+    return this.httpClient.get<UserNameSelect[]>(this.baseUrl + this.userEndpoint + '/roleUsers/designerSurveyUser', { headers: this.getUwt() });
+  }
+  getDrawers() {
+    console.log(this.baseUrl + this.userEndpoint + '/roleUsers/designerDrawerUser');
+    return this.httpClient.get<UserNameSelect[]>(this.baseUrl + this.userEndpoint + '/roleUsers/designerDrawingUser', { headers: this.getUwt() });
   }
 
   getUsersDetail() {
