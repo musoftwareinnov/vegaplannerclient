@@ -4,6 +4,7 @@ import { Subscription, BehaviorSubject } from 'rxjs';
 import { Credentials } from 'src/app/models/credentials';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from '../../shared/services/user.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -30,7 +31,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
   constructor(private userService: UserService, 
     private router: Router,
-    private activatedRoute: ActivatedRoute) {
+    private activatedRoute: ActivatedRoute,
+    private toastrService: ToastrService,) {
   }
 
   ngOnInit() {
@@ -45,7 +47,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   login({ value, valid }: { value: Credentials, valid: boolean }) {
     this.submitted = true;
     this.isRequesting = true;
-    this.errors='';
+    //this.errors='';
     this.resourcesLoading = true;
     if (valid) {
       this.userService.login(value.email, value.password)
@@ -56,10 +58,13 @@ export class LoginComponent implements OnInit, OnDestroy {
              this.router.navigate(['/appsinprogress']);             
           }
         },
-        error => this.errors = error);
+        error => {   this.toastrService.error("Incorrect Username or Password");
+                      this.errors = error;
+                      this.router.navigate(['/login']) });
     }
     var token = this.userService.getUwt();
 
+    //Debug Access Token
     //let tokenInfo = this.getDecodedAccessToken(token); // decode token
     //let expireDate = tokenInfo.exp; // get token expiration dateTime
     //let role = tokenInfo.rol

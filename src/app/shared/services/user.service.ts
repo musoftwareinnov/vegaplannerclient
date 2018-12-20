@@ -78,12 +78,11 @@ export class UserService extends BaseService {
                 
             var rol = decodedToken["rol"];
             console.log(rol);
-
+            this._authNavUserNameSource.next(decodedToken["usr"]);
           }
        }
         this.loggedIn = true;
         this._authNavStatusSource.next(true);
-        this._authNavUserNameSource.next(res.userName);
         this._authNavBusinessDateSource.next(res.businessDate);
 
 

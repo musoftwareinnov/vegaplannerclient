@@ -22,7 +22,7 @@ export class AppErrorHandler implements ErrorHandler {
                   private ngZone: NgZone){};
       
     handleError(error: HttpErrorResponse ) { 
-
+        console.log("ETTP ERROR REPSONSE!! ", error.status);
         //Log out if we have errors
         this.userService.logout();
         //At handler request not in angular zone so must run inside it calling ngZone
@@ -40,8 +40,9 @@ export class AppErrorHandler implements ErrorHandler {
                 this.showError(AppErrorHandler.USER_FORBIDDEN_MESSAGE) )           
                 break;
             case BAD_REQUEST:
-                console.log("ERROR BAD_REQUEST");
-                this.ngZone.run(() => this.showError(error.message));
+                console.log("ERROR BAD_REQUEST XXXXXX");
+                this.ngZone.run(() => router.navigate(['/login']),
+                this.showError(error.message));
                 break;
             default:
                //Cannot Connect to Server
