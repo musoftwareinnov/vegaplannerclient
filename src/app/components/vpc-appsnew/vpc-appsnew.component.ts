@@ -23,6 +23,7 @@ export class VpcAppsnewComponent implements OnInit {
   customerSelect:any[] = [];
   surveyors:any[] = [];
   drawers:any[] = [];
+  admins:any[] = [];
   stateGeneratorSelect:any[] = [];
   queryResult: any = {};
   queryGeneratorResult: any = {};
@@ -54,6 +55,7 @@ export class VpcAppsnewComponent implements OnInit {
     },
     surveyors: [],
     drawers: [],
+    admins: [],
   }
 
   constructor(
@@ -87,6 +89,9 @@ export class VpcAppsnewComponent implements OnInit {
     this.userService.getDrawers()
       .subscribe(result => this.drawers = result);     
 
+    this.userService.getAdmins()
+      .subscribe(result => this.admins = result);     
+
     this.newAppForm = this.createFormGroupWithBuilderAndModel(this.formBuilder);
   }
 
@@ -99,8 +104,9 @@ export class VpcAppsnewComponent implements OnInit {
       customer:              new FormControl(null).setValidators([Validators.min(1)]),
       generator:             new FormControl(null),
       descriptionOfWork:     new FormControl(null),
-      userSurveyorsMultiple: new FormControl(null),
+      userSurveyorsMultiple: new FormControl(null).setValidators([Validators.min(1)]),
       userDrawersMultiple:   new FormControl(null),
+      userAdminsMultiple:    new FormControl(null).setValidators([Validators.min(1)]),
       notes:  ""
     });  
 
@@ -120,10 +126,12 @@ export class VpcAppsnewComponent implements OnInit {
     this.generator.descriptionOfWork = this.newAppForm.controls['descriptionOfWork'].value;
     this.generator.surveyors = this.newAppForm.controls['userSurveyorsMultiple'].value;
     this.generator.drawers = this.newAppForm.controls['userDrawersMultiple'].value;
+    this.generator.admins = this.newAppForm.controls['userAdminsMultiple'].value;
 
     console.log("Desc of work: " + this.generator.descriptionOfWork);
     console.log("Surveyors: " +  this.generator.surveyors);   
     console.log("Drawers: " +  this.generator.drawers);   
+    console.log("Admins: " +  this.generator.admins);   
 
 
     if(this.generator.customerId > 0) {

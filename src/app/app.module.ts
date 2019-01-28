@@ -68,6 +68,7 @@ import { VpcAppstateformComponent } from './components/vpc-appstateform/vpc-apps
 import { BusinessDatesService } from './services/businessdates.service';
 import { AppErrorHandler } from './app.error.handler';
 import { VpcAppssearchComponent } from './components/vpc-appssearch/vpc-appssearch.component';
+import { StaticDataService } from './services/staticdata.service';
 
 //import { SpinnerComponent } from './components/spinner/spinner.component';
 
@@ -168,6 +169,7 @@ const appRoutes:Routes = [
     DescriptionOfWorkService,
     StatisticsService,
     UserService,
+    StaticDataService,
     BusinessDatesService,
     AuthGuard,
     

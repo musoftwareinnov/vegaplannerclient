@@ -2,6 +2,8 @@ import { PlanningApp } from "./planningapp";
 
 export interface Customer {
     id: number; 
+    titleId: number;
+    title:string
     firstName: string;
     lastName: string;
     addressLine1: string;

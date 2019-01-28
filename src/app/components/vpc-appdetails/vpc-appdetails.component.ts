@@ -38,6 +38,8 @@ export class VpcAppdetailsComponent implements OnInit {
     // customerId: 0,
     customer: {
       id: 0, 
+      titleId: 0,
+      title: "",
       firstName: "",
       lastName: "",
       addressLine1: "",

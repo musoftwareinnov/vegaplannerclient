@@ -1,18 +1,18 @@
-
+import { StateStatus } from '../models/statestatus';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UserService } from '../shared/services/user.service';
 import { HttpJwtService } from '../shared/services/httpJwt.service';
 
 @Injectable()
-export class StateStatusService {
+export class StaticDataService {
 
-  private readonly statestatusEndpoint = '/statestatus';
+  private readonly staticdataEndpoint = '/staticdata';
   private httpHeaders = new HttpHeaders;
   
   constructor(private http: HttpClient, private httpJwtService:HttpJwtService) { }
 
-  getStateStatuses(status: string)  {
-    return this.httpJwtService.get<any>(this.statestatusEndpoint + "?statusName=" + status);
+  getHonorifics()  {
+    return this.httpJwtService.get<any>(this.staticdataEndpoint + "/honorifics" + status);
   }
 }

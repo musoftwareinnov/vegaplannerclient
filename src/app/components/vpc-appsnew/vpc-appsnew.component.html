@@ -50,6 +50,14 @@
                         </mat-select>
                       </mat-form-field>
                   </td> 
+                  <td> 
+                      <mat-form-field class="username-width ">
+                          <mat-select placeholder="Admin" formControlName="userAdminsMultiple" multiple>
+                          <mat-option *ngFor="let user of admins" [value]="user.id" >{{user.fullName}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                  </td> 
                 </tr>                       
               </table> 
             </div> 

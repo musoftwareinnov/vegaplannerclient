@@ -1,11 +1,26 @@
 <div class="grid-container">
     <div class="mat-elevation-z8">
-            <!-- <form [formGroup]="registerForm" (ngSubmit)="onSubmit()"> -->
+            <!-- <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" > -->
     <form [formGroup]="registerForm" >
         <div class="grid-container-inner">
-            <h1 class="mat-h1">Customer Details</h1>
+            <h1 class="mat-h1">Client Details</h1>
           <div class="form-group">
               <table class="example-full-width" cellspacing="0"><tr>
+                
+                  <!-- <td>                  
+                    <mat-form-field>
+                        <mat-select placeholder="Titles" matInput placeholder="titleId" formControlName="titleId">
+                            <option *ngFor="let title of honorifics" [value]="title.id">{{title.name}}</option>
+                      </mat-select>
+                    </mat-form-field>  
+                  </td> -->
+                  <!-- <td>                  
+                    <mat-form-field class="example-full-width">
+                      <input type="text" matInput placeholder="Title" formControlName="title"  [ngClass]="{ 'is-invalid': submitted && f.titleList.errors }"> 
+                      <div *ngIf="submitted && f.titleList.errors" >
+                      </div>
+                    </mat-form-field>
+                  </td> -->
                   <td>                  
                     <mat-form-field class="example-full-width">
                       <input type="text" matInput placeholder="First name" formControlName="firstName"  [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"> 
@@ -87,7 +102,7 @@
           <div class="form-group">
             <p>
                 <mat-form-field class="example-full-width">
-                  <textarea matInput placeholder="Notes" formControlName="notes"></textarea>
+                  <textarea matInput placeholder="Initial enquiry details" formControlName="notes"></textarea>
                 </mat-form-field>
             </p> 
           </div>          

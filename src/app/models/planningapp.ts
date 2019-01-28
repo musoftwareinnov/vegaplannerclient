@@ -58,5 +58,6 @@ export interface PlanningAppStates {
     developmentAddress: Address;
     surveyors: number[];
     drawers: number[];
+    admins: number[];
   }
 

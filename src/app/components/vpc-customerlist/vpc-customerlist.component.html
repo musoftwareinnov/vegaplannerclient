@@ -1,11 +1,11 @@
 <div class="grid-container">
-    <h1 class="mat-h1">Customers</h1>
+    <h1 class="mat-h1">Clients</h1>
     <div class="mat-elevation-z8">
 
   <div class="grid-container">
       <div class="filter-width">
         <mat-form-field>
-          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter Customer">
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter Client">
         </mat-form-field>
       </div>
   </div>
@@ -15,7 +15,7 @@
     
     <!-- Customer -->        
     <ng-container matColumnDef="fullName">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Customer</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Client</th>
         <td mat-cell *matCellDef="let row">{{row.fullName}}</td>
       </ng-container>   
     <!-- Address -->

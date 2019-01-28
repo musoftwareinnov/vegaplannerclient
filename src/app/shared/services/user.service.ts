@@ -159,6 +159,10 @@ export class UserService extends BaseService {
     console.log(this.baseUrl + this.userEndpoint + '/roleUsers/designerDrawerUser');
     return this.httpClient.get<UserNameSelect[]>(this.baseUrl + this.userEndpoint + '/roleUsers/designerDrawingUser', { headers: this.getUwt() });
   }
+  getAdmins() {
+    console.log(this.baseUrl + this.userEndpoint + '/roleUsers/adminUser');
+    return this.httpClient.get<UserNameSelect[]>(this.baseUrl + this.userEndpoint + '/roleUsers/adminUser', { headers: this.getUwt() });
+  }
 
   getUsersDetail() {
 
