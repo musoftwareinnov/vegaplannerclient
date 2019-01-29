@@ -7,6 +7,7 @@ import { DrawingService } from 'src/app/services/drawing.service';
 import { PlanningAppService } from 'src/app/services/planningapp.service';
 import { AuthGuard } from 'src/app/auth.guard';
 import { ToastrService } from 'ngx-toastr';
+import { MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'app-vpc-appdetails',
@@ -15,6 +16,10 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class VpcAppdetailsComponent implements OnInit {
   @ViewChild('fileInput') fileInput: ElementRef | undefined;
+
+  displayedColumns = [ 'name', 'fee', 'spacer', 'spacer2', 'spacer3'];
+
+  feesDataSource = new MatTableDataSource(ELEMENT_DATA);
 
   private readonly COMPLETE = 'Complete';
   vehicleId: number = 0; 
@@ -35,7 +40,6 @@ export class VpcAppdetailsComponent implements OnInit {
   planningApp: PlanningApp = {
     id: 0,
     planningReferenceId: "",
-    // customerId: 0,
     customer: {
       id: 0, 
       titleId: 0,
@@ -81,6 +85,11 @@ export class VpcAppdetailsComponent implements OnInit {
     generator: "",
     notes: "",
     planningAppStates: [],
+    planningAppFees: [],
+    descriptionOfWork: "",
+    surveyors:"",
+    drawers:"",
+    admins:"",
     method: 1
   };
 
@@ -178,6 +187,21 @@ export class VpcAppdetailsComponent implements OnInit {
         this.toastrService.success('Planning Details updated ', 'Success');
       });
   }
+  submitFees() {
+
+    console.log("feesDataSource");
+    //console.log(ELEMENT_DATA);
+    
+    //var result$ = this.planningAppService.saveDevelopmentDetails(this.planningApp )
+    // result$.subscribe(
+    //   planningApp => {
+    //     this.toastrService.success('Planning Details updated ', 'Success');
+    //   });
+  }
+
+  getTotalFees() {
+    return this.planningApp.planningAppFees.map(t => t.amount).reduce((acc, value) => acc + value, 0);
+  }
   
   archive() {
     if (confirm("Archiving Not Installed, extra module")) {
@@ -227,6 +251,8 @@ export class VpcAppdetailsComponent implements OnInit {
     }
   }
 
+
+
   //Expansion Panel GUI functions
   step = 0;
 
@@ -242,3 +268,16 @@ export class VpcAppdetailsComponent implements OnInit {
     this.step--;
   }
 }
+
+export interface Fees {
+  id: number;
+  name: string;
+  amount: number;
+  // fav: string;
+}
+
+const ELEMENT_DATA: Fees[] = [
+  // { position: 1, name: 'Fesibility', fee: 10.0 },
+  // { position: 2, name: 'Planning', fee: 0.0 },
+  // { position: 3, name: 'Building Regs', fee: 0.0 },
+];

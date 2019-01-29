@@ -69,6 +69,7 @@ import { BusinessDatesService } from './services/businessdates.service';
 import { AppErrorHandler } from './app.error.handler';
 import { VpcAppssearchComponent } from './components/vpc-appssearch/vpc-appssearch.component';
 import { StaticDataService } from './services/staticdata.service';
+import { VpcFeesComponent } from './components/vpc-fees/vpc-fees.component';
 
 //import { SpinnerComponent } from './components/spinner/spinner.component';
 
@@ -112,7 +113,8 @@ const appRoutes:Routes = [
     VpcAppsnewComponent,
     VpcAppdetailsComponent,
     VpcAppstateformComponent,
-    VpcAppssearchComponent
+    VpcAppssearchComponent,
+    VpcFeesComponent
   ],
   imports: [
     BrowserModule,

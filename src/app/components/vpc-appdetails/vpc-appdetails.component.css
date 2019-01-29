@@ -92,3 +92,21 @@ table {
   padding: 5px; 
 }
 
+/* Fee formatting */
+.fee-right-align {
+  text-align: right;
+}
+
+input.fee-right-align::-webkit-outer-spin-button,
+input.fee-right-align::-webkit-inner-spin-button {
+  display: none;
+}
+
+input.fee-right-align {
+  -moz-appearance: textfield;
+}
+
+.mat-footer-row {
+  font-weight: bold;
+}
+

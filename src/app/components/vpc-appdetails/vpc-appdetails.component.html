@@ -171,8 +171,62 @@
                       <button mat-button color="primary" (click)="nextStep()">Next</button>
                     </mat-action-row>
                   </mat-expansion-panel>
-                
+
                   <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>Fees Quoted</mat-panel-title>
+                        <mat-panel-description><mat-icon>euro_symbol</mat-icon></mat-panel-description>
+                      </mat-expansion-panel-header>  
+                       <mat-table #table [dataSource]="planningApp.planningAppFees" matSort aria-label="Elements">
+
+                          <ng-container matColumnDef="name">
+                            <mat-header-cell *matHeaderCellDef> Fee Type </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+                            <mat-footer-cell *matFooterCellDef class="fee-right-align"> Total </mat-footer-cell>
+                          </ng-container>
+                      
+                          <!-- Fee Column -->
+                          <ng-container matColumnDef="fee">
+                            <mat-header-cell *matHeaderCellDef> Fee </mat-header-cell>
+                            <mat-cell *matCellDef="let element">
+                              <mat-form-field>
+                                  <input matInput type="number" [value]="element.amount" [(ngModel)]="element.amount" class="fee-right-align">
+                                  <span matPrefix>£&nbsp;</span>
+                                  <span matSuffix>.00</span>
+                                </mat-form-field>
+                            </mat-cell>   
+                            <!-- <mat-footer-cell *matFooterCellDef type="number" class="fee-right-align"> <span matPrefix>£&nbsp;</span><span matSuffix>0.00</span> </mat-footer-cell>                        -->
+                            <mat-footer-cell *matFooterCellDef type="number" class="fee-right-align"><span matPrefix>£&nbsp;</span>{{getTotalFees()}}</mat-footer-cell>                       
+                          </ng-container>
+
+                           <!-- Spacer Column For Formatting-->                         
+                          <ng-container matColumnDef="spacer">
+                              <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                              <mat-cell *matCellDef="let element"></mat-cell>
+                              <mat-footer-cell *matFooterCellDef></mat-footer-cell>
+                            </ng-container>       
+                          <ng-container matColumnDef="spacer2">
+                              <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                              <mat-cell *matCellDef="let element"></mat-cell>
+                              <mat-footer-cell *matFooterCellDef></mat-footer-cell>
+                            </ng-container>       
+                          <ng-container matColumnDef="spacer3">
+                              <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                              <mat-cell *matCellDef="let element"></mat-cell> 
+                              <mat-footer-cell *matFooterCellDef></mat-footer-cell>
+                            </ng-container>       
+
+                          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                          <mat-footer-row *matFooterRowDef="displayedColumns"></mat-footer-row>
+                        </mat-table> 
+                      <mat-action-row>
+                          <button mat-raised-button color="primary" (click)="submitFees()">Update</button>
+                          <button mat-button color="primary" (click)="nextStep()">Next</button>
+                      </mat-action-row>
+                  </mat-expansion-panel>
+
+                  <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
                     <mat-expansion-panel-header>
                       <mat-panel-title>Client Details</mat-panel-title>
                       <mat-panel-description><mat-icon>face</mat-icon></mat-panel-description>
@@ -250,7 +304,7 @@
                     </mat-action-row>
                   </mat-expansion-panel>
                 
-                  <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+                  <mat-expansion-panel [expanded]="step === 4" (opened)="setStep(4)" hideToggle>
                     <mat-expansion-panel-header>
                       <mat-panel-title>Builder Details</mat-panel-title>
                       <mat-panel-description><mat-icon>person_outline</mat-icon></mat-panel-description>

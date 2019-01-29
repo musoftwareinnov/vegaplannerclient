@@ -2,7 +2,6 @@ import { Customer } from './customer';
 import { Developer } from './developer';
 import { Address } from './address';
 import { DevelopmentAddress } from './developmentAddress';
-//import { VpcAppsinprogressItem } from '../components/vpc-appsinprogress/vpc-appsinprogress-datasource';
 
 export interface PlanningAppGet {
   totalItems: number;
@@ -27,8 +26,20 @@ export interface PlanningApp {
     generator: string;
     notes: string;
     planningAppStates: PlanningAppStates[];
+    planningAppFees: PlanningAppFees[];
     method: number;
+    descriptionOfWork: string,
+    surveyors:string,
+    drawers:string,
+    admins:string,
   }
+
+export interface PlanningAppFees {
+    id: number; 
+    name: string;
+    amount: number;
+  
+}
 
 export interface PlanningAppStates {
     id: number; 
