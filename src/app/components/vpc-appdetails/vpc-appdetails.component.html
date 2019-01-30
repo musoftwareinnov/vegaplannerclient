@@ -192,7 +192,7 @@
                               <mat-form-field>
                                   <input matInput type="number" [value]="element.amount" [(ngModel)]="element.amount" class="fee-right-align">
                                   <span matPrefix>£&nbsp;</span>
-                                  <span matSuffix>.00</span>
+                                  <!-- <span matSuffix>.00</span> -->
                                 </mat-form-field>
                             </mat-cell>   
                             <!-- <mat-footer-cell *matFooterCellDef type="number" class="fee-right-align"> <span matPrefix>£&nbsp;</span><span matSuffix>0.00</span> </mat-footer-cell>                        -->
@@ -221,7 +221,7 @@
                           <mat-footer-row *matFooterRowDef="displayedColumns"></mat-footer-row>
                         </mat-table> 
                       <mat-action-row>
-                          <button mat-raised-button color="primary" (click)="submitFees()">Update</button>
+                          <button mat-raised-button color="primary" (click)="submit()">Update</button>
                           <button mat-button color="primary" (click)="nextStep()">Next</button>
                       </mat-action-row>
                   </mat-expansion-panel>

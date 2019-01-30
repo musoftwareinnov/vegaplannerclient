@@ -182,21 +182,11 @@ export class VpcAppdetailsComponent implements OnInit {
 
   submit() {
     var result$ = this.planningAppService.saveDevelopmentDetails(this.planningApp )
+    console.log(this.planningApp);
     result$.subscribe(
       planningApp => {
         this.toastrService.success('Planning Details updated ', 'Success');
       });
-  }
-  submitFees() {
-
-    console.log("feesDataSource");
-    //console.log(ELEMENT_DATA);
-    
-    //var result$ = this.planningAppService.saveDevelopmentDetails(this.planningApp )
-    // result$.subscribe(
-    //   planningApp => {
-    //     this.toastrService.success('Planning Details updated ', 'Success');
-    //   });
   }
 
   getTotalFees() {

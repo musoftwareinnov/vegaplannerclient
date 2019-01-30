@@ -24,12 +24,17 @@ export class PlanningAppService {
 
   nextState(changePlanningAppState: ChangePlanningAppState) {
     changePlanningAppState.method = StateAction.Next;  //move to next state
-    return this.httpJwtService.put<ChangePlanningAppState>(this.planningappsEndpoint + '/' + changePlanningAppState.id, changePlanningAppState)
+    return this.httpJwtService.put<ChangePlanningAppState>(this.planningappsEndpoint + '/nextstate/' + changePlanningAppState.id, changePlanningAppState)
+  }
+
+  prevState(changePlanningAppState: ChangePlanningAppState) {
+    changePlanningAppState.method = StateAction.Next;  //move to next state
+    return this.httpJwtService.put<ChangePlanningAppState>(this.planningappsEndpoint + '/prevstate/' + changePlanningAppState.id, changePlanningAppState)
   }
 
   terminate(changePlanningAppState: ChangePlanningAppState) {
     changePlanningAppState.method = StateAction.Terminate; 
-    return this.httpJwtService.put<ChangePlanningAppState>(this.planningappsEndpoint + '/' + changePlanningAppState.id, changePlanningAppState)
+    return this.httpJwtService.put<ChangePlanningAppState>(this.planningappsEndpoint + '/terminate/' + changePlanningAppState.id, changePlanningAppState)
   }
 
   saveNotes(planningNotes: SavePlanningNotes) {
