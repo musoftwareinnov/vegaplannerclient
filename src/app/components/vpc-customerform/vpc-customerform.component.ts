@@ -115,7 +115,7 @@ export class VpcCustomerformComponent implements OnInit {
       
       this.registerForm.setValue({id:customer.id,
                                   title:"", 
-                                  titleId:0, 
+                                  titleId:customer.titleId, 
                                   titles:[] ,
                                   firstName:customer.firstName,
                                   lastName:customer.lastName,
@@ -197,6 +197,7 @@ export class VpcCustomerformComponent implements OnInit {
   
       // Resets to provided model
       this.registerForm.reset(this.customer);
+      this.registerForm.controls['titles'].setValue(this.customer.titleId)  //Reset drop down!
     }
 
     close() {
