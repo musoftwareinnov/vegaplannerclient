@@ -1,3 +1,4 @@
+import { KeyValuePair } from './../../models/vehicle';
 import { Component, OnInit } from '@angular/core';
 import { Customer } from 'src/app/models/customer';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -7,6 +8,7 @@ import { StaticDataService } from 'src/app/services/staticdata.service';
 import { ToastrService } from 'ngx-toastr';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { NameValuePair } from 'src/app/models/namevaluepair';
+import { CustomerForm } from 'src/app/models/customerform';
 
 @Component({
   selector: 'app-vpc-customerform',
@@ -34,14 +36,31 @@ export class VpcCustomerformComponent implements OnInit {
         notes: "",
       };
 
-    honorifics: NameValuePair = {
-      id:0,
-      name:""
-    }
+    customerForm : CustomerForm = {
+        id: 0, 
+        titleId: 0,
+        title: "",
+        titles: [],
+        firstName: "",
+        lastName: "",
+        addressLine1: "",
+        city:"",
+        county:"",
+        postcode: "",
+        emailAddress: "",
+        telephoneHome: "",
+        telephoneMobile:"",
+        telephoneWork:"",
+        notes: "",
+      };
+
+    honorifics: NameValuePair[];
+
+    countries: NameValuePair[] = [ {id:2, name:'Mr'}, {id:3, name:'Mrs'} , {id:4, name:'Ms'}];
 
     registerForm: FormGroup;
     submitted = false;
-
+ 
     constructor(
       private formBuilder: FormBuilder,
       private route: ActivatedRoute,
@@ -56,6 +75,7 @@ export class VpcCustomerformComponent implements OnInit {
       }
   
     ngOnInit() {
+
       this.staticDataService.getHonorifics()
       .subscribe(
         honorifics => this.honorifics = honorifics, 
@@ -64,8 +84,11 @@ export class VpcCustomerformComponent implements OnInit {
       );
       
       this.registerForm = this.createFormGroupWithBuilderAndModel(this.formBuilder);
-      console.log("CustomerId!!!!!!:" + this.customer.id );
-      if (this.customer.id > 0)
+
+      this.registerForm.controls['titles'].setValue(0);
+
+      console.log("INit CustomerID:" + this.customer.id);
+      if (this.customer.id > 0) {
           console.log("CustomerId:" + this.customer.id );
           this.customerService.getCustomer(this.customer.id)
           .subscribe(
@@ -76,24 +99,53 @@ export class VpcCustomerformComponent implements OnInit {
                 return; 
               }},
 
-              () => { console.log("onComplete"); this.populateForm(this.customer)}
+              () => { console.log("onComplete"); 
+                      this.populateForm(this.customer);
+                      }
           );
-    }
+        }
+
+        //this.registerForm.controls['titles'].setValue(this.honorifics[0].id);      
+     }
 
     populateForm(customer: Customer) {
       console.log("CustomerName:" + customer.id);
+      console.log("CustomerTitle:" + customer.titleId);
+      this.registerForm.controls['titles'].setValue(3); 
       
-      this.registerForm.setValue(customer);
-      //this.registerForm.setValue({firstName: customer.firstName});
-    }
+      this.registerForm.setValue({id:customer.id,
+                                  title:"", 
+                                  titleId:0, 
+                                  titles:[] ,
+                                  firstName:customer.firstName,
+                                  lastName:customer.lastName,
+                                  addressLine1:customer.emailAddress,
+                                  city:customer.city,
+                                  county:customer.county,
+                                  postcode:customer.postcode,
+                                  emailAddress:customer.emailAddress,
+                                  telephoneHome:customer.telephoneHome,
+                                  telephoneMobile:customer.telephoneMobile,
+                                  telephoneWork:customer.telephoneWork,
+                                  geoLocation:"",
+                                  nameSummary:"",
+                                  fullName:"",
+                                  customerAddressSummary:"",
+                                  planningAppsCount:0,
+                                  notes:customer.notes
+                                   
+                                  });
+      //this.registerForm.setValue(customer);
+      this.registerForm.controls['titles'].setValue(customer.titleId)
+    }  
+ 
 
     createFormGroupWithBuilderAndModel(formBuilder: FormBuilder) {
- 
       return formBuilder.group({
-        id: 0, 
+        id:0,
         title:"",
         titleId: 0, 
-        //titleId:    this.formBuilder.array([{}]),
+        titles: new FormControl(null),
         firstName:    ['', Validators.required],
         lastName:     ['', Validators.required],
         addressLine1: ['', Validators.required],
@@ -103,7 +155,7 @@ export class VpcCustomerformComponent implements OnInit {
         emailAddress: ['', [Validators.required, Validators.email]],
         telephoneHome: "",
         telephoneMobile:['', Validators.required],
-        telephoneWork:"",
+        telephoneWork:"", 
         geoLocation:"",
         nameSummary:"",
         fullName:"",
@@ -117,14 +169,17 @@ export class VpcCustomerformComponent implements OnInit {
     get f() { return this.registerForm.controls; }
 
     onSubmit() {
+      console.log("submit customerid :  "  +   this.customer.id);
       this.submitted = true;
-      this.customer = Object.assign({}, this.registerForm.value);
+      this.customer = Object.assign({}, this.registerForm.value);   
 
+      //get title if changed
+      this.customer.titleId = this.registerForm.controls['titles'].value;
       // stop here if form is invalid
       if (this.registerForm.invalid) {
           console.warn("Submit Not valid-> "  +   this.customer.firstName);
           return;
-      }
+      }   
 
       var result$ = (this.customer.id) ? this.customerService.update(this.customer) : this.customerService.create(this.customer); 
   
@@ -148,5 +203,10 @@ export class VpcCustomerformComponent implements OnInit {
       this.router.navigate(['/customers'])
     }
 
-
+    onTitleChange() {
+      var c = this.registerForm.controls['titles'];
+      
+      console.info("Customer Title: Type Change = " + c.value);
+      this.customer.titleId = c.value;
+    }
   }

@@ -21,6 +21,17 @@
                       </div>
                     </mat-form-field>
                   </td> -->
+                  <!-- <select id="country" formControlName="country">
+                      <option *ngFor="let c of countries" [ngValue]="c">{{ c }}</option>
+                  </select> -->
+                  <td>
+                  <mat-form-field>
+                      <mat-select placeholder="Title" formControlName="titles"  (selectionChange)="onTitleChange()">
+                      <mat-option *ngFor="let title of honorifics" [value]="title.id">{{ title.name }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  </td>
                   <td>                  
                     <mat-form-field class="example-full-width">
                       <input type="text" matInput placeholder="First name" formControlName="firstName"  [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"> 
