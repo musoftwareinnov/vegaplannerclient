@@ -1,5 +1,6 @@
+
 import { Headers } from '@angular/http';
-import { PlanningApp, ChangePlanningAppState, PlanningAppGenerator, SavePlanningNotes, PlanningAppGet } from '../models/planningapp';
+import { PlanningApp, ChangePlanningAppState, PlanningAppGenerator, SavePlanningNotes, PlanningAppGet, PlanningAppInsertGenerator } from '../models/planningapp';
 import { PlanningAppSummary } from '../models/planningappsummary';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
@@ -43,6 +44,12 @@ export class PlanningAppService {
 
   saveDevelopmentDetails(planningApp: PlanningApp) {
     return this.httpJwtService.put<PlanningApp>(this.planningappsEndpoint + '/' + planningApp.id, planningApp)
+  }
+
+  insertGenerator(planningAppInsertGenerator: PlanningAppInsertGenerator) {
+    console.warn("GEN TO INSERT");
+    console.warn(planningAppInsertGenerator);
+    return this.httpJwtService.put<PlanningAppInsertGenerator>(this.planningappsEndpoint + '/appendgenerator/' + planningAppInsertGenerator.id, planningAppInsertGenerator)
   }
   
   generatePlanningApp(planningAppGenerator:PlanningAppGenerator) {

@@ -1,0 +1,24 @@
+.generic-form {
+    min-width: 100px;
+    max-width: 500px;
+    width: 100%;
+    margin: 120px;
+  }
+  
+  .example-full-width {
+    width: 50%;
+  }
+
+  .grid-container {
+    margin-top:80px;
+    margin-left:380px;
+    margin-right:380px;   
+  }
+
+  .grid-container-inner {
+    padding: 40px
+  }
+
+  .button-row{
+    margin: 5px; 
+  }

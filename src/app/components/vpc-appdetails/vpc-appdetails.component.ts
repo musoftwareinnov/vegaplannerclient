@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
-import { ChangePlanningAppState, SavePlanningNotes, PlanningApp } from 'src/app/models/planningapp';
+import { ChangePlanningAppState, SavePlanningNotes, PlanningApp, PlanningAppInsertGenerator } from 'src/app/models/planningapp';
 import { StateAction } from 'src/app/constants';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProgressService } from 'src/app/services/progress.service';
@@ -29,12 +29,17 @@ export class VpcAppdetailsComponent implements OnInit {
   savePlanningApp: ChangePlanningAppState = {
     id: 0,
     method: StateAction.Prev  //default to next state
-
   };
 
   plannningNotes: SavePlanningNotes = {
     id:0,
     notes: ""
+  };
+
+  insertGenerator: PlanningAppInsertGenerator = {
+    id: 0,
+    generatorId: 0,
+    orderId: 0
   };
 
   planningApp: PlanningApp = {
@@ -74,6 +79,8 @@ export class VpcAppdetailsComponent implements OnInit {
       geoLocation: "",
      },
     name: "",
+    startDate: "",
+    projectGeneratorName: "",
     businessDate: "",
     planningStatus:  "",
     currentStateStatus: "",
@@ -114,10 +121,15 @@ export class VpcAppdetailsComponent implements OnInit {
       displayedStateColumns = 
       ['iconStatus', 
       'stateName',
+      'generatorName',
       'dueByDate', 
       'dateCompleted', 
       'stateStatus', 
       'edit',
+      'addGenerator',
+      'dummyColumn1',
+      'removeGenerator',
+      'dummyColumn2',
       'nextState'];
     
   ngOnInit() {

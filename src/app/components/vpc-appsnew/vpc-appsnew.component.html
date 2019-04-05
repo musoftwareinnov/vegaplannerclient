@@ -15,7 +15,7 @@
          
             <div class="full-width-container">
                 <mat-form-field>
-                  <mat-select id="generator" placeholder="Select Generator" formControlName="generator" name="generator">
+                  <mat-select id="generator" placeholder="Select Project Generator" formControlName="generator" name="generator">
                   <mat-option *ngFor="let generator of queryGeneratorResult.items" [value]="generator.id" >{{generator.name}}
                   </mat-option>
                 </mat-select>

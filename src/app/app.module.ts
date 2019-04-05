@@ -32,6 +32,7 @@ import { StatisticsService } from './services/statistics.service';
 import { PlanningAppStateService } from './services/planninappstate.service';
 import { ProgressService, BrowserXhrWithProgress } from './services/progress.service';
 import { DrawingService } from './services/drawing.service';
+import { ProjectGeneratorService } from './services/projectgenerator.service';
 import { StateInitialiserService } from './services/stateinitialiser.service';
 import { StateInitialiserStateService } from './services/stateinitialiserstate.service';
 import { DescriptionOfWorkService } from './services/descriptionofwork.service';
@@ -70,6 +71,8 @@ import { AppErrorHandler } from './app.error.handler';
 import { VpcAppssearchComponent } from './components/vpc-appssearch/vpc-appssearch.component';
 import { StaticDataService } from './services/staticdata.service';
 import { VpcFeesComponent } from './components/vpc-fees/vpc-fees.component';
+import { VpsGeneratorinsertComponent } from './components/vps-generatorinsert/vps-generatorinsert.component';
+import { VpcRemovegeneratorComponent } from './components/vpc-removegenerator/vpc-removegenerator.component';
 
 //import { SpinnerComponent } from './components/spinner/spinner.component';
 
@@ -83,6 +86,7 @@ const appRoutes:Routes = [
   { path: 'appscompleted' , component: VpcAppscompletedComponent},
   { path: 'appsnew' , component: VpcAppsnewComponent},
   { path: 'appstate/edit/:id' , component: VpcAppstateformComponent},
+  { path: 'appgenerator/insert/:id' , component: VpsGeneratorinsertComponent},
   { path: 'customers/new' , component: VpcCustomerformComponent},
   { path: 'customers/edit/:id' , component: VpcCustomerformComponent},
   { path: 'customers' , component: VpcCustomerlistComponent},
@@ -91,7 +95,6 @@ const appRoutes:Routes = [
   { path: 'generators/new' , component: VpcGeneratornewComponent},
   { path: 'generatorstatelist/:id' , component: VpcGeneratorstatelistComponent},
   { path: 'generatorstate/edit/:id' , component: VpcGeneratorstateComponent},
-
   { path: 'planningapps/:id' , component: VpcAppdetailsComponent},
 ];
 
@@ -114,7 +117,9 @@ const appRoutes:Routes = [
     VpcAppdetailsComponent,
     VpcAppstateformComponent,
     VpcAppssearchComponent,
-    VpcFeesComponent
+    VpcFeesComponent,
+    VpsGeneratorinsertComponent,
+    VpcRemovegeneratorComponent
   ],
   imports: [
     BrowserModule,
@@ -166,6 +171,7 @@ const appRoutes:Routes = [
     ProgressService,
     CustomerService,
     StateStatusService,
+    ProjectGeneratorService,
     StateInitialiserService,
     StateInitialiserStateService,
     DescriptionOfWorkService,

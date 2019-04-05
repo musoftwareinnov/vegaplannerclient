@@ -65,9 +65,9 @@ export class VpcAppsinprogressComponent implements OnInit {
   ngOnInit() {
     this.loadStatuses();
     this.refreshData();
-    // this.interval = setInterval(() => { 
-    //     this.refreshData(); 
-    // }, 5000);
+    this.interval = setInterval(() => { 
+        this.refreshData(); 
+    }, 5000);
 
     console.log("Apps Inprogress geUWt");
     console.log(this.userService.getUwt());

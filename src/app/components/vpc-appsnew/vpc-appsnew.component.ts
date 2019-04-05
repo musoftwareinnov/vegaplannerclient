@@ -1,3 +1,4 @@
+import { ProjectGeneratorService } from './../../services/projectgenerator.service';
 import { DescriptionOfWork } from './../../models/descriptionofwork';
 import { DescriptionOfWorkService } from './../../services/descriptionofwork.service';
 import { Component, OnInit } from '@angular/core';
@@ -35,7 +36,9 @@ export class VpcAppsnewComponent implements OnInit {
   generator: PlanningAppGenerator = {
     customerId: 0,
     stateInitialiserId: 0,
+    projectGeneratorId: 0,
     name: '',
+    notes: '',
     descriptionOfWork: '',
     developer: {
       companyName: "",
@@ -65,6 +68,7 @@ export class VpcAppsnewComponent implements OnInit {
               private customerService: CustomerService,
               private userService: UserService,
               private stateInitialiserService: StateInitialiserService,
+              private projectGeneratorService: ProjectGeneratorService,
               private descriptionOfWorkService: DescriptionOfWorkService,
               private router: Router,
               private authGuard:AuthGuard) {
@@ -79,6 +83,10 @@ export class VpcAppsnewComponent implements OnInit {
 
     this.descriptionOfWorkService.getDescriptionsofwork()
       .subscribe(result => this.descriptionOfWorkResult = result);
+
+    // User When GUI setup for multiple generators
+    // this.projectGeneratorService.getProjectGeneratorList(this.query)
+    //   .subscribe(result => this.queryGeneratorResult = result);
 
     this.stateInitialiserService.getStateInitialiserList(this.query)
       .subscribe(result => this.queryGeneratorResult = result);
@@ -120,9 +128,10 @@ export class VpcAppsnewComponent implements OnInit {
   
   onSubmit() {  
 
-    this.generator.stateInitialiserId = this.newAppForm.controls['generator'].value;
+    this.generator.projectGeneratorId = this.newAppForm.controls['generator'].value;
     this.generator.customerId = this.newAppForm.controls['customer'].value;
     this.generator.name = this.newAppForm.controls['notes'].value;
+    this.generator.notes = this.newAppForm.controls['notes'].value;
     this.generator.descriptionOfWork = this.newAppForm.controls['descriptionOfWork'].value;
     this.generator.surveyors = this.newAppForm.controls['userSurveyorsMultiple'].value;
     this.generator.drawers = this.newAppForm.controls['userDrawersMultiple'].value;

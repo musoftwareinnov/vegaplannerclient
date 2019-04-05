@@ -16,6 +16,8 @@ export interface PlanningApp {
     developmentAddress: DevelopmentAddress;
     name: string;
     businessDate: string;
+    startDate: string;
+    projectGeneratorName: string;
     planningStatus: string;
     currentStateStatus: string;
     currentState: string;
@@ -37,8 +39,7 @@ export interface PlanningApp {
 export interface PlanningAppFees {
     id: number; 
     name: string;
-    amount: number;
-  
+    amount: number;  
 }
 
 export interface PlanningAppStates {
@@ -47,7 +48,14 @@ export interface PlanningAppStates {
     dueByDate: string;
     dateCompleted: string;
     stateStatus: string;
+    isLastGeneratorState: boolean;
     currentState: boolean;
+  }
+
+  export interface PlanningAppInsertGenerator {
+    id: number; 
+    generatorId: number; 
+    orderId: number;
   }
 
   export interface ChangePlanningAppState {
@@ -63,7 +71,9 @@ export interface PlanningAppStates {
   export interface PlanningAppGenerator {
     customerId: number; 
     stateInitialiserId: number;
+    projectGeneratorId: number;
     name: string; 
+    notes: string; 
     descriptionOfWork: string;
     developer: Developer;
     developmentAddress: Address;

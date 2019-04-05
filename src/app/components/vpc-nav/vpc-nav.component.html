@@ -48,7 +48,7 @@
           <span [matBadge]="planningStatistics.completed" matBadgeOverlap="false">&nbsp;Apps Completed</span>
         </a>
         <a mat-list-item [routerLink]="['/generators']">
-          <mat-icon>settings</mat-icon>&nbsp;State Generators
+          <mat-icon>settings</mat-icon>&nbsp;Project Generators
         </a>
       </a> 
     </mat-nav-list>
@@ -62,7 +62,7 @@
         aria-label="Toggle sidenav"
         mat-icon-button
         (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
+        *ngIf="isHandset$ | async"> 
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span flex>Crofton Design Vega Planner : {{userName}}</span>
