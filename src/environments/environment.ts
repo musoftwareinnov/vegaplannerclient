@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  //APIEndpoint: "https://vegaplannerserver.azurewebsites.net/api"
-  APIEndpoint: "http://localhost:5000/api"
+  APIEndpoint: "https://vegaplannerserver.azurewebsites.net/api"
+  //APIEndpoint: "http://localhost:5000/api"
 };  
   
 /*
