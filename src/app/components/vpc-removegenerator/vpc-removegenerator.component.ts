@@ -1,6 +1,7 @@
+import { PlanningAppStateService } from './../../services/planninappstate.service';
 import { Component, OnInit } from '@angular/core';
 import { StateInitialiserService } from 'src/app/services/stateinitialiser.service';
-import { PlanningAppInsertGenerator } from 'src/app/models/planningapp';
+import { PlanningAppUpdateGenerator } from 'src/app/models/planningapp';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -12,12 +13,11 @@ import { AuthGuard } from 'src/app/auth.guard';
   templateUrl: './vpc-removegenerator.component.html',
   styleUrls: ['./vpc-removegenerator.component.css']
 })
-export class VpcRemovegeneratorComponent implements OnInit {
+export class VpsGeneratorremoveComponent implements OnInit {
 
   constructor( 
-              private formBuilder: FormBuilder,
-              private PlanningAppService: PlanningAppService,
-              private stateInitialiserService: StateInitialiserService,
+              private planningAppStateService: PlanningAppStateService,
+              private planningAppService: PlanningAppService,
               private toastrService: ToastrService,
               private router: Router,
               private route: ActivatedRoute,
@@ -30,7 +30,7 @@ export class VpcRemovegeneratorComponent implements OnInit {
     pageSize: 0
   };
   queryGeneratorResult: any = {};
-  generator: PlanningAppInsertGenerator = {
+  generator: PlanningAppUpdateGenerator = {
     id: 0, 
     generatorId: 0, 
     orderId: 0
@@ -42,10 +42,6 @@ export class VpcRemovegeneratorComponent implements OnInit {
   generatorName: string
   
   ngOnInit() {
-    
-
-
-    //Get Ap
     this.route
     .queryParams
     .subscribe(params => {
@@ -53,42 +49,30 @@ export class VpcRemovegeneratorComponent implements OnInit {
       this.generator.generatorId = +params['generatorId'] || 0;
     });
 
-    this.stateInitialiserService.getStateInitialiser(this.generator.generatorId)
+    this.planningAppStateService.getPlanningAppState(this.generator.generatorId)
     .subscribe(result => this.queryGeneratorResult = result);
-
-    this.newAppForm = this.createFormGroupWithBuilderAndModel(this.formBuilder);
   }
 
   onSubmit() {  
-    //Increase OrderId so its inserted after the current generator
-    this.generator.orderId = this.orderId+1
+    this.generator.orderId = this.orderId
     console.log('Generator')
     console.log(this.generator)
 
-    // if(this.generator.generatorId > 0) {
-    //   this.PlanningAppService.insertGenerator(this.generator).subscribe(
-    //   planningApp => {
-    //     this.toastrService.success('Generator sucessfully inserted', 'Success');
-    //     this.router.navigate(['/planningapps/', this.generator.id])
-    //   });
-    // }
-    // else {
-    //   this.toastrService.error('Please specify generator', 'Error');
-    // }
+    if(this.generator.generatorId > 0) {
+      this.planningAppService.removeGenerator(this.generator).subscribe(
+      planningApp => {
+        this.toastrService.success('Generator sucessfully removed', 'Success');
+        this.router.navigate(['/planningapps/', this.generator.id])
+      });
+    }
+    else {
+      this.toastrService.error('Please specify generator', 'Error');
+    }
   }
 
   close() {
     this.router.navigate(['/planningapps/'+ this.generator.id ]);
   }
-    // convenience getter for easy access to form fields
-    get f() { return this.newAppForm.controls; }
-
-    createFormGroupWithBuilderAndModel(formBuilder: FormBuilder) {
-  
-      return formBuilder.group({
-        name:    "",
-      });
-    }
 }
 
 

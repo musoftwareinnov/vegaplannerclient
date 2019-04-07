@@ -21,7 +21,8 @@
         <th mat-header-cell flex="50px" *matHeaderCellDef mat-sort-header ></th>
         <mat-cell *matCellDef="let row" flex="50px">
           <div *ngIf="row.planningStatus=='Complete'"><mat-icon class="green-thumb-icon">check_circle</mat-icon></div>
-          <div *ngIf="row.planningStatus=='Archived'"><mat-icon class="orange-warn-icon">camera</mat-icon></div>
+          <div *ngIf="row.planningStatus=='Archived'"><mat-icon class="orange-warn-icon">archive</mat-icon></div>
+          <div *ngIf="row.planningStatus=='Terminated'"><mat-icon class="orange-warn-icon">camera</mat-icon></div>
         </mat-cell>
       </ng-container>
   

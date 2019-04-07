@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { VpcRemovegeneratorComponent } from './vpc-removegenerator.component';
+import { VpsGeneratorremoveComponent } from './vpc-removegenerator.component';
 
-describe('VpcRemovegeneratorComponent', () => {
-  let component: VpcRemovegeneratorComponent;
-  let fixture: ComponentFixture<VpcRemovegeneratorComponent>;
+describe('VpsGeneratorremoveComponent', () => {
+  let component: VpsGeneratorremoveComponent;
+  let fixture: ComponentFixture<VpsGeneratorremoveComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ VpcRemovegeneratorComponent ]
+      declarations: [ VpsGeneratorremoveComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(VpcRemovegeneratorComponent);
+    fixture = TestBed.createComponent(VpsGeneratorremoveComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

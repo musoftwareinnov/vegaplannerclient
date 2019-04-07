@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StateInitialiserService } from 'src/app/services/stateinitialiser.service';
-import { PlanningAppInsertGenerator } from 'src/app/models/planningapp';
+import { PlanningAppUpdateGenerator } from 'src/app/models/planningapp';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -30,7 +30,7 @@ export class VpsGeneratorinsertComponent implements OnInit {
     pageSize: 0
   };
   queryGeneratorResult: any = {};
-  generator: PlanningAppInsertGenerator = {
+  generator: PlanningAppUpdateGenerator = {
     id: 0, 
     generatorId: 0, 
     orderId: 0

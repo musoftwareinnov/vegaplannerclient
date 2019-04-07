@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
-import { ChangePlanningAppState, SavePlanningNotes, PlanningApp, PlanningAppInsertGenerator } from 'src/app/models/planningapp';
+import { ChangePlanningAppState, SavePlanningNotes, PlanningApp, PlanningAppUpdateGenerator } from 'src/app/models/planningapp';
 import { StateAction } from 'src/app/constants';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProgressService } from 'src/app/services/progress.service';
@@ -36,7 +36,7 @@ export class VpcAppdetailsComponent implements OnInit {
     notes: ""
   };
 
-  insertGenerator: PlanningAppInsertGenerator = {
+  insertGenerator: PlanningAppUpdateGenerator = {
     id: 0,
     generatorId: 0,
     orderId: 0
@@ -212,7 +212,7 @@ export class VpcAppdetailsComponent implements OnInit {
   }
 
   terminate() {
-    if (confirm("Confirm : Terminate Planning App")) {
+    if (confirm("Terminate Planning App '" + this.planningApp.planningReferenceId + "'?")) {
       this.savePlanningApp.id = this.planningApp.id;
       var result$ = this.planningAppService.terminate(this.savePlanningApp )
   
@@ -221,8 +221,8 @@ export class VpcAppdetailsComponent implements OnInit {
   
       result$.subscribe(
           planningApp => {
-            this.toastrService.success('Planning App : ' + this.planningApp.id + " Terminated", 'Success');   
-            this.router.navigate(['/appsdetails/', this.planningApp.id])
+            this.toastrService.success('Planning App : ' + this.planningApp.planningReferenceId + " Terminated", 'Success');   
+            this.router.navigate(['/appsinprogress']);
           });
     }
   }
@@ -279,7 +279,4 @@ export interface Fees {
 }
 
 const ELEMENT_DATA: Fees[] = [
-  // { position: 1, name: 'Fesibility', fee: 10.0 },
-  // { position: 2, name: 'Planning', fee: 0.0 },
-  // { position: 3, name: 'Building Regs', fee: 0.0 },
 ];

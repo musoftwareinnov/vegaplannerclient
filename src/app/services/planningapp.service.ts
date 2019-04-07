@@ -1,6 +1,6 @@
 
 import { Headers } from '@angular/http';
-import { PlanningApp, ChangePlanningAppState, PlanningAppGenerator, SavePlanningNotes, PlanningAppGet, PlanningAppInsertGenerator } from '../models/planningapp';
+import { PlanningApp, ChangePlanningAppState, PlanningAppGenerator, SavePlanningNotes, PlanningAppGet, PlanningAppUpdateGenerator } from '../models/planningapp';
 import { PlanningAppSummary } from '../models/planningappsummary';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
@@ -46,10 +46,15 @@ export class PlanningAppService {
     return this.httpJwtService.put<PlanningApp>(this.planningappsEndpoint + '/' + planningApp.id, planningApp)
   }
 
-  insertGenerator(planningAppInsertGenerator: PlanningAppInsertGenerator) {
+  insertGenerator(planningAppInsertGenerator: PlanningAppUpdateGenerator) {
     console.warn("GEN TO INSERT");
     console.warn(planningAppInsertGenerator);
-    return this.httpJwtService.put<PlanningAppInsertGenerator>(this.planningappsEndpoint + '/appendgenerator/' + planningAppInsertGenerator.id, planningAppInsertGenerator)
+    return this.httpJwtService.put<PlanningAppUpdateGenerator>(this.planningappsEndpoint + '/appendgenerator/' + planningAppInsertGenerator.id, planningAppInsertGenerator)
+  }
+  removeGenerator(planningAppRemoveGenerator: PlanningAppUpdateGenerator) {
+    console.warn("GEN TO REMOVE");
+    console.warn(planningAppRemoveGenerator);
+    return this.httpJwtService.put<PlanningAppUpdateGenerator>(this.planningappsEndpoint + '/removegenerator/' + planningAppRemoveGenerator.id, planningAppRemoveGenerator)
   }
   
   generatePlanningApp(planningAppGenerator:PlanningAppGenerator) {

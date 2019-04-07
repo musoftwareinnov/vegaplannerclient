@@ -6,13 +6,13 @@
   }
   
   .example-full-width {
-    width: 50%;
+    width: 100%;
   }
 
   .grid-container {
     margin-top:80px;
-    margin-left:380px;
-    margin-right:380px;   
+    margin-left:180px;
+    margin-right:180px;   
   }
 
   .grid-container-inner {

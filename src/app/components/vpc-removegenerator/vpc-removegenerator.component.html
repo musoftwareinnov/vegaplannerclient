@@ -1,23 +1,25 @@
-<!-- <div class="grid-container">
+<div class="grid-container">
   <div class="mat-elevation-z8">
-    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-      <div class="grid-container-inner">
-      <h1 class="mat-h1">Remove Generator From Planning Application</h1>
-        <div class="form-group">                        
-          <mat-form-field class="third-width">
-            <input type="text" matInput placeholder="Generator Name" formControlName="name"> 
+    <div class="grid-container-inner">
+      <div class="form-group">
+        <div class="filter-width">
+          <h2 class="mat-h2">Remove Generator [ {{queryGeneratorResult.generatorName}} ] From Application?</h2>
         </div>
-          </mat-form-field>
-        </div>  
-        <div class="button-row">
-                <button mat-raised-button color="primary" (click)="close=true">Close</button>                    
-                <button mat-raised-button color="warn" (click)="delete()" >Delete</button>           
-        </div>
-      </div>
+        <table ><tr>
+            <td>                  
+              <mat-form-field class="state-name-width">
+                <input type="text" matInput placeholder="Generator Name" name="name"  [(ngModel)]="queryGeneratorResult.generatorName" > 
+              </mat-form-field>
+            </td>                            
+          </tr>
+        </table> 
+      </div>  
+      <div class="form-group">
+          <button class="button-row" mat-raised-button color="warn" (click)="onSubmit()">Delete</button>
+          <button mat-raised-button color="primary"  class="button-row" (click)="close()">Close</button> 
+      </div> 
     </div>
-  </form>
-
   </div>
-</div>  
- -->
+</div>
+
 

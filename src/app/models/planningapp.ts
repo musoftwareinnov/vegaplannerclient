@@ -52,7 +52,7 @@ export interface PlanningAppStates {
     currentState: boolean;
   }
 
-  export interface PlanningAppInsertGenerator {
+  export interface PlanningAppUpdateGenerator {
     id: number; 
     generatorId: number; 
     orderId: number;

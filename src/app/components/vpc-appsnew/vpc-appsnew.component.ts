@@ -146,7 +146,7 @@ export class VpcAppsnewComponent implements OnInit {
     if(this.generator.customerId > 0) {
       this.PlanningAppService.generatePlanningApp(this.generator).subscribe(
       planningApp => {
-        this.toastrService.success('Planning app sucessfully created', 'Success');
+        this.toastrService.success('Planning app successfully created', 'Success');
         this.router.navigate(['/planningapps/', planningApp.id])
       });
     }

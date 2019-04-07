@@ -72,7 +72,7 @@ import { VpcAppssearchComponent } from './components/vpc-appssearch/vpc-appssear
 import { StaticDataService } from './services/staticdata.service';
 import { VpcFeesComponent } from './components/vpc-fees/vpc-fees.component';
 import { VpsGeneratorinsertComponent } from './components/vps-generatorinsert/vps-generatorinsert.component';
-import { VpcRemovegeneratorComponent } from './components/vpc-removegenerator/vpc-removegenerator.component';
+import { VpsGeneratorremoveComponent } from './components/vpc-removegenerator/vpc-removegenerator.component';
 
 //import { SpinnerComponent } from './components/spinner/spinner.component';
 
@@ -87,6 +87,7 @@ const appRoutes:Routes = [
   { path: 'appsnew' , component: VpcAppsnewComponent},
   { path: 'appstate/edit/:id' , component: VpcAppstateformComponent},
   { path: 'appgenerator/insert/:id' , component: VpsGeneratorinsertComponent},
+  { path: 'appgenerator/remove/:id' , component: VpsGeneratorremoveComponent},
   { path: 'customers/new' , component: VpcCustomerformComponent},
   { path: 'customers/edit/:id' , component: VpcCustomerformComponent},
   { path: 'customers' , component: VpcCustomerlistComponent},
@@ -119,7 +120,7 @@ const appRoutes:Routes = [
     VpcAppssearchComponent,
     VpcFeesComponent,
     VpsGeneratorinsertComponent,
-    VpcRemovegeneratorComponent
+    VpsGeneratorremoveComponent
   ],
   imports: [
     BrowserModule,

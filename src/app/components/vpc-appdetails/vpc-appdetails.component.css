@@ -109,4 +109,8 @@ input.fee-right-align {
 .mat-footer-row {
   font-weight: bold;
 }
+.button-row{
+  margin: 5px; 
+  align-items: right
+}
 

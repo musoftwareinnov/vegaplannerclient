@@ -8,19 +8,29 @@
             Application Progress
           </ng-template>
           <div class="grid-container">
-              <h1 class="mat-h1">Application Status</h1>
+
+              <div class="form-group">
+                    <div *ngIf="planningApp.canTerminate==true">
+                      <button  mat-raised-button color="warn" matTooltip="Terminate" (click)="terminate()">Terminate</button>   
+                    </div>
+                    <div *ngIf="planningApp.planningStatus=='InProgress'">
+                      <button mat-mini-fab color="primary" style="float: right;" matTooltip="Go to next state" (click)="nextState()"><span><mat-icon>arrow_downward</mat-icon></span></button>
+                    </div>
+                    <div *ngIf="planningApp.canArchive==true">
+                        <button mat-fab color="primary" matTooltip="Archive" (click)="archive()"><span><mat-icon>archive</mat-icon></span></button>
+                    </div>
+                </div>
               <div class="mat-elevation-z8">
             
               <table mat-table #table [dataSource]="planningApp.planningAppStates" matSort aria-label="Elements">
-            
                <!-- IconStatus --> 
                <ng-container matColumnDef="iconStatus">
                   <th mat-header-cell flex="50px" *matHeaderCellDef mat-sort-header ></th>
                   <mat-cell *matCellDef="let row" flex="50px">
                     <div *ngIf="row.stateStatus=='Complete'"><mat-icon class="green-thumb-icon">check_circle</mat-icon></div>
                     <div *ngIf="row.stateStatus=='OnTime'"><mat-icon class="blue-thumb-icon">thumb_up</mat-icon></div>
-                    <div *ngIf="row.stateStatus=='Due'"><mat-icon class="orange-warn-icon">report</mat-icon></div>
-                    <div *ngIf="row.stateStatus=='Overdue'"><mat-icon class="red-warn-icon">report</mat-icon></div>
+                    <div *ngIf="row.stateStatus=='Due'"><mat-icon class="orange-warn-icon">access_alarm</mat-icon></div>
+                    <div *ngIf="row.stateStatus=='Overdue'"><mat-icon class="red-warn-icon">access_alarm</mat-icon></div>
                     <div *ngIf="row.stateStatus=='Overran'"><mat-icon class="red-warn-icon">thumb_down</mat-icon></div>
                   </mat-cell>
                 </ng-container>
@@ -86,7 +96,8 @@
                             <td></td>
                         </div>
                         <div *ngIf="row.canRemoveGenerator==true">
-                            <td matTooltip="Remove Generator" [routerLink]="['/appgenerator/remove/', row.generatorOrder]" [skipLocationChange]="true" [queryParams]="{ planningAppId: planningApp.id }"><span><mat-icon color="primary">remove_circle_outline</mat-icon></span></td>
+                            <!-- <td matTooltip="Remove Generator" [routerLink]="['/appgenerator/remove/', row.generatorOrder]" [skipLocationChange]="true" [queryParams]="{ planningAppId: planningApp.id }"><span><mat-icon color="primary">remove_circle_outline</mat-icon></span></td>-->
+                            <td matTooltip="Remove Generator" [routerLink]="['/appgenerator/remove/', row.generatorOrder]" [skipLocationChange]="true" [queryParams]="{ generatorId: row.id, planningAppId: planningApp.id }"><span><mat-icon color="primary">remove_circle_outline</mat-icon></span></td>
                         </div>
                     </mat-cell>                     
                    </ng-container>
@@ -104,7 +115,7 @@
                       <div *ngIf="row.currentState==false">
                           <td  ></td>
                       </div>
-                      <div *ngIf="row.currentState==true">
+                      <div *ngIf="row.currentState==true && planningApp.planningStatus=='InProgress'">
                           <td  >
                               <button mat-mini-fab color="primary"  matTooltip="Go to next state" (click)="nextState()"><span><mat-icon>arrow_downward</mat-icon></span></button>
                           </td>                     
@@ -117,7 +128,9 @@
               </table>
   
             </div>
-            </div>
+            </div>                      
+
+
         </mat-tab>  
 
         <mat-tab>
