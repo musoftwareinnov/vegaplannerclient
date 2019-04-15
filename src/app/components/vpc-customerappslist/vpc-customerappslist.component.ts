@@ -61,9 +61,9 @@ export class VpcCustomerappslistComponent implements OnInit {
     this.populatePlanningAppSummary();
     this.populateCustomer();
     this.refreshData();
-    this.interval = setInterval(() => { 
-        this.refreshData(); 
-    }, 5000);
+    // this.interval = setInterval(() => { 
+    //     this.refreshData(); 
+    // }, 10000);
   }
 
   refreshData() {

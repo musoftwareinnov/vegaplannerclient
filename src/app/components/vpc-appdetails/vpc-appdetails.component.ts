@@ -97,6 +97,9 @@ export class VpcAppdetailsComponent implements OnInit {
     surveyors:"",
     drawers:"",
     admins:"",
+    canTerminate:true,
+    canArchive:true,
+    customerName:"",
     method: 1
   };
 

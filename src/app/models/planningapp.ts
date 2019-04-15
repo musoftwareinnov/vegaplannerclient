@@ -34,6 +34,9 @@ export interface PlanningApp {
     surveyors:string,
     drawers:string,
     admins:string,
+    canTerminate:boolean,
+    canArchive:boolean,
+    customerName:string,     
   }
 
 export interface PlanningAppFees {
